@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * {@code Axe}s.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public class Knight extends AbstractPlayerCharacter {
 

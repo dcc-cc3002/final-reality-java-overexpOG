@@ -12,6 +12,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
+ * @author Ignacio Alveal
  */
 public class TimerExample {
 

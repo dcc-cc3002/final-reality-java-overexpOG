@@ -6,7 +6,7 @@ import java.util.Objects;
  * A class that holds all the information of a weapon.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public class Weapon {
 
@@ -26,11 +26,17 @@ public class Weapon {
     this.type = type;
   }
 
-  private String getName() {
+  /**
+   * Returns the name of the weapon.
+   */
+  public String getName() {
     return name;
   }
 
-  private int getDamage() {
+  /**
+   * Returns the damage of the weapon.
+   */
+  public int getDamage() {
     return damage;
   }
 
@@ -41,7 +47,10 @@ public class Weapon {
     return weight;
   }
 
-  private WeaponType getType() {
+  /**
+   * Returns the type of the weapon.
+   */
+  public WeaponType getType() {
     return type;
   }
 

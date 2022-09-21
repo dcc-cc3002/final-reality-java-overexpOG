@@ -1,7 +1,7 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
 /*
- * "Final Reality" (c) by R8V and ~Your name~
+ * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
  * Creative Commons Attribution 4.0 International License.
  * You should have received a copy of the license along with this
@@ -13,6 +13,9 @@ import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 /**
  * A {@link GameCharacter} that can equip a weapon.
+ *
+ * @author <a href="https://www.github.com/r8vnhill">R8V</a>
+ * @author Ignacio Alveal
  */
 public interface PlayerCharacter extends GameCharacter {
   /**

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * A {@link PlayerCharacter} that can equip {@code Staff}s and use <i>white magic</i>.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public class WhiteMage extends AbstractPlayerCharacter {
 
@@ -27,7 +27,7 @@ public class WhiteMage extends AbstractPlayerCharacter {
   private final int maxMp;
 
   /**
-   * Creates a new character.
+   * Creates a new White mage.
    *
    * @param name
    *     the character's name
@@ -37,6 +37,8 @@ public class WhiteMage extends AbstractPlayerCharacter {
    *     the character's defense
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
+   * @param maxMp
+   *     the character's max mp
    */
   protected WhiteMage(final @NotNull String name, final int maxHp, final int defense,
                       final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
