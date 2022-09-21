@@ -40,8 +40,8 @@ public class BlackMage extends AbstractPlayerCharacter {
    *     the queue with the characters waiting for their turn
    */
   protected BlackMage(final @NotNull String name, final int maxHp, final int defense,
-      int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+                      final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(0, maxMp, "Max MP");
     this.maxMp = maxMp;
@@ -84,16 +84,16 @@ public class BlackMage extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense
-        && maxMp == that.maxMp;
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && defense == that.defense
+            && maxMp == that.maxMp;
   }
 
   @Override
   public String toString() {
-    return "BlackMage{currentMp=%d, maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
-        .formatted(currentMp, maxMp, maxHp, defense, name);
+    return "BlackMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
+            .formatted(maxMp, maxHp, defense, name);
   }
 
   @Override

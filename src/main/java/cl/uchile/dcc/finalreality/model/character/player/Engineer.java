@@ -14,7 +14,6 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * A {@link PlayerCharacter} that can equip {@code Axe}s and {@code Bow}s.
  *
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
  * @author ~Your name~
  */
 public class Engineer extends AbstractPlayerCharacter {
-
 
   /**
    * Creates a new engineer.
@@ -37,8 +35,8 @@ public class Engineer extends AbstractPlayerCharacter {
    *     the queue with the characters waiting for their turn
    */
   public Engineer(final @NotNull String name, final int maxHp, final int defense,
-      final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+                  final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
 
@@ -61,8 +59,8 @@ public class Engineer extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && defense == that.defense;
   }
 }

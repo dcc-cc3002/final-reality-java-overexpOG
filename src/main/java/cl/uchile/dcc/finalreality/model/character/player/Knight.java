@@ -17,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 /**
  * A {@link PlayerCharacter} that can equip {@code Sword}s,{@code Knife}s and
  * {@code Axe}s.
+ *
+ * @author <a href="https://www.github.com/r8vnhill">R8V</a>
+ * @author ~Your name~
  */
 public class Knight extends AbstractPlayerCharacter {
 
@@ -32,9 +35,9 @@ public class Knight extends AbstractPlayerCharacter {
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  public Knight(@NotNull final String name, int maxHp, int defense,
-      @NotNull final BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+  public Knight(final @NotNull String name,final int maxHp,final int defense,
+                final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
 
@@ -57,8 +60,8 @@ public class Knight extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && defense == that.defense;
   }
 }

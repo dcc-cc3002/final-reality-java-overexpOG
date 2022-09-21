@@ -39,9 +39,10 @@ public class WhiteMage extends AbstractPlayerCharacter {
    *     the queue with the characters waiting for their turn
    */
   protected WhiteMage(final @NotNull String name, final int maxHp, final int defense,
-      int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+                      final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
+    Require.statValueAtLeast(0, maxMp, "Max MP");
     this.maxMp = maxMp;
     this.currentMp = maxMp;
   }
@@ -55,10 +56,10 @@ public class WhiteMage extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && maxMp == that.maxMp
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+            && maxMp == that.maxMp
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && defense == that.defense;
   }
 
   @Override
@@ -69,7 +70,7 @@ public class WhiteMage extends AbstractPlayerCharacter {
   @Override
   public String toString() {
     return "WhiteMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
-        .formatted(maxMp, maxHp, defense, name);
+            .formatted(maxMp, maxHp, defense, name);
   }
 
   /**
