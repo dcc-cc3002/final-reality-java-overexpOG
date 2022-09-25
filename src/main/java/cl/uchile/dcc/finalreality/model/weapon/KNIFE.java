@@ -1,4 +1,14 @@
+/*
+ * "Final Reality" (c) by R8V and Ignacio Alveal
+ * "Final Reality" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
+
 package cl.uchile.dcc.finalreality.model.weapon;
+
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 
 import java.util.Objects;
 
@@ -21,7 +31,7 @@ public class KNIFE extends AbstractWeapon{
      *     the weapon's weight
      */
 
-    public KNIFE(final String name, final int damage, final int weight) {
+    public KNIFE(final String name, final int damage, final int weight) throws InvalidStatValueException {
         super(name, damage, weight);
         type = "KNIFE";
     }
