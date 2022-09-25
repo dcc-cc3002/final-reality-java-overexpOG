@@ -1,5 +1,3 @@
-package cl.uchile.dcc.finalreality.model.character.player;
-
 /*
  * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
@@ -7,6 +5,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
  * You should have received a copy of the license along with this
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
+
+package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
