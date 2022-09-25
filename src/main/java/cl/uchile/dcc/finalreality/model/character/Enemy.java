@@ -62,4 +62,9 @@ public class Enemy extends AbstractCharacter {
   public int hashCode() {
     return Objects.hash(Enemy.class, name, weight, maxHp, defense);
   }
+
+  @Override
+  public String toString() {
+    return "Enemy{maxHp=%d, defense=%d, weight=%d, name='%s'}".formatted(maxHp, defense, weight, name);
+  }
 }
