@@ -47,6 +47,18 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.name = name;
   }
 
+  /**
+   * Adds this character to the turns queue.
+   */
+  public void addToQueue() {
+    try {
+      turnsQueue.put(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    scheduledExecutor.shutdown();
+  }
+
   @Override
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
@@ -62,18 +74,6 @@ public abstract class AbstractCharacter implements GameCharacter {
           /* delay = */ enemy.getWeight() / 10,
           /* unit = */ TimeUnit.SECONDS);
     }
-  }
-
-  /**
-   * Adds this character to the turns queue.
-   */
-  public void addToQueue() {
-    try {
-      turnsQueue.put(this);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    scheduledExecutor.shutdown();
   }
 
   @Override
