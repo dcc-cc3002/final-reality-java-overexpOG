@@ -1,6 +1,7 @@
 package cl.uchile.dcc;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.*;
 import cl.uchile.dcc.finalreality.model.weapon.*;
@@ -42,6 +43,8 @@ public class Main {
         var character6 = new BlackMage("Shihoru", 10, 6, 10, queue);
         character6.equip(wizard_staff);
         character6.waitTurn();
+        var character7 = new Enemy("enemy", 7, 10, 10, queue);
+        character7.waitTurn();
         //testing AbstractCharacter methods
         System.out.println("testing AbstractCharacter methods:");
         System.out.println(character1.getName());
