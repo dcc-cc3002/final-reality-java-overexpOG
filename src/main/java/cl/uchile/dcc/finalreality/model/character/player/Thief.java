@@ -49,7 +49,7 @@ public class Thief extends AbstractPlayerCharacter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Thief.class, maxHp, currentHp, defense, name);
+    return Objects.hash(Thief.class, name, maxHp, currentHp, defense);
   }
 
   @Override
@@ -61,9 +61,9 @@ public class Thief extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
+            && name.equals(that.name)
             && maxHp == that.maxHp
             && currentHp == that.currentHp
-            && defense == that.defense
-            && name.equals(that.name);
+            && defense == that.defense;
   }
 }
