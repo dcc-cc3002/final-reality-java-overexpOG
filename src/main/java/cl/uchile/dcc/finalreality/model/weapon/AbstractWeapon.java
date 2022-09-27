@@ -17,7 +17,7 @@ import cl.uchile.dcc.finalreality.exceptions.Require;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public abstract class AbstractWeapon implements Weapon{
+public abstract class AbstractWeapon implements Weapon {
 
   protected final String name;
   protected final int damage;
@@ -25,6 +25,7 @@ public abstract class AbstractWeapon implements Weapon{
 
   /**
    * Creates a new weapon.
+   *
    * @param name
    *     the weapon's name
    * @param damage
@@ -32,7 +33,8 @@ public abstract class AbstractWeapon implements Weapon{
    * @param weight
    *     the weapon's weight
    */
-  public AbstractWeapon(final String name, final int damage, final int weight) throws InvalidStatValueException {
+  public AbstractWeapon(final String name, final int damage, final int weight)
+          throws InvalidStatValueException {
     Require.statValueAtLeast(0, weight, "Weight");
     Require.statValueAtLeast(0, damage, "Damage");
     this.name = name;
