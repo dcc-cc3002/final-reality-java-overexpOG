@@ -25,8 +25,18 @@ public class Enemy extends AbstractCharacter {
   private final int weight;
 
   /**
-   * Creates a new enemy with a name, a weight and the queue with the characters ready to
-   * play.
+   * Creates a new enemy.
+   *
+   * @param name
+   *     the character's name
+   * @param weight
+   *     the character's name
+   * @param maxHp
+   *     the character's weight
+   * @param defense
+   *     the character's defense
+   * @param turnsQueue
+   *     the queue with the characters waiting for their turn
    */
   public Enemy(final @NotNull String name, final int weight, final int maxHp, final int defense,
       final @NotNull BlockingQueue<GameCharacter> turnsQueue)
