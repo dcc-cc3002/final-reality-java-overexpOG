@@ -43,6 +43,17 @@ public class WhiteMage extends AbstractMage {
   }
 
   @Override
+  public String toString() {
+    return "WhiteMage{name='%s', maxHp=%d, currentHp:%d, defense=%d, maxMp=%d, currentMp_%d}"
+            .formatted(name, maxHp, currentHp, defense, maxMp, currentMp);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(WhiteMage.class, name, maxHp, currentHp, defense, maxMp, currentMp);
+  }
+
+  @Override
   public boolean equals(final Object o) {
     if (this == o) {
       return true;
@@ -51,20 +62,11 @@ public class WhiteMage extends AbstractMage {
       return false;
     }
     return hashCode() == that.hashCode()
-            && maxMp == that.maxMp
             && name.equals(that.name)
             && maxHp == that.maxHp
-            && defense == that.defense;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(WhiteMage.class, name, maxHp, defense, maxMp);
-  }
-
-  @Override
-  public String toString() {
-    return "WhiteMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
-            .formatted(maxMp, maxHp, defense, name);
+            && currentHp == that.currentHp
+            && defense == that.defense
+            && maxMp == that.maxMp
+            && currentMp == that.currentMp;
   }
 }
