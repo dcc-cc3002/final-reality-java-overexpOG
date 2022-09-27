@@ -1,5 +1,5 @@
 /*
- * "Final Reality" (c) by R8V and ~Your name~
+ * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
  * Creative Commons Attribution 4.0 International License.
  * You should have received a copy of the license along with this
@@ -23,10 +23,10 @@ import org.jetbrains.annotations.NotNull;
  * waiting for their turn ({@code turnsQueue}), and can equip a {@link Weapon}.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public abstract class AbstractPlayerCharacter extends AbstractCharacter implements
-    PlayerCharacter {
+        PlayerCharacter {
 
   private Weapon equippedWeapon = null;
 
@@ -43,9 +43,9 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp,
-      final int defense, @NotNull final BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp, final int defense,
+                                    @NotNull final BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
 

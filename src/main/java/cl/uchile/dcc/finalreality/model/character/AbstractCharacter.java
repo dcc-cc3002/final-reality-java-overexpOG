@@ -1,3 +1,11 @@
+/*
+ * "Final Reality" (c) by R8V and Ignacio Alveal
+ * "Final Reality" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
+
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
@@ -13,13 +21,13 @@ import org.jetbrains.annotations.NotNull;
  * An abstract class that holds the common behaviour of all the characters in the game.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public abstract class AbstractCharacter implements GameCharacter {
 
   private int currentHp;
-  protected int maxHp;
-  protected int defense;
+  protected final int maxHp;
+  protected final int defense;
   protected final BlockingQueue<GameCharacter> turnsQueue;
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
@@ -47,6 +55,18 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.name = name;
   }
 
+  /**
+   * Adds this character to the turns queue.
+   */
+  private void addToQueue() {
+    try {
+      turnsQueue.put(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    scheduledExecutor.shutdown();
+  }
+
   @Override
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
@@ -62,18 +82,6 @@ public abstract class AbstractCharacter implements GameCharacter {
           /* delay = */ enemy.getWeight() / 10,
           /* unit = */ TimeUnit.SECONDS);
     }
-  }
-
-  /**
-   * Adds this character to the turns queue.
-   */
-  private void addToQueue() {
-    try {
-      turnsQueue.put(this);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    scheduledExecutor.shutdown();
   }
 
   @Override

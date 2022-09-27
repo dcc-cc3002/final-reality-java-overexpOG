@@ -1,3 +1,11 @@
+/*
+ * "Final Reality" (c) by R8V and Ignacio Alveal
+ * "Final Reality" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
+
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
@@ -10,18 +18,28 @@ import org.jetbrains.annotations.NotNull;
  * A class that holds all the information of a single enemy of the game.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public class Enemy extends AbstractCharacter {
 
   private final int weight;
 
   /**
-   * Creates a new enemy with a name, a weight and the queue with the characters ready to
-   * play.
+   * Creates a new enemy.
+   *
+   * @param name
+   *     the character's name
+   * @param weight
+   *     the character's name
+   * @param maxHp
+   *     the character's weight
+   * @param defense
+   *     the character's defense
+   * @param turnsQueue
+   *     the queue with the characters waiting for their turn
    */
-  public Enemy(@NotNull final String name, final int weight, int maxHp, int defense,
-      @NotNull final BlockingQueue<GameCharacter> turnsQueue)
+  public Enemy(final @NotNull String name, final int weight, final int maxHp, final int defense,
+      final @NotNull BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(1, weight, "Weight");
@@ -53,5 +71,11 @@ public class Enemy extends AbstractCharacter {
   @Override
   public int hashCode() {
     return Objects.hash(Enemy.class, name, weight, maxHp, defense);
+  }
+
+  @Override
+  public String toString() {
+    return "Enemy{maxHp=%d, defense=%d, weight=%d, name='%s'}"
+            .formatted(maxHp, defense, weight, name);
   }
 }
