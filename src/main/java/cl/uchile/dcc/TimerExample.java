@@ -9,11 +9,15 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * this is a timer example.
+ *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
 public class TimerExample {
-
+  /**
+   * function that does something when the file is opened.
+   */
   public static void main(String[] args)
       throws InterruptedException, InvalidStatValueException {
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
