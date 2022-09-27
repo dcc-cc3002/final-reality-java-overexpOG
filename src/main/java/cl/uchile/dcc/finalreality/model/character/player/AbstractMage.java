@@ -11,8 +11,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.BlockingQueue;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An abstract class that contains the behavior of Mage.
@@ -22,52 +22,52 @@ import java.util.concurrent.BlockingQueue;
 
 public abstract class AbstractMage extends AbstractPlayerCharacter implements PlayerCharacter {
 
-    private int currentMp;
-    protected final int maxMp;
+  private int currentMp;
+  protected final int maxMp;
 
-    /**
-     * Creates a new Mage.
-     *
-     * @param name
-     *     the character's name
-     * @param maxHp
-     *     the character's max hp
-     * @param defense
-     *     the character's defense
-     * @param turnsQueue
-     *     the queue with the characters waiting for their turn
-     * @param maxMp
-     *     the character's max mp
-     */
-    protected AbstractMage(final @NotNull String name, final int maxHp, final int defense,
-                        final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-            throws InvalidStatValueException {
-        super(name, maxHp, defense, turnsQueue);
-        Require.statValueAtLeast(0, maxMp, "Max MP");
-        this.maxMp = maxMp;
-        this.currentMp = maxMp;
-    }
+  /**
+   * Creates a new Mage.
+   *
+   * @param name
+   *     the character's name
+   * @param maxHp
+   *     the character's max hp
+   * @param defense
+   *     the character's defense
+   * @param turnsQueue
+   *     the queue with the characters waiting for their turn
+   * @param maxMp
+   *     the character's max mp
+   */
+  protected AbstractMage(final @NotNull String name, final int maxHp, final int defense,
+                         final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
+    super(name, maxHp, defense, turnsQueue);
+    Require.statValueAtLeast(0, maxMp, "Max MP");
+    this.maxMp = maxMp;
+    this.currentMp = maxMp;
+  }
 
-    /**
-     * Returns the character's current MP.
-     */
-    public int getCurrentMp() {
-        return currentMp;
-    }
+  /**
+   * Returns the character's current MP.
+   */
+  public int getCurrentMp() {
+    return currentMp;
+  }
 
-    /**
-     * Sets the character's current MP.
-     */
-    public void setCurrentMp(final int currentMp) throws InvalidStatValueException {
-        Require.statValueAtLeast(0, currentMp, "Current MP");
-        Require.statValueAtMost(maxMp, currentMp, "Current MP");
-        this.currentMp = currentMp;
-    }
+  /**
+   * Sets the character's current MP.
+   */
+  public void setCurrentMp(final int currentMp) throws InvalidStatValueException {
+    Require.statValueAtLeast(0, currentMp, "Current MP");
+    Require.statValueAtMost(maxMp, currentMp, "Current MP");
+    this.currentMp = currentMp;
+  }
 
-    /**
-     * Returns the character's max MP.
-     */
-    public int getMaxMp() {
-        return maxMp;
-    }
+  /**
+   * Returns the character's max MP.
+   */
+  public int getMaxMp() {
+    return maxMp;
+  }
 }
