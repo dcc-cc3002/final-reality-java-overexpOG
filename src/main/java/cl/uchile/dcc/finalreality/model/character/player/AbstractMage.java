@@ -43,7 +43,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Pl
                          final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
-    Require.statValueAtLeast(0, maxMp, "Max MP");
+    Require.statValueAtLeast(1, maxMp, "Max MP");
     this.maxMp = maxMp;
     this.currentMp = maxMp;
   }
