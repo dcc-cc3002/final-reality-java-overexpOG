@@ -42,7 +42,8 @@ public class Engineer extends AbstractPlayerCharacter {
 
   @Override
   public String toString() {
-    return "Engineer{maxHp=%d, currentHp=%d, defense=%d, name='%s'}".formatted(maxHp, currentHp, defense, name);
+    return "Engineer{maxHp=%d, currentHp=%d, defense=%d, name='%s'}"
+            .formatted(maxHp, currentHp, defense, name);
   }
 
   @Override
