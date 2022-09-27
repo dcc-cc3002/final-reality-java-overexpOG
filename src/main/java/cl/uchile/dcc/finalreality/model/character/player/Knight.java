@@ -35,7 +35,7 @@ public class Knight extends AbstractPlayerCharacter {
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  public Knight(final @NotNull String name,final int maxHp,final int defense,
+  public Knight(final @NotNull String name, final int maxHp, final int defense,
                 final @NotNull BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
