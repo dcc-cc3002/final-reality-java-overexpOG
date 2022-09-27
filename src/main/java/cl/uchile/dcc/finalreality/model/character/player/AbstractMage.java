@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractMage extends AbstractPlayerCharacter implements PlayerCharacter {
 
-  private int currentMp;
+  protected int currentMp;
   protected final int maxMp;
 
   /**
