@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public class Enemy extends AbstractCharacter {
+public class Enemy extends AbstractAddingQueue {
 
   private final int weight;
 
