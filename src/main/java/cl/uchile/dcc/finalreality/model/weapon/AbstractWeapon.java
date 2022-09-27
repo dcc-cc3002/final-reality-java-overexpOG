@@ -35,7 +35,7 @@ public abstract class AbstractWeapon implements Weapon {
    */
   public AbstractWeapon(final String name, final int damage, final int weight)
           throws InvalidStatValueException {
-    Require.statValueAtLeast(0, weight, "Weight");
+    Require.statValueAtLeast(1, weight, "Weight");
     Require.statValueAtLeast(0, damage, "Damage");
     this.name = name;
     this.damage = damage;
