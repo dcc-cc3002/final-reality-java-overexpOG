@@ -27,20 +27,15 @@ public class Enemy extends AbstractAddingQueue {
   /**
    * Creates a new enemy.
    *
-   * @param name
-   *     the character's name
-   * @param weight
-   *     the character's name
-   * @param maxHp
-   *     the character's weight
-   * @param defense
-   *     the character's defense
-   * @param turnsQueue
-   *     the queue with the characters waiting for their turn
+   * @param name       the character's name
+   * @param weight     the character's name
+   * @param maxHp      the character's weight
+   * @param defense    the character's defense
+   * @param turnsQueue the queue with the characters waiting for their turn
    */
   public Enemy(final @NotNull String name, final int weight, final int maxHp, final int defense,
-      final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+               final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
@@ -54,6 +49,17 @@ public class Enemy extends AbstractAddingQueue {
   }
 
   @Override
+  public String toString() {
+    return "Enemy{name='%s', maxHp=%d, defense=%d, weight=%d}"
+            .formatted(name, maxHp, defense, weight);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(Enemy.class, name, maxHp, defense, weight);
+  }
+
+  @Override
   public boolean equals(final Object o) {
     if (this == o) {
       return true;
@@ -62,20 +68,9 @@ public class Enemy extends AbstractAddingQueue {
       return false;
     }
     return hashCode() == enemy.hashCode()
-        && name.equals(enemy.name)
-        && weight == enemy.weight
-        && maxHp == enemy.maxHp
-        && defense == enemy.defense;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(Enemy.class, name, weight, maxHp, defense);
-  }
-
-  @Override
-  public String toString() {
-    return "Enemy{maxHp=%d, defense=%d, weight=%d, name='%s'}"
-            .formatted(maxHp, defense, weight, name);
+            && name.equals(enemy.name)
+            && maxHp == enemy.maxHp
+            && defense == enemy.defense
+            && weight == enemy.weight;
   }
 }
