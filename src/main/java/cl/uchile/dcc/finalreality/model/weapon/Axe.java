@@ -59,7 +59,7 @@ public class Axe extends AbstractWeapon {
 
   @Override
   public int hashCode() {
-    return Objects.hash(KNIFE.class, name, damage, weight, type);
+    return Objects.hash(Axe.class, name, damage, weight, type);
   }
 
   @Override

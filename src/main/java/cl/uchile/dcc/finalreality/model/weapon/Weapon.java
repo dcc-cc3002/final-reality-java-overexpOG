@@ -16,24 +16,24 @@ package cl.uchile.dcc.finalreality.model.weapon;
  */
 public interface Weapon {
 
-    /**
-     * Returns the name of the weapon.
-     */
-    String getName();
+  /**
+   * Returns the name of the weapon.
+   */
+  String getName();
 
-    /**
-     * Returns the damage caused for the weapon.
-     */
-    int getDamage();
+  /**
+   * Returns the damage caused for the weapon.
+   */
+  int getDamage();
 
-    /**
-     * Returns the weight of the weapon.
-     */
-    int getWeight();
+  /**
+   * Returns the weight of the weapon.
+   */
+  int getWeight();
 
-    /**
-     * Returns the type of the weapon.
-     */
-    String getType();
+  /**
+   * Returns the type of the weapon.
+   */
+  String getType();
 
 }

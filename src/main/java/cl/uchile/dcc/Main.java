@@ -8,11 +8,11 @@ import cl.uchile.dcc.finalreality.model.character.player.Engineer;
 import cl.uchile.dcc.finalreality.model.character.player.Knight;
 import cl.uchile.dcc.finalreality.model.character.player.Thief;
 import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
-import cl.uchile.dcc.finalreality.model.weapon.AXE;
-import cl.uchile.dcc.finalreality.model.weapon.BOW;
-import cl.uchile.dcc.finalreality.model.weapon.KNIFE;
-import cl.uchile.dcc.finalreality.model.weapon.STAFF;
-import cl.uchile.dcc.finalreality.model.weapon.SWORD;
+import cl.uchile.dcc.finalreality.model.weapon.Axe;
+import cl.uchile.dcc.finalreality.model.weapon.Bow;
+import cl.uchile.dcc.finalreality.model.weapon.Knife;
+import cl.uchile.dcc.finalreality.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model.weapon.Sword;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -30,27 +30,27 @@ public class Main {
     //create the queue
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     //create the characters and weapons to see that the constructors work (also equip and waitTurn)
-    var knife = new KNIFE("wooden knife", 1, 1);
+    var knife = new Knife("wooden knife", 1, 1);
     var character1 = new Thief("Haruhiro", 10, 10, queue);
     character1.equip(knife);
     character1.waitTurn();
-    var bow = new BOW("wooden bow", 2, 2);
+    var bow = new Bow("wooden bow", 2, 2);
     var character2 = new Engineer("Yume", 10, 8, queue);
     character2.equip(bow);
     character2.waitTurn();
-    var healerStaff = new STAFF("healer staff", 3, 3);
+    var healerStaff = new Staff("healer staff", 3, 3);
     var character3 = new WhiteMage("Merry", 15, 5, 10, queue);
     character3.equip(healerStaff);
     character3.waitTurn();
-    var sword = new SWORD("wooden sword", 4, 4);
+    var sword = new Sword("wooden sword", 4, 4);
     var character4 = new Knight("Ranta", 10, 20, queue);
     character4.equip(sword);
     character4.waitTurn();
-    var axe = new AXE("wooden axe", 5, 5);
+    var axe = new Axe("wooden axe", 5, 5);
     var character5 = new Engineer("Kiichi", 5, 5, queue);
     character5.equip(axe);
     character5.waitTurn();
-    var wizardStaff = new STAFF("wizard staff", 6, 6);
+    var wizardStaff = new Staff("wizard staff", 6, 6);
     var character6 = new BlackMage("Shihoru", 10, 6, 10, queue);
     character6.equip(wizardStaff);
     character6.waitTurn();
@@ -86,7 +86,7 @@ public class Main {
     //testing toString and equals of weapons (only one is done because the rest are equivalent)
     System.out.println("testing toString and equals of weapons "
             + "(only one is done because the rest are equivalent):");
-    var wizardStaffX = new STAFF("wizard staff", 6, 6);
+    var wizardStaffX = new Staff("wizard staff", 6, 6);
     System.out.println(wizardStaff);
     System.out.println(wizardStaffX);
     System.out.println(healerStaff);
