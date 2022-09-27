@@ -44,7 +44,7 @@ public class WhiteMage extends AbstractMage {
 
   @Override
   public String toString() {
-    return "WhiteMage{name='%s', maxHp=%d, currentHp:%d, defense=%d, maxMp=%d, currentMp_%d}"
+    return "WhiteMage{name='%s', maxHp=%d, currentHp=%d, defense=%d, maxMp=%d, currentMp=%d}"
             .formatted(name, maxHp, currentHp, defense, maxMp, currentMp);
   }
 
