@@ -43,8 +43,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp,
-                                    final int defense, @NotNull final BlockingQueue<GameCharacter> turnsQueue)
+  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp, final int defense,
+                                    @NotNull final BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
