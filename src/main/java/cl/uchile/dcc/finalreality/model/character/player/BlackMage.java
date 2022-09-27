@@ -43,6 +43,17 @@ public class BlackMage extends AbstractMage {
   }
 
   @Override
+  public String toString() {
+    return "BlackMage{name='%s', maxHp=%d, currentHp:%d, defense=%d, maxMp=%d, currentMp_%d}"
+            .formatted(name, maxHp, currentHp, defense, maxMp, currentMp);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(BlackMage.class, name, maxHp, currentHp, defense, maxMp, currentMp);
+  }
+
+  @Override
   public boolean equals(final Object o) {
     if (this == o) {
       return true;
@@ -53,19 +64,9 @@ public class BlackMage extends AbstractMage {
     return hashCode() == that.hashCode()
             && name.equals(that.name)
             && maxHp == that.maxHp
+            && currentHp == that.currentHp
             && defense == that.defense
-            && maxMp == that.maxMp;
+            && maxMp == that.maxMp
+            && currentMp == that.currentMp;
   }
-
-  @Override
-  public String toString() {
-    return "BlackMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
-            .formatted(maxMp, maxHp, defense, name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(BlackMage.class, name, maxHp, defense, maxMp);
-  }
-  // endregion
 }
