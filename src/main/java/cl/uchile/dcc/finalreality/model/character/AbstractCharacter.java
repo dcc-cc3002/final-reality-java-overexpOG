@@ -35,7 +35,7 @@ public abstract class AbstractCharacter implements GameCharacter {
    * @param defense
    *     the character's defense
    */
-  protected AbstractCharacter(@NotNull String name, int maxHp, int defense)
+  protected AbstractCharacter(final @NotNull String name, final int maxHp, final int defense)
           throws InvalidStatValueException {
     Require.statValueAtLeast(1, maxHp, "Max HP");
     Require.statValueAtLeast(0, defense, "Defense");
