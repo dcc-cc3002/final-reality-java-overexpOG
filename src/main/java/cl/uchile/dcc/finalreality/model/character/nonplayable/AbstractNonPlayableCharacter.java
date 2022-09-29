@@ -22,13 +22,14 @@ import org.jetbrains.annotations.NotNull;
  * A class that holds all the information of a Non-player character in the game.
  *
  * <p>All Non-player characters have a {@code name}, a maximum amount of <i>hit points</i>
- * ({@code maxHp}), a {@code defense} value, a queue of {@link GameCharacter}s that are
+ * ({@code maxHp}), a {@code defense} value, a queue of actions that are
  * waiting for their turn ({@code turnsQueue}), and a {@code weight}.
  *
  * @author Ignacio Alveal
  */
 public abstract class AbstractNonPlayableCharacter
         extends AbstractCharacter implements NonPlayableCharacter {
+
   protected final BlockingQueue<GameCharacter> turnsQueue;
   private ScheduledExecutorService scheduledExecutor;
   protected final int weight;
@@ -72,10 +73,9 @@ public abstract class AbstractNonPlayableCharacter
   @Override
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    var npc = this;
     scheduledExecutor.schedule(
             /* command = */ this::addToQueue,
-            /* delay = */ npc.getWeight() / 10,
+            /* delay = */ this.getWeight() / 10,
             /* unit = */ TimeUnit.SECONDS);
   }
 }
