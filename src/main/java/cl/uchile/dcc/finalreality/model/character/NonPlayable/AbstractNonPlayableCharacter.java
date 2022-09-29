@@ -6,7 +6,7 @@
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-package cl.uchile.dcc.finalreality.model.character;
+package cl.uchile.dcc.finalreality.model.character.NonPlayable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
@@ -14,6 +14,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import org.jetbrains.annotations.NotNull;
 
 /**
