@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Ignacio Alveal
  */
 
-public abstract class AbstractMage extends AbstractPlayerCharacter implements PlayerCharacter {
+public abstract class AbstractMage extends AbstractPlayerCharacter implements Mage {
 
   protected int currentMp;
   protected final int maxMp;
@@ -48,25 +48,19 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Pl
     this.currentMp = maxMp;
   }
 
-  /**
-   * Returns the character's current MP.
-   */
+  @Override
   public int getCurrentMp() {
     return currentMp;
   }
 
-  /**
-   * Sets the character's current MP.
-   */
+  @Override
   public void setCurrentMp(final int currentMp) throws InvalidStatValueException {
     Require.statValueAtLeast(0, currentMp, "Current MP");
     Require.statValueAtMost(maxMp, currentMp, "Current MP");
     this.currentMp = currentMp;
   }
 
-  /**
-   * Returns the character's max MP.
-   */
+  @Override
   public int getMaxMp() {
     return maxMp;
   }
