@@ -17,7 +17,7 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public interface NonPlayableCharacter extends GameCharacter{
+public interface NonPlayableCharacter extends GameCharacter {
 
   /**
    * Returns the weight of this enemy.

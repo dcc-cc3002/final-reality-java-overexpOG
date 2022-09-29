@@ -9,10 +9,9 @@
 package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
-
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import org.jetbrains.annotations.NotNull;
 
 /**
