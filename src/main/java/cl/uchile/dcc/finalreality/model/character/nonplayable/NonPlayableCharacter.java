@@ -9,10 +9,9 @@
 package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 
 /**
- * A {@link GameCharacter} with weight (fight against {@link PlayerCharacter}).
+ * A {@link GameCharacter} non-playable with weight.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
