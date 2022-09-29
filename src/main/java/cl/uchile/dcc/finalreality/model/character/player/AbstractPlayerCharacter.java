@@ -82,10 +82,9 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   @Override
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    var player =  this;
     scheduledExecutor.schedule(
             /* command = */ this::addToQueue,
-            /* delay = */ player.getEquippedWeapon().getWeight() / 10,
+            /* delay = */ this.getEquippedWeapon().getWeight() / 10,
             /* unit = */ TimeUnit.SECONDS);
   }
 }
