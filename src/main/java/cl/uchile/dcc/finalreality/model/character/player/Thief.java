@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public class Thief extends AbstractPlayerCharacter {
+public class Thief extends AbstractPlayerCharacter implements Common {
 
   /**
    * Creates a new Thief.

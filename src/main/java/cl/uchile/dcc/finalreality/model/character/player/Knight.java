@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public class Knight extends AbstractPlayerCharacter {
+public class Knight extends AbstractPlayerCharacter implements Common {
 
   /**
    * Creates a new Knight.

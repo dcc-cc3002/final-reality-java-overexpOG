@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public class Engineer extends AbstractPlayerCharacter {
+public class Engineer extends AbstractPlayerCharacter implements Common {
 
   /**
    * Creates a new engineer.
