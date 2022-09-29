@@ -15,7 +15,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
  *
  * @author Ignacio Alveal
  */
-public interface Mage {
+public interface Mage extends PlayerCharacter{
 
   /**
    * Returns the character's current MP.
