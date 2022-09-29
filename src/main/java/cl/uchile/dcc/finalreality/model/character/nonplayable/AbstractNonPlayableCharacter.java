@@ -6,17 +6,16 @@
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-package cl.uchile.dcc.finalreality.model.character.NonPlayable;
+package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -73,10 +72,10 @@ public abstract class AbstractNonPlayableCharacter
   @Override
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    var NPC = this;
+    var npc = this;
     scheduledExecutor.schedule(
             /* command = */ this::addToQueue,
-            /* delay = */ NPC.getWeight() / 10,
+            /* delay = */ npc.getWeight() / 10,
             /* unit = */ TimeUnit.SECONDS);
   }
 }

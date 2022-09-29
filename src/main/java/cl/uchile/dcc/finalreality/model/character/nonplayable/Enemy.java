@@ -6,7 +6,7 @@
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-package cl.uchile.dcc.finalreality.model.character.NonPlayable;
+package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import java.util.Objects;
