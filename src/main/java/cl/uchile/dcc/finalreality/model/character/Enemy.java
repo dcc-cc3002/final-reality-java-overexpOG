@@ -9,7 +9,6 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.Require;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
@@ -20,9 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public class Enemy extends AbstractAddingQueue {
-
-  private final int weight;
+public class Enemy extends AbstractNonPlayableCharacter {
 
   /**
    * Creates a new enemy.
@@ -36,16 +33,7 @@ public class Enemy extends AbstractAddingQueue {
   public Enemy(final @NotNull String name, final int weight, final int maxHp, final int defense,
                final @NotNull BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
-    super(name, maxHp, defense, turnsQueue);
-    Require.statValueAtLeast(1, weight, "Weight");
-    this.weight = weight;
-  }
-
-  /**
-   * Returns the weight of this enemy.
-   */
-  public int getWeight() {
-    return weight;
+    super(name, weight, maxHp, defense, turnsQueue);
   }
 
   @Override
