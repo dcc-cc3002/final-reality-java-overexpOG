@@ -9,6 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.ActionTurn;
 
 /**
  * This represents a character from the game.
@@ -17,13 +18,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author Ignacio Alveal
  */
-public interface GameCharacter {
-
-  /**
-   * Sets a scheduled executor to make this character (thread) wait for {@code speed / 10}
-   * seconds before adding the character to the queue.
-   */
-  void waitTurn();
+public interface GameCharacter extends ActionTurn {
 
   /**
    * Returns this character's name.
