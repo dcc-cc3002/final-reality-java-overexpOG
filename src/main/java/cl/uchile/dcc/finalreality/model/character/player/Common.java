@@ -13,5 +13,5 @@ package cl.uchile.dcc.finalreality.model.character.player;
  *
  * @author Ignacio Alveal
  */
-public interface Common {
+public interface Common extends PlayerCharacter {
 }
