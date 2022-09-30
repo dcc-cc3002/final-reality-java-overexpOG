@@ -1,73 +1,39 @@
+/*
+ * "Final Reality" (c) by R8V and Ignacio Alveal
+ * "Final Reality" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
+
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import java.util.Objects;
-
 /**
- * A class that holds all the information of a weapon.
+ * This represents a weapon from the game.
+ * A weapon can be equiped by the characters.
  *
- * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
-public class Weapon {
-
-  private final String name;
-  private final int damage;
-  private final int weight;
-  private final WeaponType type;
+public interface Weapon {
 
   /**
-   * Creates a weapon with a name, a base damage, speed, and it's type.
+   * Returns the name of the weapon.
    */
-  public Weapon(final String name, final int damage, final int weight,
-      final WeaponType type) {
-    this.name = name;
-    this.damage = damage;
-    this.weight = weight;
-    this.type = type;
-  }
+  String getName();
 
-  private String getName() {
-    return name;
-  }
-
-  private int getDamage() {
-    return damage;
-  }
+  /**
+   * Returns the damage caused for the weapon.
+   */
+  int getDamage();
 
   /**
    * Returns the weight of the weapon.
    */
-  public int getWeight() {
-    return weight;
-  }
+  int getWeight();
 
-  private WeaponType getType() {
-    return type;
-  }
+  /**
+   * Returns the type of the weapon.
+   */
+  String getType();
 
-  @Override
-  public boolean equals(final Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof final Weapon weapon)) {
-      return false;
-    }
-    return hashCode() == weapon.hashCode()
-        && damage == weapon.damage
-        && weight == weapon.weight
-        && name.equals(weapon.name)
-        && type == weapon.type;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(Weapon.class, name, damage, weight, type);
-  }
-
-  @Override
-  public String toString() {
-    return "Weapon{name='%s', damage=%d, weight=%d, type=%s}"
-        .formatted(name, damage, weight, type);
-  }
 }

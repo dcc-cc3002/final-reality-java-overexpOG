@@ -1,5 +1,5 @@
 /*
- * "Final Reality" (c) by R8V and ~Your name~
+ * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
  * Creative Commons Attribution 4.0 International License.
  * You should have received a copy of the license along with this
@@ -19,10 +19,9 @@ import org.jetbrains.annotations.NotNull;
  * {@code Bow}s.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
- * @version 2.0
+ * @author Ignacio Alveal
  */
-public class Thief extends AbstractPlayerCharacter {
+public class Thief extends AbstractPlayerCharacter implements Common {
 
   /**
    * Creates a new Thief.
@@ -37,14 +36,20 @@ public class Thief extends AbstractPlayerCharacter {
    *     the queue with the characters waiting for their turn
    */
   public Thief(final @NotNull String name, final int maxHp, final int defense,
-      final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+               final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
 
   @Override
+  public String toString() {
+    return "Thief{name='%s', maxHp=%d, currentHp=%d, defense=%d}"
+            .formatted(name, maxHp, currentHp, defense);
+  }
+
+  @Override
   public int hashCode() {
-    return Objects.hash(Thief.class, name, maxHp, defense);
+    return Objects.hash(Thief.class, name, maxHp, currentHp, defense);
   }
 
   @Override
@@ -56,13 +61,9 @@ public class Thief extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
-  }
-
-  @Override
-  public String toString() {
-    return "Thief{maxHp=%d, defense=%d, name='%s'}".formatted(maxHp, defense, name);
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && currentHp == that.currentHp
+            && defense == that.defense;
   }
 }
