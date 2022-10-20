@@ -5,25 +5,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractWeaponTest {
-    private Weapon knife;
+  private Weapon knife;
 
-    @BeforeEach
-    void setUp() {
-        knife = new Knife("wooden knife", 1, 1);
-    }
+  @BeforeEach
+  void setUp() {
+    knife = new Knife("wooden knife", 1, 1);
+  }
 
-    @Test
-    void getName() {
-        assertEquals("wooden knife", knife.getName());
-    }
+  @Test
+  void getName() {
+    assertEquals("wooden knife", knife.getName());
+  }
 
-    @Test
-    void getDamage() {
-        assertEquals(1, knife.getDamage());
-    }
+  @Test
+  void getDamage() {
+    assertEquals(1, knife.getDamage());
+  }
 
-    @Test
-    void getWeight() {
-        assertEquals(1, knife.getWeight());
-    }
+  @Test
+  void getWeight() {
+    assertEquals(1, knife.getWeight());
+  }
 }
