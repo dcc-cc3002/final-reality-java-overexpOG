@@ -9,7 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EngineerTest {
+class KnightTest {
   private BlockingQueue<GameCharacter> queue;
   private PlayerCharacter character1;
   private PlayerCharacter character2;
@@ -19,15 +19,15 @@ class EngineerTest {
   @BeforeEach
   void setUp() {
     queue = new LinkedBlockingQueue<>();
-    character1 = new Engineer("Yume", 10, 8, queue);
-    character2 = new Engineer("Yume", 10, 8, queue);
-    character3 = new Engineer("Kiichi", 10, 8, queue);
+    character1 = new Knight("Ranta", 10, 20, queue);
+    character2 = new Knight("Ranta", 10, 20, queue);
+    character3 = new Knight("Ranta", 10, 15, queue);
     character4 = new BlackMage("Shihoru", 10, 6, 10, queue);
   }
 
   @Test
   void testToString() {
-    assertEquals("Engineer{name='Yume', maxHp=10, currentHp=10, defense=8}", character1.toString());
+    assertEquals("Knight{name='Ranta', maxHp=10, currentHp=10, defense=20}", character1.toString());
   }
 
   @Test
