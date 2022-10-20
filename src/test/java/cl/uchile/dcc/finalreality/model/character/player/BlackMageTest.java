@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BlackMageTest {
   private BlockingQueue<GameCharacter> queue;
-  private Mage character1;
-  private Mage character2;
-  private Mage character3;
-  private Mage character4;
+  private PlayerCharacter character1;
+  private PlayerCharacter character2;
+  private PlayerCharacter character3;
+  private PlayerCharacter character4;
 
   @BeforeEach
   void setUp() {
