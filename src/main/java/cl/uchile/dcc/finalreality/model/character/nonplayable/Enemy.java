@@ -40,7 +40,7 @@ public class Enemy extends AbstractNonPlayableCharacter {
   @Override
   public String toString() {
     return "Enemy{name='%s', weight=%d, maxHp=%d, defense=%d}"
-            .formatted(name, maxHp, defense, weight);
+            .formatted(name, weight, maxHp, defense);
   }
 
   @Override
