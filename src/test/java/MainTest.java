@@ -130,7 +130,7 @@ import java.util.concurrent.LinkedBlockingQueue;
             assertEquals(10, character1.getDefense());
         }
         @Test
-        public void testAbstractPlayableCharacterMethod() throws InvalidStatValueException {
+        public void testAbstractPlayableCharacterMethod() {
             character1.equip(knife);
             assertEquals(knife, character1.getEquippedWeapon());
         }
