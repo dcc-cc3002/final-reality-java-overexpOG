@@ -2,7 +2,6 @@ package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,15 +11,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnemyTest {
-  private BlockingQueue<GameCharacter> queue;
   private NonPlayableCharacter character1;
   private NonPlayableCharacter character2;
   private NonPlayableCharacter character3;
-  private PlayerCharacter character4;
+  private GameCharacter character4;
 
   @BeforeEach
   void setUp() {
-    queue = new LinkedBlockingQueue<>();
+    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     character1 = new Enemy("Jumbo", 7, 50, 20, queue);
     character2 = new Enemy("Jumbo", 7, 50, 20, queue);
     character3 = new Enemy("Arnold", 8, 70, 10, queue);

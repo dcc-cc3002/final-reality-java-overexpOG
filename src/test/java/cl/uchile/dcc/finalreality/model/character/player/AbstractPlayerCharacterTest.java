@@ -11,14 +11,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractPlayerCharacterTest {
-  private BlockingQueue<GameCharacter> queue;
   private Weapon knife;
   private Weapon sword;
   private PlayerCharacter character1;
 
   @BeforeEach
   void setUp() {
-    queue = new LinkedBlockingQueue<>();
+    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     knife = new Knife("wooden knife", 1, 1);
     sword = new Sword("wooden sword", 4, 4);
     character1 = new Thief("Haruhiro", 10, 10, queue);

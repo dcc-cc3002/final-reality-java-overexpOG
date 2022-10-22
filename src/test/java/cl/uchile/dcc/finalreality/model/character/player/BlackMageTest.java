@@ -10,7 +10,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BlackMageTest {
-  private BlockingQueue<GameCharacter> queue;
   private PlayerCharacter character1;
   private PlayerCharacter character2;
   private PlayerCharacter character3;
@@ -18,7 +17,7 @@ class BlackMageTest {
 
   @BeforeEach
   void setUp() {
-    queue = new LinkedBlockingQueue<>();
+    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     character1 = new BlackMage("Shihoru", 10, 6, 10, queue);
     character2 = new BlackMage("Shihoru", 10, 6, 10, queue);
     character3 = new BlackMage("Shihoru", 10, 3, 10, queue);

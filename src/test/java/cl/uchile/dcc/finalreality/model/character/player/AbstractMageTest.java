@@ -10,12 +10,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractMageTest {
-  private BlockingQueue<GameCharacter> queue;
   private Mage character1;
 
   @BeforeEach
   void setUp() {
-    queue = new LinkedBlockingQueue<>();
+    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     character1 = new WhiteMage("Merry", 15, 5, 10, queue);
   }
 

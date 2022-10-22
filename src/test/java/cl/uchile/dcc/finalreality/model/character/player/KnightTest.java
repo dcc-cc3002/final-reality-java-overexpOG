@@ -10,7 +10,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class KnightTest {
-  private BlockingQueue<GameCharacter> queue;
   private PlayerCharacter character1;
   private PlayerCharacter character2;
   private PlayerCharacter character3;
@@ -18,7 +17,7 @@ class KnightTest {
 
   @BeforeEach
   void setUp() {
-    queue = new LinkedBlockingQueue<>();
+    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     character1 = new Knight("Ranta", 10, 20, queue);
     character2 = new Knight("Ranta", 10, 20, queue);
     character3 = new Knight("Ranta", 10, 15, queue);
