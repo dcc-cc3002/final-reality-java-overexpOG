@@ -19,7 +19,7 @@ import cl.uchile.dcc.finalreality.model.weapon.Weapon;
  */
 public interface PlayerCharacter extends GameCharacter {
   /**
-   * Equips a weapon to the character.
+   * Equip a weapon to the character if possible.
    */
   void equip(Weapon weapon);
 
@@ -27,4 +27,9 @@ public interface PlayerCharacter extends GameCharacter {
    * Return this character's equipped weapon.
    */
   Weapon getEquippedWeapon();
+
+  /**
+   * Returns true if the weapon can be equipped and false if not.
+   */
+  boolean isEquippable(Weapon weapon);
 }

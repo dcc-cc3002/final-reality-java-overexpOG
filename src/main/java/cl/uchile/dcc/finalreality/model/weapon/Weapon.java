@@ -36,4 +36,28 @@ public interface Weapon {
    */
   String getType();
 
+  /**
+   * Returns true if the weapon can be equipped by a knight and false if not.
+   */
+  boolean isEquippableKnight();
+
+  /**
+   * Returns true if the weapon can be equipped by an engineer and false if not.
+   */
+  boolean isEquippableEngineer();
+
+  /**
+   * Returns true if the weapon can be equipped by a thief and false if not.
+   */
+  boolean isEquippableThief();
+
+  /**
+   * Returns true if the weapon can be equipped by a black mage and false if not.
+   */
+  boolean isEquippableBlackMage();
+
+  /**
+   * Returns true if the weapon can be equipped by a white mage and false if not.
+   */
+  boolean isEquippableWhiteMage();
 }

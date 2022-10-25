@@ -12,6 +12,8 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
+
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -68,5 +70,10 @@ public class BlackMage extends AbstractMage {
             && defense == that.defense
             && maxMp == that.maxMp
             && currentMp == that.currentMp;
+  }
+
+  @Override
+  public boolean isEquippable(Weapon weapon){
+    return weapon.isEquippableBlackMage();
   }
 }

@@ -59,7 +59,9 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   @Override
   public void equip(Weapon weapon) {
-    this.equippedWeapon = weapon;
+    if (this.isEquippable(weapon)){
+      this.equippedWeapon = weapon;
+    }
   }
 
   @Override

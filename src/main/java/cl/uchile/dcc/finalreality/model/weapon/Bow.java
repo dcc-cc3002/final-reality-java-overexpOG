@@ -67,4 +67,29 @@ public class Bow extends AbstractWeapon {
     return "Weapon{name='%s', damage=%d, weight=%d, type=%s}"
             .formatted(name, damage, weight, type);
   }
+
+  @Override
+  public boolean isEquippableKnight(){
+    return false;
+  }
+
+  @Override
+  public boolean isEquippableEngineer(){
+    return true;
+  }
+
+  @Override
+  public boolean isEquippableThief(){
+    return true;
+  }
+
+  @Override
+  public boolean isEquippableBlackMage(){
+    return false;
+  }
+
+  @Override
+  public boolean isEquippableWhiteMage(){
+    return false;
+  }
 }

@@ -12,6 +12,8 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
+
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -65,5 +67,10 @@ public class Thief extends AbstractPlayerCharacter implements Common {
             && maxHp == that.maxHp
             && currentHp == that.currentHp
             && defense == that.defense;
+  }
+
+  @Override
+  public boolean isEquippable(Weapon weapon){
+    return weapon.isEquippableThief();
   }
 }
