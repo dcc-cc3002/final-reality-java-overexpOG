@@ -1,3 +1,11 @@
+/*
+ * "Final Reality" (c) by R8V and Ignacio Alveal
+ * "Final Reality" is licensed under a
+ * Creative Commons Attribution 4.0 International License.
+ * You should have received a copy of the license along with this
+ * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
+ */
+
 package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
@@ -31,6 +39,7 @@ class AbstractPlayerCharacterTest {
 
   @Test
   void getEquippedWeapon() {
+    assertEquals(null, character1.getEquippedWeapon());
     character1.equip(knife);
     assertEquals(knife, character1.getEquippedWeapon());
     character1.equip(sword);
@@ -39,6 +48,13 @@ class AbstractPlayerCharacterTest {
 
   @Test
   void waitTurn() {
+    boolean waitTurnCharacterWithoutWeapon = true;
+    try {
+      character1.waitTurn();
+    } catch (Exception e){
+      waitTurnCharacterWithoutWeapon = false;
+    }
+    assertEquals(false, waitTurnCharacterWithoutWeapon);
     character1.equip(knife);
     character1.waitTurn();
   }
