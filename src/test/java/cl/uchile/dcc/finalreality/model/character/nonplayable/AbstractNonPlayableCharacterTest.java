@@ -8,6 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractNonPlayableCharacterTest {
   private NonPlayableCharacter character1;
+  private BlockingQueue<GameCharacter> queue;
 
   @BeforeEach
   void setUp() {
-    BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
+    queue = new LinkedBlockingQueue<>();
     character1 = new Enemy("Jumbo", 7, 50, 20, queue);
   }
 
@@ -34,5 +36,16 @@ class AbstractNonPlayableCharacterTest {
   @Test
   void waitTurn() {
     character1.waitTurn();
+  }
+
+  @Test
+  void Constructor() {
+    boolean MaxWeightNegativoOCero = true;
+    try {
+      new Enemy("Jumbo", 0, 50, 20, queue);
+    } catch (InvalidStatValueException e) {
+      MaxWeightNegativoOCero = false;
+    }
+    assertEquals(false, MaxWeightNegativoOCero);
   }
 }
