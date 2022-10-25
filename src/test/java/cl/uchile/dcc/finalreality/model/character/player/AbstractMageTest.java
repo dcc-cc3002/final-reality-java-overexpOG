@@ -37,6 +37,8 @@ class AbstractMageTest {
   void setCurrentMp() {
     character1.setCurrentMp(8);
     assertEquals(8, character1.getCurrentMp());
+
+
     boolean currentMpNegativo = true;
     try {
       character1.setCurrentMp(-2);
@@ -44,6 +46,8 @@ class AbstractMageTest {
       currentMpNegativo = false;
     }
     assertEquals (false, currentMpNegativo);
+
+
     boolean currentMpMayorAMaxMp = true;
     try {
       character1.setCurrentMp(11);

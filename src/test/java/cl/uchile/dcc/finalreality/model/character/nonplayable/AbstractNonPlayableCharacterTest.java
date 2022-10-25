@@ -40,12 +40,12 @@ class AbstractNonPlayableCharacterTest {
 
   @Test
   void Constructor() {
-    boolean MaxWeightNegativoOCero = true;
+    boolean WeightNegativoOCero = true;
     try {
       new Enemy("Jumbo", 0, 50, 20, queue);
     } catch (InvalidStatValueException e) {
-      MaxWeightNegativoOCero = false;
+      WeightNegativoOCero = false;
     }
-    assertEquals(false, MaxWeightNegativoOCero);
+    assertEquals(false, WeightNegativoOCero);
   }
 }

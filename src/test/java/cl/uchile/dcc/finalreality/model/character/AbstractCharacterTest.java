@@ -52,6 +52,8 @@ class AbstractCharacterTest {
   void setCurrentHp() {
     character1.setCurrentHp(8);
     assertEquals(8, character1.getCurrentHp());
+
+
     boolean currentHpNegativo = true;
     try {
       character1.setCurrentHp(-2);
@@ -59,6 +61,8 @@ class AbstractCharacterTest {
       currentHpNegativo = false;
     }
     assertEquals (false, currentHpNegativo);
+
+
     boolean currentHpMayorAMaxHp = true;
     try {
       character1.setCurrentHp(11);
@@ -76,6 +80,8 @@ class AbstractCharacterTest {
       MaxHpNegativoOCero = false;
     }
     assertEquals (false, MaxHpNegativoOCero);
+
+
     boolean defenseNegativo = true;
     try {
       new Knight("Ranta", 10, -2, queue);

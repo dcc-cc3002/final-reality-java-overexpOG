@@ -8,6 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +34,25 @@ class AbstractWeaponTest {
   @Test
   void getWeight() {
     assertEquals(1, knife.getWeight());
+  }
+
+  @Test
+  void constructor() {
+    boolean WeightNegativoOCero = true;
+    try {
+      new Knife("air knife", 10, 0);
+    } catch (InvalidStatValueException e) {
+      WeightNegativoOCero = false;
+    }
+    assertEquals(false, WeightNegativoOCero);
+
+
+    boolean DamageNegative = true;
+    try {
+      new Knife("healing knife", -2, 3);
+    } catch (InvalidStatValueException e) {
+      DamageNegative = false;
+    }
+    assertEquals(false, DamageNegative);
   }
 }
