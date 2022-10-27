@@ -59,38 +59,38 @@ class WhiteMageTest {
 
   @Test
   void equip() {
-    boolean swordIsEquipableForWhiteMage = true;
+    boolean swordIsEquipableByAWhiteMage = true;
     try {
       character1.equip(sword);
     } catch (InvalidWeaponForThisCharacter e) {
-      swordIsEquipableForWhiteMage = false;
+      swordIsEquipableByAWhiteMage = false;
     }
-    assertEquals(false, swordIsEquipableForWhiteMage);
+    assertEquals(false, swordIsEquipableByAWhiteMage);
 
-    boolean axeIsEquipableForWhiteMage = true;
+    boolean axeIsEquipableByAWhiteMage = true;
     try {
       character1.equip(axe);
     } catch (InvalidWeaponForThisCharacter e) {
-      axeIsEquipableForWhiteMage = false;
+      axeIsEquipableByAWhiteMage = false;
     }
-    assertEquals(false, axeIsEquipableForWhiteMage);
+    assertEquals(false, axeIsEquipableByAWhiteMage);
 
-    boolean knifeIsEquipableForWhiteMage = true;
+    boolean knifeIsEquipableByAWhiteMage = true;
     try {
       character1.equip(knife);
     } catch (InvalidWeaponForThisCharacter e) {
-      knifeIsEquipableForWhiteMage = false;
+      knifeIsEquipableByAWhiteMage = false;
     }
-    assertEquals(false, knifeIsEquipableForWhiteMage);
+    assertEquals(false, knifeIsEquipableByAWhiteMage);
 
     character1.equip(staff);
 
-    boolean bowIsEquipableForWhiteMage = true;
+    boolean bowIsEquipableByAWhiteMage = true;
     try {
       character1.equip(bow);
     } catch (InvalidWeaponForThisCharacter e) {
-      bowIsEquipableForWhiteMage = false;
+      bowIsEquipableByAWhiteMage = false;
     }
-    assertEquals(false, bowIsEquipableForWhiteMage);
+    assertEquals(false, bowIsEquipableByAWhiteMage);
   }
 }

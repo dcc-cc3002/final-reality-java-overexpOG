@@ -59,31 +59,31 @@ class EngineerTest {
 
   @Test
   void equip() {
-    boolean swordIsEquipableForEngineer = true;
+    boolean swordIsEquipableByAnEngineer = true;
     try {
       character1.equip(sword);
     } catch (InvalidWeaponForThisCharacter e) {
-      swordIsEquipableForEngineer = false;
+      swordIsEquipableByAnEngineer = false;
     }
-    assertEquals(false, swordIsEquipableForEngineer);
+    assertEquals(false, swordIsEquipableByAnEngineer);
 
     character1.equip(axe);
 
-    boolean knifeIsEquipableForEngineer = true;
+    boolean knifeIsEquipableByAnEngineer = true;
     try {
       character1.equip(knife);
     } catch (InvalidWeaponForThisCharacter e) {
-      knifeIsEquipableForEngineer = false;
+      knifeIsEquipableByAnEngineer = false;
     }
-    assertEquals(false, knifeIsEquipableForEngineer);
+    assertEquals(false, knifeIsEquipableByAnEngineer);
 
-    boolean staffIsEquipableForEngineer = true;
+    boolean staffIsEquipableByAnEngineer = true;
     try {
       character1.equip(staff);
     } catch (InvalidWeaponForThisCharacter e) {
-      staffIsEquipableForEngineer = false;
+      staffIsEquipableByAnEngineer = false;
     }
-    assertEquals(false, staffIsEquipableForEngineer);
+    assertEquals(false, staffIsEquipableByAnEngineer);
 
     character1.equip(bow);
   }

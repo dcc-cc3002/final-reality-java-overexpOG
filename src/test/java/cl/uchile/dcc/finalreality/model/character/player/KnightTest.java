@@ -66,20 +66,20 @@ class KnightTest {
     character1.equip(knife);
 
 
-    boolean staffIsEquipableForKnight = true;
+    boolean staffIsEquipableByAKnight = true;
     try {
       character1.equip(staff);
     } catch (InvalidWeaponForThisCharacter e) {
-      staffIsEquipableForKnight = false;
+      staffIsEquipableByAKnight = false;
     }
-    assertEquals(false, staffIsEquipableForKnight);
+    assertEquals(false, staffIsEquipableByAKnight);
 
-    boolean bowIsEquipableForKnight = true;
+    boolean bowIsEquipableByAKnight = true;
     try {
       character1.equip(bow);
     } catch (InvalidWeaponForThisCharacter e) {
-      bowIsEquipableForKnight = false;
+      bowIsEquipableByAKnight = false;
     }
-    assertEquals(false, bowIsEquipableForKnight);
+    assertEquals(false, bowIsEquipableByAKnight);
   }
 }

@@ -61,23 +61,23 @@ class ThiefTest {
   void equip() {
     character1.equip(sword);
 
-    boolean axeIsEquipableForThief = true;
+    boolean axeIsEquipableByAThief = true;
     try {
       character1.equip(axe);
     } catch (InvalidWeaponForThisCharacter e) {
-      axeIsEquipableForThief = false;
+      axeIsEquipableByAThief = false;
     }
-    assertEquals(false, axeIsEquipableForThief);
+    assertEquals(false, axeIsEquipableByAThief);
 
     character1.equip(knife);
 
-    boolean staffIsEquipableForThief = true;
+    boolean staffIsEquipableByAThief = true;
     try {
       character1.equip(staff);
     } catch (InvalidWeaponForThisCharacter e) {
-      staffIsEquipableForThief = false;
+      staffIsEquipableByAThief = false;
     }
-    assertEquals(false, staffIsEquipableForThief);
+    assertEquals(false, staffIsEquipableByAThief);
 
     character1.equip(bow);
   }
