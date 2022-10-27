@@ -70,7 +70,7 @@ public class Staff extends AbstractWeapon {
 
   @Override
   public boolean isEquippableKnight(){
-    return true;
+    return false;
   }
 
   @Override
