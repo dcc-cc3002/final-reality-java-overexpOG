@@ -1,5 +1,5 @@
 /*
- * "Final Reality" (c) by R8V and ~Your name~
+ * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
  * Creative Commons Attribution 4.0 International License.
  * You should have received a copy of the license along with this
@@ -10,19 +10,18 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
-
 
 /**
  * A {@link PlayerCharacter} that can equip {@code Axe}s and {@code Bow}s.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
-public class Engineer extends AbstractPlayerCharacter {
-
+public class Engineer extends AbstractPlayerCharacter implements Common {
 
   /**
    * Creates a new engineer.
@@ -37,19 +36,20 @@ public class Engineer extends AbstractPlayerCharacter {
    *     the queue with the characters waiting for their turn
    */
   public Engineer(final @NotNull String name, final int maxHp, final int defense,
-      final @NotNull BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
+                  final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
   }
 
   @Override
   public String toString() {
-    return "Engineer{maxHp=%d, defense=%d, name='%s'}".formatted(maxHp, defense, name);
+    return "Engineer{name='%s', maxHp=%d, currentHp=%d, defense=%d}"
+            .formatted(name, maxHp, currentHp, defense);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Engineer.class, name, maxHp, defense);
+    return Objects.hash(Engineer.class, name, maxHp, currentHp, defense);
   }
 
   @Override
@@ -61,8 +61,14 @@ public class Engineer extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+            && name.equals(that.name)
+            && maxHp == that.maxHp
+            && currentHp == that.currentHp
+            && defense == that.defense;
+  }
+
+  @Override
+  public boolean isEquippable(Weapon weapon) {
+    return weapon.isEquippableEngineer();
   }
 }

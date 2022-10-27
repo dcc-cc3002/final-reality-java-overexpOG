@@ -1,5 +1,5 @@
 /*
- * "Final Reality" (c) by R8V and ~Your name~
+ * "Final Reality" (c) by R8V and Ignacio Alveal
  * "Final Reality" is licensed under a
  * Creative Commons Attribution 4.0 International License.
  * You should have received a copy of the license along with this
@@ -9,10 +9,14 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -23,12 +27,16 @@ import org.jetbrains.annotations.NotNull;
  * waiting for their turn ({@code turnsQueue}), and can equip a {@link Weapon}.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author Ignacio Alveal
  */
 public abstract class AbstractPlayerCharacter extends AbstractCharacter implements
-    PlayerCharacter {
+        PlayerCharacter {
 
   private Weapon equippedWeapon = null;
+
+  protected final BlockingQueue<GameCharacter> turnsQueue;
+
+  private ScheduledExecutorService scheduledExecutor;
 
   /**
    * Creates a new character.
@@ -43,19 +51,45 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp,
-      final int defense, @NotNull final BlockingQueue<GameCharacter> turnsQueue)
-      throws InvalidStatValueException {
-    super(name, maxHp, defense, turnsQueue);
+  protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp, final int defense,
+                                    @NotNull final BlockingQueue<GameCharacter> turnsQueue)
+          throws InvalidStatValueException {
+    super(name, maxHp, defense);
+    this.turnsQueue = turnsQueue;
   }
 
   @Override
   public void equip(Weapon weapon) {
-    this.equippedWeapon = weapon;
+    if (this.isEquippable(weapon)) {
+      this.equippedWeapon = weapon;
+    } else {
+      throw new InvalidWeaponForThisCharacter(weapon.getType(), this.getName());
+    }
   }
 
   @Override
   public Weapon getEquippedWeapon() {
     return equippedWeapon;
+  }
+
+  /**
+   * Adds this character to the turns queue.
+   */
+  private void addToQueue() {
+    try {
+      turnsQueue.put(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    scheduledExecutor.shutdown();
+  }
+
+  @Override
+  public void waitTurn() {
+    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
+    scheduledExecutor.schedule(
+            /* command = */ this::addToQueue,
+            /* delay = */ this.getEquippedWeapon().getWeight() / 10,
+            /* unit = */ TimeUnit.SECONDS);
   }
 }
