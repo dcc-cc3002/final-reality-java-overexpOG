@@ -69,27 +69,27 @@ public class Sword extends AbstractWeapon {
   }
 
   @Override
-  public boolean isEquippableKnight(){
+  public boolean isEquippableKnight() {
     return true;
   }
 
   @Override
-  public boolean isEquippableEngineer(){
+  public boolean isEquippableEngineer() {
     return false;
   }
 
   @Override
-  public boolean isEquippableThief(){
+  public boolean isEquippableThief() {
     return true;
   }
 
   @Override
-  public boolean isEquippableBlackMage(){
+  public boolean isEquippableBlackMage() {
     return false;
   }
 
   @Override
-  public boolean isEquippableWhiteMage(){
+  public boolean isEquippableWhiteMage() {
     return false;
   }
 }

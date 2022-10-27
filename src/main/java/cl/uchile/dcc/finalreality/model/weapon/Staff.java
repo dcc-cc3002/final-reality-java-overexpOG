@@ -69,27 +69,27 @@ public class Staff extends AbstractWeapon {
   }
 
   @Override
-  public boolean isEquippableKnight(){
+  public boolean isEquippableKnight() {
     return false;
   }
 
   @Override
-  public boolean isEquippableEngineer(){
+  public boolean isEquippableEngineer() {
     return false;
   }
 
   @Override
-  public boolean isEquippableThief(){
+  public boolean isEquippableThief() {
     return false;
   }
 
   @Override
-  public boolean isEquippableBlackMage(){
+  public boolean isEquippableBlackMage() {
     return true;
   }
 
   @Override
-  public boolean isEquippableWhiteMage(){
+  public boolean isEquippableWhiteMage() {
     return true;
   }
 }
