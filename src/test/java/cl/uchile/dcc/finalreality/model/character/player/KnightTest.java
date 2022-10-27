@@ -8,7 +8,9 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.weapon.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +24,11 @@ class KnightTest {
   private PlayerCharacter character2;
   private PlayerCharacter character3;
   private PlayerCharacter character4;
+  private Weapon sword;
+  private Weapon axe;
+  private Weapon knife;
+  private Weapon staff;
+  private Weapon bow;
 
   @BeforeEach
   void setUp() {
@@ -30,6 +37,11 @@ class KnightTest {
     character2 = new Knight("Ranta", 10, 20, queue);
     character3 = new Knight("Ranta", 10, 15, queue);
     character4 = new BlackMage("Shihoru", 10, 6, 10, queue);
+    sword = new Sword("wooden sword", 4, 4);
+    axe = new Axe("wooden axe", 5, 5);
+    knife = new Knife("wooden knife", 1, 1);
+    staff = new Staff("wooden staff", 6, 6);
+    bow = new Bow("wooden bow", 2, 2);
   }
 
   @Test
@@ -43,5 +55,31 @@ class KnightTest {
     assert (character1.equals(character2));
     assertFalse (character1.equals(character3));
     assertFalse (character1.equals(character4));
+  }
+
+  @Test
+  void equip() {
+    character1.equip(sword);
+
+    character1.equip(axe);
+
+    character1.equip(knife);
+
+
+    boolean staffIsEquipableForKnight = true;
+    try {
+      character1.equip(staff);
+    } catch (InvalidWeaponForThisCharacter e) {
+      staffIsEquipableForKnight = false;
+    }
+    assertEquals(false, staffIsEquipableForKnight);
+
+    boolean bowIsEquipableForKnight = true;
+    try {
+      character1.equip(bow);
+    } catch (InvalidWeaponForThisCharacter e) {
+      bowIsEquipableForKnight = false;
+    }
+    assertEquals(false, bowIsEquipableForKnight);
   }
 }
