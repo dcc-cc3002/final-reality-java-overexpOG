@@ -9,6 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -61,6 +62,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   public void equip(Weapon weapon) {
     if (this.isEquippable(weapon)){
       this.equippedWeapon = weapon;
+    } else {
+      throw new InvalidWeaponForThisCharacter(weapon.getType(), this.getName());
     }
   }
 
