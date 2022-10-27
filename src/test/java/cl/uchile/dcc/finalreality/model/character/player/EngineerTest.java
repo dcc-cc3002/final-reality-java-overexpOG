@@ -8,7 +8,9 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.weapon.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +24,11 @@ class EngineerTest {
   private PlayerCharacter character2;
   private PlayerCharacter character3;
   private PlayerCharacter character4;
+  private Weapon sword;
+  private Weapon axe;
+  private Weapon knife;
+  private Weapon staff;
+  private Weapon bow;
 
   @BeforeEach
   void setUp() {
@@ -30,6 +37,11 @@ class EngineerTest {
     character2 = new Engineer("Yume", 10, 8, queue);
     character3 = new Engineer("Kiichi", 10, 8, queue);
     character4 = new BlackMage("Shihoru", 10, 6, 10, queue);
+    sword = new Sword("wooden sword", 4, 4);
+    axe = new Axe("wooden axe", 5, 5);
+    knife = new Knife("wooden knife", 1, 1);
+    staff = new Staff("wooden staff", 6, 6);
+    bow = new Bow("wooden bow", 2, 2);
   }
 
   @Test
@@ -43,5 +55,36 @@ class EngineerTest {
     assert (character1.equals(character2));
     assertFalse (character1.equals(character3));
     assertFalse (character1.equals(character4));
+  }
+
+  @Test
+  void equip() {
+    boolean swordIsEquipableForEngineer = true;
+    try {
+      character1.equip(sword);
+    } catch (InvalidWeaponForThisCharacter e) {
+      swordIsEquipableForEngineer = false;
+    }
+    assertEquals(false, swordIsEquipableForEngineer);
+
+    character1.equip(axe);
+
+    boolean knifeIsEquipableForEngineer = true;
+    try {
+      character1.equip(knife);
+    } catch (InvalidWeaponForThisCharacter e) {
+      knifeIsEquipableForEngineer = false;
+    }
+    assertEquals(false, knifeIsEquipableForEngineer);
+
+    boolean staffIsEquipableForEngineer = true;
+    try {
+      character1.equip(staff);
+    } catch (InvalidWeaponForThisCharacter e) {
+      staffIsEquipableForEngineer = false;
+    }
+    assertEquals(false, staffIsEquipableForEngineer);
+
+    character1.equip(bow);
   }
 }
