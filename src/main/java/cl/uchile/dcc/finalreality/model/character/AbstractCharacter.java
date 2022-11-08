@@ -10,6 +10,10 @@ package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,6 +28,8 @@ public abstract class AbstractCharacter implements GameCharacter {
   protected final int maxHp;
   protected final int defense;
   protected final String name;
+  private ScheduledExecutorService scheduledExecutor;
+  protected final BlockingQueue<GameCharacter> turnsQueue;
 
   /**
    * Creates a new character.
@@ -35,7 +41,8 @@ public abstract class AbstractCharacter implements GameCharacter {
    * @param defense
    *     the character's defense
    */
-  protected AbstractCharacter(final @NotNull String name, final int maxHp, final int defense)
+  protected AbstractCharacter(final @NotNull String name, final int maxHp, final int defense,
+                              @NotNull final BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
     Require.statValueAtLeast(1, maxHp, "Max HP");
     Require.statValueAtLeast(0, defense, "Defense");
@@ -43,6 +50,7 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.currentHp = maxHp;
     this.defense = defense;
     this.name = name;
+    this.turnsQueue = turnsQueue;
   }
 
   @Override
@@ -71,4 +79,33 @@ public abstract class AbstractCharacter implements GameCharacter {
     Require.statValueAtMost(maxHp, hp, "Current HP");
     currentHp = hp;
   }
+
+  /**
+   * Adds this character to the turns queue.
+   */
+  private void addToQueue() {
+    try {
+      turnsQueue.put(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    scheduledExecutor.shutdown();
+  }
+
+  /**
+   * Adds this character to the turns queue.
+   */
+  @Override
+  public void waitTurn() {
+    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
+    scheduledExecutor.schedule(
+            /* command = */ this::addToQueue,
+            /* delay = */ this.waitTurn2(),
+            /* unit = */ TimeUnit.SECONDS);
+  }
+
+  /**
+   * Auxiliary method for waitTurn.
+   */
+  protected abstract int waitTurn2();
 }

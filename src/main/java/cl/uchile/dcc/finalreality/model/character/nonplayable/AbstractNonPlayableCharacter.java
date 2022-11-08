@@ -13,9 +13,6 @@ import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -30,8 +27,6 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractNonPlayableCharacter
         extends AbstractCharacter implements NonPlayableCharacter {
 
-  protected final BlockingQueue<GameCharacter> turnsQueue;
-  private ScheduledExecutorService scheduledExecutor;
   protected final int weight;
 
   /**
@@ -47,10 +42,9 @@ public abstract class AbstractNonPlayableCharacter
                                          final int maxHp, final int defense,
                                          final @NotNull BlockingQueue<GameCharacter> turnsQueue)
           throws InvalidStatValueException {
-    super(name, maxHp, defense);
+    super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
-    this.turnsQueue = turnsQueue;
   }
 
   @Override
@@ -58,24 +52,8 @@ public abstract class AbstractNonPlayableCharacter
     return weight;
   }
 
-  /**
-   * Adds this character to the turns queue.
-   */
-  private void addToQueue() {
-    try {
-      turnsQueue.put(this);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    scheduledExecutor.shutdown();
-  }
-
   @Override
-  public void waitTurn() {
-    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    scheduledExecutor.schedule(
-            /* command = */ this::addToQueue,
-            /* delay = */ this.getWeight() / 10,
-            /* unit = */ TimeUnit.SECONDS);
+  protected int waitTurn2() {
+    return this.getWeight() / 10;
   }
 }
