@@ -18,15 +18,14 @@ enemies controlled by the computer.
 
 ## instrucciones de uso
 
-Para correr el programa de prueba, hay que correr el Main ubicado en la siguiente dirección
-./src/main/java/cl/uchile/dcc/Main.java, este programa va a correr un codigo 
-en el que pruebe los metodos hechos por el programa (como se esta todabia en una fase temprana, solo se 
-usan prints para ver que los metodos hechos funcionen correctamente).
+El programa todabia no tiene una version que se pueda correr, por lo que para probar que los distintos metodos
+funcionen correctamente se pueden probar los distintos test que se hicieron para cada metodo (que estan en la 
+carpeta test).
 
 ## desarrollo
 
 A continuación se va a proceder a listar los detalles mas importantes de los cambios hechos, pero estos no
-van a estar ordenados secuencialmente en el tiempo..
+van a estar ordenados secuencialmente en el tiempo.
 
 - se mantuvo el codigo de la carpeta exceptions.
 - se creo una carpeta uml, con un 
@@ -47,10 +46,10 @@ van a estar ordenados secuencialmente en el tiempo..
 - se crea una clase abstracta de personajes no jugables AbstractNonPlayableCharacter que implementa
   NonPlayableCharacter (Enemy hereda de esta clase).
 - se mantiene los metodos addToQueue en privado pues solo se creo para usarse en waitTurn.
-- los metodos de addToQueue y waitTurn se mueven de AbstractCharacter a AbstactPlayerCharacter y 
-  AbstractNonPlayableCharacter, esto pues si se agregara un nuevo tipo de personaje de la manera anterior 
-  se tendria que modificar el codigo, de esta manera solo se programaria de nuevo los metodos en este nuevo
-  tipo de personaje (siendo un codigo extendible), debido a esto se modifico el codigo de waitTurn.
+- los metodos de addToQueue y waitTurn se mantienen en AbstractCharacter, y se crea un metodo auxiliar distinto para
+  los AbstractPlayerCharacter y AbstracNonPlayableCharactert esto pues si se agregara un nuevo tipo de personaje de la 
+  manera anterior se tendria que modificar el codigo, de esta manera solo se programaria un nuevo metodo auxiliar en este 
+  nuevo tipo de personaje (siendo un codigo extendible), debido a esto se modifico el codigo de waitTurn.
 - al toString, hashCode y equals de los personajes, se les modifico para que tuvieran el nombre, maxHp, currentHp,
   defense, weight, maxMp, currentMp ordenados de esa forma a la hora de printear o para ver si dos personajes son 
   iguales (si un personaje no tiene una de las variables anteriores, se omite y se sigue a la siguiente), se le
@@ -69,3 +68,9 @@ van a estar ordenados secuencialmente en el tiempo..
   turno (por ejemplo, podria haber escenarios que hagan acciones sobre los personajes o cosas asi), por lo que
   esperar por un turno lo considere algo que implementan los personajes del juego pero no son los unicos y por
   ello lo separe y puse que GameCharacter extiende de ActionTurn.
+- se modifico equip, para que se equipara el arma solo si el personaje se puede equipar el arma, en caso contrario
+  tira un error, para ello se utilizo double dispatch, por lo que se crearon los metodos isEquippable para cada 
+  personaje y sus diversas conbinaciones para los distintos personajes (es decir isEquippablePersonaje por ejemplo
+  isEquippableThief).
+- se elimina el codigo que sirve de ejemplo y se crea una carpeta test, con varios test que prueban el buen 
+  funcionamientos de los distintos metodos.
