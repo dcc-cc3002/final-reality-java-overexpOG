@@ -22,4 +22,9 @@ public interface NonPlayableCharacter extends GameCharacter {
    * Returns the weight of this enemy.
    */
   int getWeight();
+
+  /**
+   * Returns this enemy's damage.
+   */
+  int getDamage();
 }

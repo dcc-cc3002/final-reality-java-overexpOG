@@ -27,9 +27,9 @@ class EnemyTest {
   @BeforeEach
   void setUp() {
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
-    character1 = new Enemy("Jumbo", 7, 50, 20, queue);
-    character2 = new Enemy("Jumbo", 7, 50, 20, queue);
-    character3 = new Enemy("Arnold", 8, 70, 10, queue);
+    character1 = new Enemy("Jumbo", 7, 50, 20, queue, 5);
+    character2 = new Enemy("Jumbo", 7, 50, 20, queue, 5);
+    character3 = new Enemy("Arnold", 8, 70, 10, queue, 5);
     character4 = new BlackMage("Shihoru", 10, 6, 10, queue);
   }
 

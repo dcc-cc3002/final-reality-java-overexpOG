@@ -25,12 +25,17 @@ class AbstractNonPlayableCharacterTest {
   @BeforeEach
   void setUp() {
     queue = new LinkedBlockingQueue<>();
-    character1 = new Enemy("Jumbo", 7, 50, 20, queue);
+    character1 = new Enemy("Jumbo", 7, 50, 20, queue, 5);
   }
 
   @Test
   void getWeight() {
     assertEquals (7, character1.getWeight());
+  }
+
+  @Test
+  void getDamage() {
+    assertEquals (5, character1.getDamage());
   }
 
   @Test
@@ -42,10 +47,18 @@ class AbstractNonPlayableCharacterTest {
   void Constructor() {
     boolean WeightNegativoOCero = true;
     try {
-      new Enemy("Jumbo", 0, 50, 20, queue);
+      new Enemy("Jumbo", 0, 50, 20, queue, 5);
     } catch (InvalidStatValueException e) {
       WeightNegativoOCero = false;
     }
     assertEquals(false, WeightNegativoOCero);
+
+    boolean DamageNegativoOCero = true;
+    try {
+      new Enemy("Jumbo", 7, 50, 20, queue, 0);
+    } catch (InvalidStatValueException e) {
+      DamageNegativoOCero = false;
+    }
+    assertEquals(false, DamageNegativoOCero);
   }
 }

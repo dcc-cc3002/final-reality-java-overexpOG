@@ -10,8 +10,11 @@ package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+
+import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,23 +31,28 @@ public abstract class AbstractNonPlayableCharacter
         extends AbstractCharacter implements NonPlayableCharacter {
 
   protected final int weight;
+  protected final int damage;
 
   /**
    * Creates a new enemy.
    *
    * @param name       the character's name
-   * @param weight     the character's name
-   * @param maxHp      the character's weight
+   * @param weight     the character's weight
+   * @param damage     the character's damage
+   * @param maxHp      the character's maxHp
    * @param defense    the character's defense
    * @param turnsQueue the queue with the characters waiting for their turn
    */
   protected AbstractNonPlayableCharacter(final @NotNull String name, final int weight,
                                          final int maxHp, final int defense,
-                                         final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+                                         final @NotNull BlockingQueue<GameCharacter> turnsQueue,
+                                         final int damage)
           throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
+    Require.statValueAtLeast(1, damage, "Damage");
+    this.damage = damage;
   }
 
   @Override
@@ -53,7 +61,17 @@ public abstract class AbstractNonPlayableCharacter
   }
 
   @Override
+  public int getDamage() {
+    return damage;
+  }
+
+  @Override
   protected int waitTurn2() {
     return this.getWeight() / 10;
+  }
+
+  @Override
+  public void action(FinalReality game) throws IOException {
+
   }
 }

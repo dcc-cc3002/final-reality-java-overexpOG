@@ -26,15 +26,16 @@ public class Enemy extends AbstractNonPlayableCharacter {
    * Creates a new enemy.
    *
    * @param name       the character's name
-   * @param weight     the character's name
-   * @param maxHp      the character's weight
+   * @param weight     the character's weight
+   * @param damage     the character's damage
+   * @param maxHp      the character's maxHp
    * @param defense    the character's defense
    * @param turnsQueue the queue with the characters waiting for their turn
    */
   public Enemy(final @NotNull String name, final int weight, final int maxHp, final int defense,
-               final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+               final @NotNull BlockingQueue<GameCharacter> turnsQueue, final int damage)
           throws InvalidStatValueException {
-    super(name, weight, maxHp, defense, turnsQueue);
+    super(name, weight, maxHp, defense, turnsQueue, damage);
   }
 
   @Override
