@@ -13,9 +13,9 @@ import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-
-import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
+
+import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -71,7 +71,17 @@ public abstract class AbstractNonPlayableCharacter
   }
 
   @Override
-  public void action(FinalReality game) throws IOException {
-
+  public void action(FinalReality game){
+    PlayerCharacter[] enemyTeam = game.getCharacterOfPlayer();
+    for(int i=0; i<enemyTeam.length; i++) {
+      if (enemyTeam[i].getCurrentHp()!=0){
+        try{
+          game.atack(this.damage, enemyTeam[i]);
+        } catch (AssertionError err) {
+          System.err.println("Invalid atack! (" + this.damage+ ", " + enemyTeam[i].toString() + ")");
+        }
+        break;
+      }
+    }
   }
 }

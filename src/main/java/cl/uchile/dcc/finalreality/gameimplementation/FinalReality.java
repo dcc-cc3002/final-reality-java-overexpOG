@@ -34,9 +34,20 @@ public class FinalReality {
   }
 
   /**
-   * The game not over as long as both teams have character who do not have 0 life.
+   * The game is not over until there is a winner.
    */
   public boolean notOver() {
+    if (this.win == 1 || this.win == 2){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /**
+   * if a team has all its characters at 0 health, the opposing team wins.
+   */
+  private void checkWinner() {
     boolean playerOver = true;
     boolean computerOver = true;
     for (PlayerCharacter playerCharacter : CharacterOfPlayer) {
@@ -51,13 +62,10 @@ public class FinalReality {
     }
     if (playerOver) {
       this.win = 1;
-      return false;
     } else if (computerOver) {
       this.win = 2;
-      return false;
-    } else {
-      return true;
     }
+    return;
   }
 
   /**
@@ -65,7 +73,35 @@ public class FinalReality {
    */
   public void update() throws IOException {
     GameCharacter ActionCharacter = queue.poll();
-    ActionCharacter.action();
+    ActionCharacter.action(this);
     ActionCharacter.waitTurn();
+  }
+
+  /**
+   * Causes the playercharacter to take damage from damageReceived.
+   */
+  public void atack(int damageReceived, PlayerCharacter playerCharacter) {
+    int Hp = playerCharacter.getCurrentHp();
+    if (Hp - damageReceived < 0) {
+      Hp = 0;
+    } else {
+      Hp = Hp - damageReceived;
+    }
+    playerCharacter.setCurrentHp(Hp);
+    this.checkWinner();
+  }
+
+  /**
+   * Returns the CharacterOfPlayer for this game.
+   */
+  public PlayerCharacter[] getCharacterOfPlayer() {
+    return CharacterOfPlayer;
+  }
+
+  /**
+   * Returns the CharacterOfComputer for this game.
+   */
+  public NonPlayableCharacter[] getCharacterOfComputer() {
+    return CharacterOfComputer;
   }
 }

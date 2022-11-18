@@ -9,7 +9,10 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.ActionTurn;
+
+import java.io.IOException;
 
 /**
  * This represents a character from the game.
@@ -44,4 +47,9 @@ public interface GameCharacter extends ActionTurn {
    * Sets this character's current HP to {@code newHp}.
    */
   void setCurrentHp(int hp) throws InvalidStatValueException;
+
+  /**
+   * the character make an action.
+   */
+  void action(FinalReality game) throws IOException;
 }

@@ -10,9 +10,12 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
+
+import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
@@ -67,5 +70,10 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   @Override
   protected int waitTurn2() {
     return this.getEquippedWeapon().getWeight() / 10;
+  }
+
+  @Override
+  public void action(FinalReality game){
+
   }
 }
