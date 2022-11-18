@@ -13,9 +13,12 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponForThisCharacter;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
@@ -68,12 +71,71 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   @Override
+  public int getDamage() {
+    return this.equippedWeapon.getDamage();
+  }
+
+  @Override
   protected int waitTurn2() {
     return this.getEquippedWeapon().getWeight() / 10;
   }
 
   @Override
   public void action(FinalReality game){
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell");
+    String s = scanner.nextLine();
+    try {
+      int number = Integer.parseInt(s);
+      if (number == 1) {
+        NonPlayableCharacter[] enemyTeam = game.getCharacterOfComputer();
+        try{
+          game.atack(this, enemyTeam);
+        } catch (AssertionError err) {
+          System.err.println("Invalid atack! (" + this.getEquippedWeapon().getDamage() + ", " + Arrays.toString(enemyTeam) + ")");
+        }
+      } else if (number == 2) {
+        game.actionEquip(this);
+      } else if (number == 3) {
+        game.actionMagic(this);
+      } else {
+        System.out.println("out of range, select again");
+        this.action(game);
+      }
+    } catch (NumberFormatException ex) {
+      System.out.println("that is not a number, select again");
+      this.action(game);
+    }
+  }
 
+  @Override
+  public void actionEquip(FinalReality game, Weapon[] weapons) {
+    System.out.println("select the weapon you want to equip:");
+    System.out.println("0 to (actual weapon) " + this.getEquippedWeapon());
+    for(int i=1; i<weapons.length+1; i++){
+      System.out.println(i + " to " + weapons[i]);
+    }
+    Scanner scanner2 = new Scanner(System.in);
+    String s2 = scanner2.nextLine();
+    try {
+      int number2 = Integer.parseInt(s2);
+      if (number2 >= weapons.length+1){
+        System.out.println("out of range, select again");
+        this.action(game);
+      } else {
+        game.equip(this, number2-1);
+      }
+    } catch (NumberFormatException ex){
+      System.out.println("that is not a number, select again");
+      this.action(game);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public void actionMagic(FinalReality game) {
+    System.out.println("this character is not a Mage, select again");
+    this.action(game);
   }
 }

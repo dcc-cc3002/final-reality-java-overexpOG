@@ -73,15 +73,10 @@ public abstract class AbstractNonPlayableCharacter
   @Override
   public void action(FinalReality game){
     PlayerCharacter[] enemyTeam = game.getCharacterOfPlayer();
-    for(int i=0; i<enemyTeam.length; i++) {
-      if (enemyTeam[i].getCurrentHp()!=0){
-        try{
-          game.atack(this.damage, enemyTeam[i]);
-        } catch (AssertionError err) {
-          System.err.println("Invalid atack! (" + this.damage+ ", " + enemyTeam[i].toString() + ")");
-        }
-        break;
-      }
+    try{
+      game.atack(this, enemyTeam);
+    } catch (AssertionError err) {
+      System.err.println("Invalid atack! (" + this.damage + ", " + enemyTeam.toString() + ")");
     }
   }
 }

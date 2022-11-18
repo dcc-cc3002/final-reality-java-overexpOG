@@ -8,6 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
@@ -32,4 +33,9 @@ public interface PlayerCharacter extends GameCharacter {
    * Returns true if the weapon can be equipped and false if not.
    */
   boolean isEquippable(Weapon weapon);
+
+
+  void actionEquip(FinalReality game, Weapon[] weapons);
+
+  void actionMagic(FinalReality game);
 }

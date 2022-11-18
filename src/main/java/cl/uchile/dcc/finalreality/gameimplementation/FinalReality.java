@@ -1,10 +1,13 @@
 package cl.uchile.dcc.finalreality.gameimplementation;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.nonplayable.Enemy;
 import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -15,16 +18,18 @@ public class FinalReality {
   private PlayerCharacter[] CharacterOfPlayer;
   private NonPlayableCharacter[] CharacterOfComputer;
   private BlockingQueue<GameCharacter> queue;
+  private Weapon[] WeaponOfPlayer;
 
   /**
    * The game state is represented by a queue containing both player and computer characters, arranged
    * in the order in which each character performs actions.
    */
   public FinalReality(PlayerCharacter[] characterofplayer, NonPlayableCharacter[] characterofcomputer,
-                      @NotNull final BlockingQueue<GameCharacter> turnsQueue){
+                      @NotNull final BlockingQueue<GameCharacter> turnsQueue, Weapon[] weaponofplayer) {
     this.CharacterOfPlayer = characterofplayer;
     this.CharacterOfComputer = characterofcomputer;
     this.queue = turnsQueue;
+    this.WeaponOfPlayer = weaponofplayer;
     for (PlayerCharacter playerCharacter : CharacterOfPlayer) {
       playerCharacter.waitTurn();
     }
@@ -37,11 +42,7 @@ public class FinalReality {
    * The game is not over until there is a winner.
    */
   public boolean notOver() {
-    if (this.win == 1 || this.win == 2){
-      return false;
-    } else {
-      return true;
-    }
+    return this.win != 1 && this.win != 2;
   }
 
   /**
@@ -65,7 +66,6 @@ public class FinalReality {
     } else if (computerOver) {
       this.win = 2;
     }
-    return;
   }
 
   /**
@@ -78,17 +78,41 @@ public class FinalReality {
   }
 
   /**
-   * Causes the playercharacter to take damage from damageReceived.
+   * the actualCharactermake the action of atacking the enemyCharacter.
    */
-  public void atack(int damageReceived, PlayerCharacter playerCharacter) {
-    int Hp = playerCharacter.getCurrentHp();
-    if (Hp - damageReceived < 0) {
-      Hp = 0;
-    } else {
-      Hp = Hp - damageReceived;
+  public void atack(@NotNull GameCharacter actualCharacter, @NotNull GameCharacter[] enemyCharacters) {
+    GameCharacter atackedEnemy = new Enemy("", 1, 1, 1, queue, 1);
+    for (GameCharacter enemyCharacter : enemyCharacters) {
+      if (enemyCharacter.getCurrentHp() != 0) {
+        atackedEnemy = enemyCharacter;
+        break;
+      }
     }
-    playerCharacter.setCurrentHp(Hp);
+    int Hp = Math.max(atackedEnemy.getCurrentHp() - actualCharacter.getDamage(), 0);
+    atackedEnemy.setCurrentHp(Hp);
     this.checkWinner();
+  }
+
+  /**
+   * the actualCharacter make the action to equip a weapon.
+   */
+  public void actionEquip(@NotNull PlayerCharacter actualCharacter) {
+    Weapon[] weapons = this.getWeaponOfPlayer();
+    actualCharacter.actionEquip(this, weapons);
+  }
+
+  /**
+   * the actualCharacter equip weaponToEquip (the int represents a weapon).
+   */
+  public void equip(@NotNull PlayerCharacter actualCharacter, int weaponToEquip) throws IOException {
+    Weapon weaponPrima = actualCharacter.getEquippedWeapon();
+    actualCharacter.equip(this.WeaponOfPlayer[weaponToEquip]);
+    this.WeaponOfPlayer[weaponToEquip] = weaponPrima;
+    actualCharacter.action(this);
+  }
+
+  public void actionMagic(@NotNull PlayerCharacter actualCharacter) {
+    actualCharacter.actionMagic(this);
   }
 
   /**
@@ -103,5 +127,12 @@ public class FinalReality {
    */
   public NonPlayableCharacter[] getCharacterOfComputer() {
     return CharacterOfComputer;
+  }
+
+  /**
+     * Returns the WeaponOfPlayer for this game.
+   */
+  private Weapon[] getWeaponOfPlayer() {
+    return WeaponOfPlayer;
   }
 }

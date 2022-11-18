@@ -52,4 +52,9 @@ public interface GameCharacter extends ActionTurn {
    * the character make an action.
    */
   void action(FinalReality game) throws IOException;
+
+  /**
+   * Returns this character's damage.
+   */
+  int getDamage();
 }

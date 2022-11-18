@@ -9,6 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Objects;
@@ -74,5 +75,12 @@ public class BlackMage extends AbstractMage {
   @Override
   public boolean isEquippable(Weapon weapon) {
     return weapon.isEquippableBlackMage();
+  }
+
+  @Override
+  public void actionMagic(FinalReality game) {
+    System.out.println("select the magic you want to use:");
+    System.out.println("0 to return to action");
+    System.out.println("1 to return to action");
   }
 }
