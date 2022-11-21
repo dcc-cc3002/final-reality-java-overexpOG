@@ -14,6 +14,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import cl.uchile.dcc.finalreality.model.state.Normal;
+import cl.uchile.dcc.finalreality.model.state.State;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -28,6 +31,7 @@ public abstract class AbstractCharacter implements GameCharacter {
   protected final int maxHp;
   protected final int defense;
   protected final String name;
+  private State state;
   private ScheduledExecutorService scheduledExecutor;
   protected final BlockingQueue<GameCharacter> turnsQueue;
 
@@ -51,6 +55,7 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.defense = defense;
     this.name = name;
     this.turnsQueue = turnsQueue;
+    this.setState(new Normal());
   }
 
   @Override
@@ -108,4 +113,96 @@ public abstract class AbstractCharacter implements GameCharacter {
    * Auxiliary method for waitTurn.
    */
   protected abstract int waitTurn2();
+
+  /**
+   * Set state with astate (and also set the asbtractcharacter of state).
+   */
+  public void setState(State aState) {
+    this.state = aState;
+    state.setAbstractCharacter(this);
+  }
+
+  /**
+   * Change state to normal.
+   */
+  public void normal () {
+    state.normal();
+  }
+
+  /**
+   * Paralyzed effect is added to the state.
+   */
+  public void paralysis () {
+    state.paralysis();
+  }
+
+  /**
+   * Burned effect is added to the state.
+   */
+  public void burned () {
+    state.burned();
+  }
+
+  /**
+   * Poisoned effect is added to the state.
+   */
+  public void poisoned () {
+    state.poisoned();
+  }
+
+  /**
+   * Returns true if the state is normal, false otherwise.
+   */
+  public boolean isNormal () {
+    return state.isNormal();
+  }
+
+  /**
+   * Returns true if the state is paralysis, false otherwise.
+   */
+  public boolean isParalysis () {
+    return state.isParalysis();
+  }
+
+  /**
+   * Returns true if the state is burned, false otherwise.
+   */
+  public boolean isBurned () {
+    return state.isBurned();
+  }
+
+  /**
+   * Returns true if the state is poisoned, false otherwise.
+   */
+  public boolean isPoisoned () {
+    return state.isPoisoned();
+  }
+
+  /**
+   * Returns true if the state is paralysis and burned, false otherwise.
+   */
+  public boolean isParalysis_Burned () {
+    return state.isParalysis_Burned();
+  }
+
+  /**
+   * Returns true if the state is paralysis and poisoned, false otherwise.
+   */
+  public boolean isParalysis_Poisoned () {
+    return state.isParalysis_Poisoned();
+  }
+
+  /**
+   * Returns true if the state is burned and poisoned, false otherwise.
+   */
+  public boolean isBurned_Poisoned () {
+    return state.isBurned_Poisoned();
+  }
+
+  /**
+   * Returns true if the state is paralysis, burned and poisoned, false otherwise.
+   */
+  public boolean isParalysis_Burned_Poisoned () {
+    return state.isParalysis_Burned_Poisoned();
+  }
 }
