@@ -14,7 +14,12 @@ public class Paralysis_Burned extends State {
   }
 
   @Override
-  public boolean isParalysis_Burned () {
+  public boolean isParalysis() {
+    return true;
+  }
+
+  @Override
+  public boolean isBurned() {
     return true;
   }
 }

@@ -177,32 +177,4 @@ public abstract class AbstractCharacter implements GameCharacter {
   public boolean isPoisoned () {
     return state.isPoisoned();
   }
-
-  /**
-   * Returns true if the state is paralysis and burned, false otherwise.
-   */
-  public boolean isParalysis_Burned () {
-    return state.isParalysis_Burned();
-  }
-
-  /**
-   * Returns true if the state is paralysis and poisoned, false otherwise.
-   */
-  public boolean isParalysis_Poisoned () {
-    return state.isParalysis_Poisoned();
-  }
-
-  /**
-   * Returns true if the state is burned and poisoned, false otherwise.
-   */
-  public boolean isBurned_Poisoned () {
-    return state.isBurned_Poisoned();
-  }
-
-  /**
-   * Returns true if the state is paralysis, burned and poisoned, false otherwise.
-   */
-  public boolean isParalysis_Burned_Poisoned () {
-    return state.isParalysis_Burned_Poisoned();
-  }
 }

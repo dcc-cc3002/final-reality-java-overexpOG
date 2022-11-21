@@ -68,32 +68,4 @@ public abstract class State {
   public boolean isPoisoned () {
     return false;
   }
-
-  /**
-   * Returns true if the state is paralysis and burned, false otherwise.
-   */
-  public boolean isParalysis_Burned () {
-    return false;
-  }
-
-  /**
-   * Returns true if the state is paralysis and poisoned, false otherwise.
-   */
-  public boolean isParalysis_Poisoned () {
-    return false;
-  }
-
-  /**
-   * Returns true if the state is burned and poisoned, false otherwise.
-   */
-  public boolean isBurned_Poisoned () {
-    return false;
-  }
-
-  /**
-   * Returns true if the state is paralysis, burned and poisoned, false otherwise.
-   */
-  public boolean isParalysis_Burned_Poisoned () {
-    return false;
-  }
 }

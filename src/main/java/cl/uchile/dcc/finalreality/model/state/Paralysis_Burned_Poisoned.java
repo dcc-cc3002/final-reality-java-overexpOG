@@ -12,7 +12,17 @@ public class Paralysis_Burned_Poisoned extends State {
   public void poisoned() {}
 
   @Override
-  public boolean isParalysis_Burned_Poisoned () {
+  public boolean isParalysis() {
+    return true;
+  }
+
+  @Override
+  public boolean isBurned() {
+    return true;
+  }
+
+  @Override
+  public boolean isPoisoned() {
     return true;
   }
 }
