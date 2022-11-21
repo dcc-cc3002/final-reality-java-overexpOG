@@ -32,13 +32,21 @@ class StateTest {
   @Test
   void paralysis() {
     character1.paralysis();
+    character1.paralysis();
     assert(character1.isParalysis());
+    character2.burned();
+    character2.paralysis();
     character2.burned();
     character2.paralysis();
     assert(character2.isParalysis_Burned());
     character3.poisoned();
     character3.paralysis();
+    character3.poisoned();
+    character3.paralysis();
     assert(character3.isParalysis_Poisoned());
+    character4.burned();
+    character4.poisoned();
+    character4.paralysis();
     character4.burned();
     character4.poisoned();
     character4.paralysis();
@@ -48,13 +56,21 @@ class StateTest {
   @Test
   void burned() {
     character1.burned();
+    character1.burned();
     assert(character1.isBurned());
+    character2.paralysis();
+    character2.burned();
     character2.paralysis();
     character2.burned();
     assert(character2.isParalysis_Burned());
     character3.poisoned();
     character3.burned();
+    character3.poisoned();
+    character3.burned();
     assert(character3.isBurned_Poisoned());
+    character4.poisoned();
+    character4.paralysis();
+    character4.burned();
     character4.poisoned();
     character4.paralysis();
     character4.burned();
@@ -64,13 +80,21 @@ class StateTest {
   @Test
   void poisoned() {
     character1.poisoned();
+    character1.poisoned();
     assert(character1.isPoisoned());
+    character2.burned();
+    character2.poisoned();
     character2.burned();
     character2.poisoned();
     assert(character2.isBurned_Poisoned());
     character3.paralysis();
     character3.poisoned();
+    character3.paralysis();
+    character3.poisoned();
     assert(character3.isParalysis_Poisoned());
+    character4.burned();
+    character4.paralysis();
+    character4.poisoned();
     character4.burned();
     character4.paralysis();
     character4.poisoned();
@@ -112,5 +136,20 @@ class StateTest {
     assert(character1.isParalysis_Burned_Poisoned());
     character1.normal();
     assert(character1.isNormal());
+    character1.normal();
+    assert(character1.isNormal());
+  }
+
+  @Test
+  void isNot() {
+    assert(!character1.isParalysis());
+    character1.paralysis();
+    assert(!character1.isNormal());
+    assert(!character1.isBurned());
+    assert(!character1.isPoisoned());
+    assert(!character1.isParalysis_Burned());
+    assert(!character1.isParalysis_Poisoned());
+    assert(!character1.isParalysis_Burned_Poisoned());
+    assert(!character1.isBurned_Poisoned());
   }
 }
