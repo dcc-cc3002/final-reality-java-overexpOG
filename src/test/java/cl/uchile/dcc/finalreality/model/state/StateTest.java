@@ -2,10 +2,10 @@ package cl.uchile.dcc.finalreality.model.state;
 
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.Engineer;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.mage.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.common.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.common.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.common.Thief;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

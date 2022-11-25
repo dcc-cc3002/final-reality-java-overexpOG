@@ -9,7 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character.nonplayable;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.mage.BlackMage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

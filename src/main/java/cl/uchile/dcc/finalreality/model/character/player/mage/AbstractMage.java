@@ -6,10 +6,13 @@
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-package cl.uchile.dcc.finalreality.model.character.player;
+package cl.uchile.dcc.finalreality.model.character.player.mage;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.model.character.player.AbstractPlayerCharacter;
+import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
+import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractMage extends AbstractPlayerCharacter implements Mage {
 
+  private SpellFactory spellFactory;
   protected int currentMp;
   protected final int maxMp;
 
@@ -63,5 +67,13 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
   @Override
   public int getMaxMp() {
     return maxMp;
+  }
+
+  public Spell spelling() {
+    return spellFactory.create();
+  }
+
+  public void setSpellFactory(SpellFactory aSpellfactory) {
+    spellFactory = aSpellfactory;
   }
 }

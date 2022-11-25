@@ -9,8 +9,8 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.common.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.common.Thief;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.BlockingQueue;

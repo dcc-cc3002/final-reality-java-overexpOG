@@ -6,9 +6,12 @@
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-package cl.uchile.dcc.finalreality.model.character.player;
+package cl.uchile.dcc.finalreality.model.character.player.mage;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
+import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 
 /**
  * A {@link PlayerCharacter} with mana and who can use magic.
@@ -32,4 +35,7 @@ public interface Mage extends PlayerCharacter {
    */
   int getMaxMp();
 
+  Spell spelling();
+
+  void setSpellFactory(SpellFactory aSpellfactory);
 }
