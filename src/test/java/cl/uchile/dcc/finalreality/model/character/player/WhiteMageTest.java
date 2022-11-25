@@ -42,7 +42,7 @@ class WhiteMageTest {
     sword = new Sword("wooden sword", 4, 4);
     axe = new Axe("wooden axe", 5, 5);
     knife = new Knife("wooden knife", 1, 1);
-    staff = new Staff("wooden staff", 6, 6);
+    staff = new Staff("wooden staff", 6, 6, 6);
     bow = new Bow("wooden bow", 2, 2);
   }
 

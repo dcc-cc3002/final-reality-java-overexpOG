@@ -12,8 +12,14 @@ public class GameDriver {
         System.out.print(game);
         game.update();
       } while (game.notOver());
-      System.out.print(game);
-      System.out.println("game over!");
+      if (game.isTie()) {
+        System.out.println("tie");
+      } else if (game.isPlayerWin()) {
+        System.out.println("player win");
+      } else if (game.isComputerWin()) {
+        System.out.println("computer win");
+      }
+      System.out.println("game over");
     } catch (IOException err) {
       System.out.println("game terminated!");
     }

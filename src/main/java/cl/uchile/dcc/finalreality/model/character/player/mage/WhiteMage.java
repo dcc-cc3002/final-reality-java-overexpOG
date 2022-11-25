@@ -9,6 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character.player.mage;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -75,5 +76,10 @@ public class WhiteMage extends AbstractMage {
   @Override
   public boolean isEquippable(Weapon weapon) {
     return weapon.isEquippableWhiteMage();
+  }
+
+  @Override
+  public void changeSpell(FinalReality game) {
+    game.changeSpellWhiteMagic(this);
   }
 }

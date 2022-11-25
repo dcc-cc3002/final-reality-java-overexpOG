@@ -38,4 +38,6 @@ public interface PlayerCharacter extends GameCharacter {
   void actionEquip(FinalReality game, Weapon[] weapons);
 
   void actionMagic(FinalReality game);
+
+  void changeSpell(FinalReality game);
 }

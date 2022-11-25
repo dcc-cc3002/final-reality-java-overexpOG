@@ -79,9 +79,7 @@ public class BlackMage extends AbstractMage {
   }
 
   @Override
-  public void actionMagic(FinalReality game) {
-    System.out.println("select the magic you want to use:");
-    System.out.println("0 to return to action");
-    System.out.println("1 to return to action");
+  public void changeSpell(FinalReality game) {
+    game.changeSpellBlackMagic(this);
   }
 }

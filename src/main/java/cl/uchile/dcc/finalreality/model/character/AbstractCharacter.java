@@ -114,67 +114,49 @@ public abstract class AbstractCharacter implements GameCharacter {
    */
   protected abstract int waitTurn2();
 
-  /**
-   * Set state with astate (and also set the asbtractcharacter of state).
-   */
+  @Override
   public void setState(State aState) {
     this.state = aState;
     state.setAbstractCharacter(this);
   }
 
-  /**
-   * Change state to normal.
-   */
-  public void normal () {
+  @Override
+  public void normal() {
     state.normal();
   }
 
-  /**
-   * Paralyzed effect is added to the state.
-   */
-  public void paralysis () {
+  @Override
+  public void paralysis() {
     state.paralysis();
   }
 
-  /**
-   * Burned effect is added to the state.
-   */
-  public void burned () {
+  @Override
+  public void burned() {
     state.burned();
   }
 
-  /**
-   * Poisoned effect is added to the state.
-   */
-  public void poisoned () {
+  @Override
+  public void poisoned() {
     state.poisoned();
   }
 
-  /**
-   * Returns true if the state is normal, false otherwise.
-   */
-  public boolean isNormal () {
+  @Override
+  public boolean isNormal() {
     return state.isNormal();
   }
 
-  /**
-   * Returns true if the state is paralysis, false otherwise.
-   */
-  public boolean isParalysis () {
+  @Override
+  public boolean isParalysis() {
     return state.isParalysis();
   }
 
-  /**
-   * Returns true if the state is burned, false otherwise.
-   */
-  public boolean isBurned () {
+  @Override
+  public boolean isBurned() {
     return state.isBurned();
   }
 
-  /**
-   * Returns true if the state is poisoned, false otherwise.
-   */
-  public boolean isPoisoned () {
+  @Override
+  public boolean isPoisoned() {
     return state.isPoisoned();
   }
 }

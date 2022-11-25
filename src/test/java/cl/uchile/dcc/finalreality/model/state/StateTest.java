@@ -1,6 +1,5 @@
 package cl.uchile.dcc.finalreality.model.state;
 
-import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.common.Engineer;
@@ -15,10 +14,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 class StateTest {
 
-  private AbstractCharacter character1;
-  private AbstractCharacter character2;
-  private AbstractCharacter character3;
-  private AbstractCharacter character4;
+  private GameCharacter character1;
+  private GameCharacter character2;
+  private GameCharacter character3;
+  private GameCharacter character4;
 
   @BeforeEach
   void setUp() {

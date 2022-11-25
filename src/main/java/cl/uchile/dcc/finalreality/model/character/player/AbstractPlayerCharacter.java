@@ -15,8 +15,6 @@ import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
@@ -81,23 +79,25 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   @Override
-  public void action(FinalReality game){
+  public void action(FinalReality game) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell");
-    String s = scanner.nextLine();
+    int number = scanner.nextInt();
     try {
-      int number = Integer.parseInt(s);
       if (number == 1) {
         NonPlayableCharacter[] enemyTeam = game.getCharacterOfComputer();
         try{
-          game.atack(this, enemyTeam);
+          game.actionAtack(this, enemyTeam);
         } catch (AssertionError err) {
           System.err.println("Invalid atack! (" + this.getEquippedWeapon().getDamage() + ", " + Arrays.toString(enemyTeam) + ")");
+          this.action(game);
         }
       } else if (number == 2) {
         game.actionEquip(this);
       } else if (number == 3) {
         game.actionMagic(this);
+      } else if (number == 4) {
+        this.changeSpell(game);
       } else {
         System.out.println("out of range, select again");
         this.action(game);
@@ -108,33 +108,62 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     }
   }
 
-  @Override
-  public void actionEquip(FinalReality game, Weapon[] weapons) {
-    System.out.println("select the weapon you want to equip:");
-    System.out.println("0 to (actual weapon) " + this.getEquippedWeapon());
-    for(int i=1; i<weapons.length+1; i++){
-      System.out.println(i + " to " + weapons[i]);
+  protected int listString(Object[] list) {
+    System.out.println("0 to return.");
+    for(int i=1; i<list.length+1; i++) {
+      System.out.println(i + " to " + list[i]);
     }
     Scanner scanner2 = new Scanner(System.in);
-    String s2 = scanner2.nextLine();
+    return scanner2.nextInt();
+  }
+
+  @Override
+  public void actionAtack(FinalReality game, GameCharacter[] enemyTeam) {
     try {
-      int number2 = Integer.parseInt(s2);
-      if (number2 >= weapons.length+1){
-        System.out.println("out of range, select again");
+      System.out.println("select the enemy you want to atack:");
+      int number2 = listString(enemyTeam);
+      if (number2 == 0) {
         this.action(game);
+      } else if (number2 >= enemyTeam.length+1){
+        System.out.println("out of range, select again");
+        this.actionAtack(game, enemyTeam);
+      } else {
+        game.atack(this, enemyTeam[number2-1]);
+      }
+    } catch (NumberFormatException ex){
+      System.out.println("that is not a number, select again");
+      this.actionAtack(game, enemyTeam);
+    }
+  }
+
+  @Override
+  public void actionEquip(FinalReality game, Weapon[] weapons) {
+    try {
+      System.out.println("actual weapon " + this.getEquippedWeapon());
+      System.out.println("select the weapon you want to equip:");
+      int number2 = listString(weapons);
+      if (number2 == 0) {
+        this.action(game);
+      } else if (number2 >= weapons.length+1){
+        System.out.println("out of range, select again");
+        this.actionEquip(game, weapons);
       } else {
         game.equip(this, number2-1);
       }
     } catch (NumberFormatException ex){
       System.out.println("that is not a number, select again");
-      this.action(game);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+      this.actionEquip(game, weapons);
     }
   }
 
   @Override
   public void actionMagic(FinalReality game) {
+    System.out.println("this character is not a Mage, select again");
+    this.action(game);
+  }
+
+  @Override
+  public void changeSpell(FinalReality game) {
     System.out.println("this character is not a Mage, select again");
     this.action(game);
   }

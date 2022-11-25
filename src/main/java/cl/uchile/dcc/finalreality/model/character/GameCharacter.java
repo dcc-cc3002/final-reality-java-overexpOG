@@ -11,8 +11,7 @@ package cl.uchile.dcc.finalreality.model.character;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.ActionTurn;
-
-import java.io.IOException;
+import cl.uchile.dcc.finalreality.model.state.State;
 
 /**
  * This represents a character from the game.
@@ -51,10 +50,57 @@ public interface GameCharacter extends ActionTurn {
   /**
    * the character make an action.
    */
-  void action(FinalReality game) throws IOException;
+  void action(FinalReality game);
 
   /**
    * Returns this character's damage.
    */
   int getDamage();
+
+  void actionAtack(FinalReality game, GameCharacter[] enemyTeam);
+
+  /**
+   * Set state with astate (and also set the asbtractcharacter of state).
+   */
+  void setState(State aState);
+
+  /**
+   * Change state to normal.
+   */
+  void normal();
+
+  /**
+   * Paralyzed effect is added to the state.
+   */
+  void paralysis();
+
+  /**
+   * Burned effect is added to the state.
+   */
+  void burned();
+
+  /**
+   * Poisoned effect is added to the state.
+   */
+  void poisoned();
+
+  /**
+   * Returns true if the state is normal, false otherwise.
+   */
+  boolean isNormal();
+
+  /**
+   * Returns true if the state is paralysis, false otherwise.
+   */
+  boolean isParalysis();
+
+  /**
+   * Returns true if the state is burned, false otherwise.
+   */
+  boolean isBurned();
+
+  /**
+   * Returns true if the state is poisoned, false otherwise.
+   */
+  boolean isPoisoned();
 }

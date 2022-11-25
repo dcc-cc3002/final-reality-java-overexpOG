@@ -9,6 +9,7 @@
 package cl.uchile.dcc.finalreality.model.character.player.mage;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
@@ -38,4 +39,6 @@ public interface Mage extends PlayerCharacter {
   Spell spelling();
 
   void setSpellFactory(SpellFactory aSpellfactory);
+
+  void changeSpell2(FinalReality game, SpellFactory[] listmagic);
 }
