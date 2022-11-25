@@ -19,6 +19,7 @@ import java.util.Objects;
 public class Staff extends AbstractWeapon {
 
   private final String type;
+  private final int magicDamage;
 
   /**
    * Create a new staff.
@@ -31,15 +32,21 @@ public class Staff extends AbstractWeapon {
    *     the weapon's weight
    */
 
-  public Staff(final String name, final int damage, final int weight)
+  public Staff(final String name, final int damage, final int weight, final int magicdamage)
           throws InvalidStatValueException {
     super(name, damage, weight);
     type = "STAFF";
+    magicDamage = magicdamage;
   }
 
   @Override
   public String getType() {
     return type;
+  }
+
+  @Override
+  public int getMagicDamage() {
+    return magicDamage;
   }
 
   @Override
@@ -54,18 +61,19 @@ public class Staff extends AbstractWeapon {
             && damage == staff.damage
             && weight == staff.weight
             && name.equals(staff.name)
-            && type.equals(staff.type);
+            && type.equals(staff.type)
+            && magicDamage == staff.magicDamage;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Staff.class, name, damage, weight, type);
+    return Objects.hash(Staff.class, name, damage, weight, type, magicDamage);
   }
 
   @Override
   public String toString() {
-    return "Weapon{name='%s', damage=%d, weight=%d, type=%s}"
-            .formatted(name, damage, weight, type);
+    return "Weapon{name='%s', damage=%d, magicDamage=%d, weight=%d, type=%s}"
+            .formatted(name, damage, magicDamage, weight, type);
   }
 
   @Override

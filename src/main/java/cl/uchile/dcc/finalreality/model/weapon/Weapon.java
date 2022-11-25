@@ -32,6 +32,11 @@ public interface Weapon {
   int getWeight();
 
   /**
+   * Returns the magic damage caused for the weapon.
+   */
+  int getMagicDamage();
+
+  /**
    * Returns the type of the weapon.
    */
   String getType();

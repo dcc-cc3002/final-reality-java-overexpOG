@@ -57,4 +57,8 @@ public abstract class AbstractWeapon implements Weapon {
     return weight;
   }
 
+  @Override
+  public int getMagicDamage() {
+    return 0;
+  }
 }

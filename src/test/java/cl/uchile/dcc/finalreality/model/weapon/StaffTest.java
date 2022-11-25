@@ -21,9 +21,9 @@ class StaffTest {
 
   @BeforeEach
   void setUp() {
-    wizardStaff = new Staff("wizard staff", 6, 6);
-    wizardStaffX = new Staff("wizard staff", 6, 6);
-    healerStaff = new Staff("healer staff", 3, 3);
+    wizardStaff = new Staff("wizard staff", 6, 6, 6);
+    wizardStaffX = new Staff("wizard staff", 6, 6, 6);
+    healerStaff = new Staff("healer staff", 3, 3, 3);
     knife = new Knife("wooden knife", 1, 1);
   }
 
