@@ -77,12 +77,27 @@ public interface GameCharacter extends ActionTurn {
   /**
    * Burned effect is added to the state.
    */
-  void burned();
+  void burned(int burnedDamage, int burnedTime);
 
   /**
    * Poisoned effect is added to the state.
    */
-  void poisoned();
+  void poisoned(int poisonedDamage, int poisonedTime);
+
+  /**
+   * Paralyzed effect is removed to the state.
+   */
+  void unparalysis();
+
+  /**
+   * Burned effect is removed to the state.
+   */
+  void unburned();
+
+  /**
+   * Poisoned effect is removed to the state.
+   */
+  void unpoisoned();
 
   /**
    * Returns true if the state is normal, false otherwise.

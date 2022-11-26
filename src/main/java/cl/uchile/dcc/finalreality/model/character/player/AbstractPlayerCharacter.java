@@ -109,7 +109,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   protected int listString(Object[] list) {
-    System.out.println("0 to return.");
+    System.out.println("0 to return");
     for(int i=1; i<list.length+1; i++) {
       System.out.println(i + " to " + list[i]);
     }

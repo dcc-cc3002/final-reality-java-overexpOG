@@ -9,7 +9,6 @@ import cl.uchile.dcc.finalreality.model.spells.factory.white.SpellWhiteFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
-import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -19,17 +18,17 @@ public class FinalReality {
   private int win = 0;
   private PlayerCharacter[] CharacterOfPlayer;
   private NonPlayableCharacter[] CharacterOfComputer;
-  private BlockingQueue<GameCharacter> queue;
+  private final BlockingQueue<GameCharacter> queue;
   private Weapon[] WeaponOfPlayer;
 
-  private SpellBlackFactory[] BlackMagic;
-  private SpellWhiteFactory[] WhiteMagic;
+  private final SpellBlackFactory[] BlackMagic;
+  private final SpellWhiteFactory[] WhiteMagic;
 
   /**
    * The game state is represented by a queue containing both player and computer characters, arranged
    * in the order in which each character performs actions.
    */
-  public FinalReality(PlayerCharacter[] characterofplayer, NonPlayableCharacter[] characterofcomputer,
+  public FinalReality(@NotNull PlayerCharacter[] characterofplayer,@NotNull NonPlayableCharacter[] characterofcomputer,
                       @NotNull final BlockingQueue<GameCharacter> turnsQueue, Weapon[] weaponofplayer,
                       SpellBlackFactory[] blackmagic, SpellWhiteFactory[] whitemagic) {
     this.CharacterOfPlayer = characterofplayer;
@@ -103,8 +102,9 @@ public class FinalReality {
   /**
    * Ask the current character to make an action.
    */
-  public void update() throws IOException {
+  public void update() {
     GameCharacter ActionCharacter = queue.poll();
+    assert ActionCharacter != null;
     ActionCharacter.action(this);
     ActionCharacter.waitTurn();
   }
@@ -144,10 +144,11 @@ public class FinalReality {
 
   public void actionMagic(@NotNull PlayerCharacter actualCharacter){
     actualCharacter.actionMagic(this);
+    this.checkWinner();
   }
 
-  public void magic(Spell spelling, Mage actualCharacter, NonPlayableCharacter enemyCharacter) {
-    spelling.magic(this, actualCharacter, enemyCharacter);
+  public void magic(Spell spelling, Mage actualCharacter) {
+    spelling.magic(this, actualCharacter);
   }
 
   public void changeSpellBlackMagic(@NotNull Mage actualCharacter) {
@@ -155,7 +156,7 @@ public class FinalReality {
   }
 
   public void changeSpellWhiteMagic(@NotNull Mage actualCharacter) {
-    actualCharacter.changeSpell2(this, BlackMagic);
+    actualCharacter.changeSpell2(this, WhiteMagic);
   }
 
   /**
