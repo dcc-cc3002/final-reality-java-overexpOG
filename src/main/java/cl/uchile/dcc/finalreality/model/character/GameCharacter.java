@@ -118,4 +118,24 @@ public interface GameCharacter extends ActionTurn {
    * Returns true if the state is poisoned, false otherwise.
    */
   boolean isPoisoned();
+
+  /**
+   * Returns the damage for burned of the state.
+   */
+  int getBurnedDamage();
+
+  /**
+   * Returns the damage for poisoned of the state.
+   */
+  int getPoisonedDamage();
+
+  /**
+   * Returns the burned duration of the state.
+   */
+  int getBurnedTime();
+
+  /**
+   * Returns the poisoned duration of the state.
+   */
+  int getPoisonedTime();
 }

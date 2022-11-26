@@ -173,4 +173,24 @@ public abstract class AbstractCharacter implements GameCharacter {
   public boolean isPoisoned() {
     return state.isPoisoned();
   }
+
+  @Override
+  public int getBurnedDamage() {
+    return state.getBurnedDamage();
+  }
+
+  @Override
+  public int getPoisonedDamage() {
+    return state.getPoisonedDamage();
+  }
+
+  @Override
+  public int getBurnedTime() {
+    return state.getBurnedTime();
+  }
+
+  @Override
+  public int getPoisonedTime() {
+    return state.getPoisonedTime();
+  }
 }
