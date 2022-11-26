@@ -42,6 +42,6 @@ class StaffTest {
 
   @Test
   void testToString() {
-    assertEquals("Weapon{name='wizard staff', damage=6, weight=6, type=STAFF}", wizardStaff.toString());
+    assertEquals("Weapon{name='wizard staff', damage=6, magicDamage=6, weight=6, type=STAFF}", wizardStaff.toString());
   }
 }
