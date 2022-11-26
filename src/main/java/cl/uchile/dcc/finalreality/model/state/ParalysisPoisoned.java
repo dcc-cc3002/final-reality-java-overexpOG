@@ -47,4 +47,14 @@ public class ParalysisPoisoned extends AbstractState {
   public boolean isPoisoned() {
     return true;
   }
+
+  @Override
+  public int getPoisonedDamage() {
+    return poisonedDamage;
+  }
+
+  @Override
+  public int getPoisonedTime() {
+    return poisonedTime;
+  }
 }

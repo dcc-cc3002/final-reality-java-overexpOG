@@ -34,4 +34,14 @@ public class Burned extends AbstractState {
   public boolean isBurned() {
     return true;
   }
+
+  @Override
+  public int getBurnedDamage() {
+    return burnedDamage;
+  }
+
+  @Override
+  public int getBurnedTime() {
+    return burnedTime;
+  }
 }

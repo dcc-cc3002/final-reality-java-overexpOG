@@ -50,4 +50,24 @@ public abstract class AbstractState implements State {
   public boolean isPoisoned() {
     return false;
   }
+
+  @Override
+  public int getBurnedDamage() {
+    return 0;
+  }
+
+  @Override
+  public int getPoisonedDamage() {
+    return 0;
+  }
+
+  @Override
+  public int getBurnedTime() {
+    return 0;
+  }
+
+  @Override
+  public int getPoisonedTime() {
+    return 0;
+  }
 }

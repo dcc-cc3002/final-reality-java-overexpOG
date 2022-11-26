@@ -34,4 +34,14 @@ public class Poisoned extends AbstractState {
   public boolean isPoisoned() {
     return true;
   }
+
+  @Override
+  public int getPoisonedDamage() {
+    return poisonedDamage;
+  }
+
+  @Override
+  public int getPoisonedTime() {
+    return poisonedTime;
+  }
 }

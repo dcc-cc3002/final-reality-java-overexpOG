@@ -63,4 +63,24 @@ public interface State {
    * Returns true if the state is poisoned, false otherwise.
    */
   boolean isPoisoned ();
+
+  /**
+   * Returns the burned damage.
+   */
+  int getBurnedDamage();
+
+  /**
+   * Returns the poisoned damage.
+   */
+  int getPoisonedDamage();
+
+  /**
+   * Returns the burned time.
+   */
+  int getBurnedTime();
+
+  /**
+   * Returns the poisoned time.
+   */
+  int getPoisonedTime();
 }
