@@ -33,80 +33,176 @@ class StateTest {
     character1.paralysis();
     character1.paralysis();
     assert(character1.isParalysis());
-    character2.burned();
+    character2.burned(1, 1);
     character2.paralysis();
-    character2.burned();
+    character2.burned(2, 2);
     character2.paralysis();
     assert(character2.isParalysis() && character2.isBurned());
-    character3.poisoned();
+    character3.poisoned(1, 1);
     character3.paralysis();
-    character3.poisoned();
+    character3.poisoned(2, 2);
     character3.paralysis();
     assert(character3.isParalysis() && character3.isPoisoned());
-    character4.burned();
-    character4.poisoned();
+    character4.burned(1, 1);
+    character4.poisoned(1, 1);
     character4.paralysis();
-    character4.burned();
-    character4.poisoned();
+    character4.burned(2, 2);
+    character4.poisoned(2, 2);
     character4.paralysis();
     assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
+  }
+
+  @Test
+  void unparalysis() {
+    character1.paralysis();
+    assert(character1.isParalysis());
+    character1.unparalysis();
+    assert(character1.isNormal());
+    character1.unparalysis();
+    assert(character1.isNormal());
+    character2.burned(1, 1);
+    character2.paralysis();
+    assert(character2.isParalysis() && character2.isBurned());
+    character2.unparalysis();
+    assert(character2.isBurned());
+    character2.unparalysis();
+    assert(character2.isBurned());
+    character3.poisoned(1, 1);
+    character3.paralysis();
+    assert(character3.isParalysis() && character3.isPoisoned());
+    character3.unparalysis();
+    assert(character3.isPoisoned());
+    character3.unparalysis();
+    assert(character3.isPoisoned());
+    character4.burned(1, 1);
+    character4.poisoned(1, 1);
+    character4.paralysis();
+    assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
+    character4.unparalysis();
+    assert(character4.isBurned() && character4.isPoisoned());
+    character4.unparalysis();
+    assert(character4.isBurned() && character4.isPoisoned());
   }
 
   @Test
   void burned() {
-    character1.burned();
-    character1.burned();
+    character1.burned(1, 1);
+    character1.burned(2, 2);
     assert(character1.isBurned());
     character2.paralysis();
-    character2.burned();
+    character2.burned(1, 1);
     character2.paralysis();
-    character2.burned();
+    character2.burned(2, 2);
     assert(character2.isParalysis() && character2.isBurned());
-    character3.poisoned();
-    character3.burned();
-    character3.poisoned();
-    character3.burned();
+    character3.poisoned(1, 1);
+    character3.burned(1, 1);
+    character3.poisoned(2, 2);
+    character3.burned(2, 2);
     assert(character3.isBurned() && character3.isPoisoned());
-    character4.poisoned();
+    character4.poisoned(1, 1);
     character4.paralysis();
-    character4.burned();
-    character4.poisoned();
+    character4.burned(1, 1);
+    character4.poisoned(2, 2);
     character4.paralysis();
-    character4.burned();
+    character4.burned(2, 2);
     assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
+  }
+
+  @Test
+  void unburned() {
+    character1.burned(1, 1);
+    assert(character1.isBurned());
+    character1.unburned();
+    assert(character1.isNormal());
+    character1.unburned();
+    assert(character1.isNormal());
+    character2.paralysis();
+    character2.burned(1, 1);
+    assert(character2.isParalysis() && character2.isBurned());
+    character2.unburned();
+    assert(character2.isParalysis());
+    character2.unburned();
+    assert(character2.isParalysis());
+    character3.poisoned(1, 1);
+    character3.burned(1, 1);
+    assert(character3.isBurned() && character3.isPoisoned());
+    character3.unburned();
+    assert(character3.isPoisoned());
+    character3.unburned();
+    assert(character3.isPoisoned());
+    character4.poisoned(1, 1);
+    character4.paralysis();
+    character4.burned(1, 1);
+    assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
+    character4.unburned();
+    assert(character4.isParalysis() && character4.isPoisoned());
+    character4.unburned();
+    assert(character4.isParalysis() && character4.isPoisoned());
   }
 
   @Test
   void poisoned() {
-    character1.poisoned();
-    character1.poisoned();
+    character1.poisoned(1, 1);
+    character1.poisoned(2, 2);
     assert(character1.isPoisoned());
-    character2.burned();
-    character2.poisoned();
-    character2.burned();
-    character2.poisoned();
+    character2.burned(1, 1);
+    character2.poisoned(1, 1);
+    character2.burned(2, 2);
+    character2.poisoned(2, 2);
     assert(character2.isBurned() && character2.isPoisoned());
     character3.paralysis();
-    character3.poisoned();
+    character3.poisoned(1, 1);
     character3.paralysis();
-    character3.poisoned();
+    character3.poisoned(2, 2);
     assert(character3.isParalysis() && character3.isPoisoned());
-    character4.burned();
+    character4.burned(1, 1);
     character4.paralysis();
-    character4.poisoned();
-    character4.burned();
+    character4.poisoned(1, 1);
+    character4.burned(2, 2);
     character4.paralysis();
-    character4.poisoned();
+    character4.poisoned(2, 2);
     assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
   }
 
   @Test
+  void unpoisoned() {
+    character1.poisoned(1, 1);
+    assert(character1.isPoisoned());
+    character1.unpoisoned();
+    assert(character1.isNormal());
+    character1.unpoisoned();
+    assert(character1.isNormal());
+    character2.paralysis();
+    character2.poisoned(1, 1);
+    assert(character2.isParalysis() && character2.isPoisoned());
+    character2.unpoisoned();
+    assert(character2.isParalysis());
+    character2.unpoisoned();
+    assert(character2.isParalysis());
+    character3.burned(1, 1);
+    character3.poisoned(1, 1);
+    assert(character3.isBurned() && character3.isPoisoned());
+    character3.unpoisoned();
+    assert(character3.isBurned());
+    character3.unpoisoned();
+    assert(character3.isBurned());
+    character4.paralysis();
+    character4.burned(1, 1);
+    character4.poisoned(1, 1);
+    assert(character4.isParalysis() && character4.isBurned() && character4.isPoisoned());
+    character4.unpoisoned();
+    assert(character4.isParalysis() && character4.isBurned());
+    character4.unpoisoned();
+    assert(character4.isParalysis() && character4.isBurned());
+  }
+
+  @Test
   void normal() {
-    character1.burned();
+    character1.burned(1, 1);
     assert(character1.isBurned());
     character1.normal();
     assert(character1.isNormal());
-    character1.poisoned();
+    character1.poisoned(1, 1);
     assert(character1.isPoisoned());
     character1.normal();
     assert(character1.isNormal());
@@ -114,24 +210,24 @@ class StateTest {
     assert(character1.isParalysis());
     character1.normal();
     assert(character1.isNormal());
-    character1.burned();
-    character1.poisoned();
+    character1.burned(1, 1);
+    character1.poisoned(1, 1);
     assert(character1.isBurned() && character1.isPoisoned());
     character1.normal();
     assert(character1.isNormal());
     character1.paralysis();
-    character1.burned();
+    character1.burned(1, 1);
     assert(character1.isParalysis() && character1.isBurned());
     character1.normal();
     assert(character1.isNormal());
     character1.paralysis();
-    character1.poisoned();
+    character1.poisoned(1, 1);
     assert(character1.isParalysis() && character1.isPoisoned());
     character1.normal();
     assert(character1.isNormal());
     character1.paralysis();
-    character1.burned();
-    character1.poisoned();
+    character1.burned(1, 1);
+    character1.poisoned(1, 1);
     assert(character1.isParalysis() && character1.isBurned() && character1.isPoisoned());
     character1.normal();
     assert(character1.isNormal());
