@@ -107,8 +107,35 @@ public class FinalReality {
   public void update() {
     GameCharacter actionCharacter = queue.poll();
     assert actionCharacter != null;
-    actionCharacter.action(this);
+    this.applystate(actionCharacter);
+    if (actionCharacter.isParalysis()){
+      actionCharacter.unparalysis();
+    } else {
+      actionCharacter.action(this);
+    }
     actionCharacter.waitTurn();
+  }
+
+  /**
+   * apply state for the actualCharacter.
+   */
+  public void applystate(GameCharacter actionCharacter) {
+    if (actionCharacter.isBurned()) {
+      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getBurnedDamage(), 0));
+      if (actionCharacter.getBurnedTime() - 1 > 0) {
+        actionCharacter.burned(actionCharacter.getBurnedDamage(), actionCharacter.getBurnedTime() - 1);
+      }else {
+        actionCharacter.unburned();
+      }
+    }
+    if (actionCharacter.isPoisoned()) {
+      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getPoisonedDamage(), 0));
+      if (actionCharacter.getPoisonedTime() - 1 > 0) {
+        actionCharacter.burned(actionCharacter.getPoisonedDamage(), actionCharacter.getPoisonedTime() - 1);
+      }else {
+        actionCharacter.unpoisoned();
+      }
+    }
   }
 
   /**
