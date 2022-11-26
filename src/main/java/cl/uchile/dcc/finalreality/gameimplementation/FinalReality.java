@@ -123,7 +123,8 @@ public class FinalReality {
    * the actualCharacter make the action of atacking the enemyCharacter.
    */
   public void atack(@NotNull GameCharacter actualCharacter, @NotNull GameCharacter enemyCharacter) {
-    int hp = Math.max(enemyCharacter.getCurrentHp() - actualCharacter.getDamage(), 0);
+    int hp = Math.max(Math.min(enemyCharacter.getCurrentHp() - actualCharacter.getDamage()
+            + enemyCharacter.getDefense(), enemyCharacter.getCurrentHp()), 0);
     enemyCharacter.setCurrentHp(hp);
     this.checkWinner();
   }
