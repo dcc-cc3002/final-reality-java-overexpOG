@@ -2,70 +2,65 @@ package cl.uchile.dcc.finalreality.model.state;
 
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 
-public abstract class State {
-  private AbstractCharacter abstractcharacter;
+public interface State {
 
   /**
    * Set this.abstractcharacter with abstractcharacter.
    */
-  public void setAbstractCharacter(AbstractCharacter abstractcharacter) {
-    this.abstractcharacter = abstractcharacter;
-  }
-
-  /**
-   * Method that changes the state.
-   */
-  protected void changeState(State state) {
-    abstractcharacter.setState(state);
-  }
+  void setAbstractCharacter(AbstractCharacter abstractcharacter);
 
   /**
    * The state returns to normal.
    */
-  public void normal() {
-    this.changeState(new Normal());
-  }
+  void normal();
 
   /**
    * Paralyzed effect is added to the state.
    */
-  public abstract void paralysis();
+  void paralysis();
 
   /**
    * Burned effect is added to the state.
    */
-  public abstract void burned();
+  void burned(int burnedDamage, int burnedTime);
 
   /**
    * Poisoned effect is added to the state.
    */
-  public abstract void poisoned();
+  void poisoned(int poisonedDamage, int poisonedTime);
+
+  /**
+   * Paralyzed effect is removed to the state.
+   */
+  void unparalysis();
+
+  /**
+   * Burned effect is removed to the state.
+   */
+  void unburned();
+
+  /**
+   * Poisoned effect is removed to the state.
+   */
+  void unpoisoned();
 
   /**
    * Returns true if the state is normal, false otherwise.
    */
-  public boolean isNormal () {
-    return false;
-  }
+  boolean isNormal ();
 
   /**
    * Returns true if the state is paralysis, false otherwise.
    */
-  public boolean isParalysis () {
-    return false;
-  }
+  boolean isParalysis ();
 
   /**
    * Returns true if the state is burned, false otherwise.
    */
-  public boolean isBurned () {
-    return false;
-  }
+  boolean isBurned ();
 
   /**
    * Returns true if the state is poisoned, false otherwise.
    */
-  public boolean isPoisoned () {
-    return false;
-  }
+  boolean isPoisoned ();
 }

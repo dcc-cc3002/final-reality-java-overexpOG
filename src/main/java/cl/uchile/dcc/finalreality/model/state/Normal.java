@@ -1,6 +1,6 @@
 package cl.uchile.dcc.finalreality.model.state;
 
-public class Normal extends State {
+public class Normal extends AbstractState {
 
   @Override
   public void paralysis() {
@@ -8,13 +8,13 @@ public class Normal extends State {
   }
 
   @Override
-  public void burned() {
-    this.changeState(new Burned());
+  public void burned(int burnedDamage, int burnedTime) {
+    this.changeState(new Burned(burnedDamage, burnedTime));
   }
 
   @Override
-  public void poisoned() {
-    this.changeState(new Poisoned());
+  public void poisoned(int poisonedDamage, int poisonedTime) {
+    this.changeState(new Poisoned(poisonedDamage, poisonedTime));
   }
 
   @Override

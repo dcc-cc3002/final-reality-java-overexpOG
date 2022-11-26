@@ -14,7 +14,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import cl.uchile.dcc.finalreality.model.state.Normal;
 import cl.uchile.dcc.finalreality.model.state.State;
 import org.jetbrains.annotations.NotNull;
@@ -131,13 +130,28 @@ public abstract class AbstractCharacter implements GameCharacter {
   }
 
   @Override
-  public void burned() {
-    state.burned();
+  public void burned(int burnedDamage, int burnedTime) {
+    state.burned(burnedDamage, burnedTime);
   }
 
   @Override
-  public void poisoned() {
-    state.poisoned();
+  public void poisoned(int poisonedDamage, int poisonedTime) {
+    state.poisoned(poisonedDamage, poisonedTime);
+  }
+
+  @Override
+  public void unparalysis() {
+    state.unparalysis();
+  }
+
+  @Override
+  public void unburned() {
+    state.unburned();
+  }
+
+  @Override
+  public void unpoisoned() {
+    state.unpoisoned();
   }
 
   @Override

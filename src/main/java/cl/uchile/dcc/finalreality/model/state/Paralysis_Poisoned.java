@@ -1,17 +1,41 @@
 package cl.uchile.dcc.finalreality.model.state;
 
-public class Paralysis_Poisoned extends State {
+public class Paralysis_Poisoned extends AbstractState {
 
-  @Override
-  public void paralysis() {}
+  private final int PoisonedDamage;
+  private final int PoisonedTime;
 
-  @Override
-  public void burned() {
-    this.changeState(new Paralysis_Burned_Poisoned());
+  public Paralysis_Poisoned (int poisonedDamage, int poisonedTime) {
+    this.PoisonedDamage = poisonedDamage;
+    this.PoisonedTime = poisonedTime;
   }
 
   @Override
-  public void poisoned() {}
+  public void paralysis() {
+    this.changeState(new Paralysis_Poisoned(PoisonedDamage, PoisonedTime));
+  }
+
+  @Override
+  public void unparalysis() {
+    this.changeState(new Poisoned(PoisonedDamage, PoisonedTime));
+  }
+
+  @Override
+  public void burned(int burnedDamage, int burnedTime) {
+
+    this.changeState(new Paralysis_Burned_Poisoned(burnedDamage, burnedTime, PoisonedDamage, PoisonedTime))
+    ;
+  }
+
+  @Override
+  public void poisoned(int poisonedDamage, int poisonedTime) {
+    this.changeState(new Paralysis_Poisoned(poisonedDamage, poisonedTime));
+  }
+
+  @Override
+  public void unpoisoned() {
+    this.changeState(new Paralysis());
+  }
 
   @Override
   public boolean isParalysis() {
