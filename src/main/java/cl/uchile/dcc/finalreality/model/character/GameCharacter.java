@@ -62,7 +62,7 @@ public interface GameCharacter extends ActionTurn {
   /**
    * Set state with astate (and also set the asbtractcharacter of state).
    */
-  void setState(State aState);
+  void setState(State astate);
 
   /**
    * Change state to normal.

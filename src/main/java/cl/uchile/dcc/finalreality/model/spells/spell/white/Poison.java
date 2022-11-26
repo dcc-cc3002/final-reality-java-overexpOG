@@ -5,6 +5,11 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
 import cl.uchile.dcc.finalreality.model.spells.spell.AbstractSpell;
 
+/**
+ * The spell poisons an enemy.
+ *
+ * @author Ignacio Alveal
+ */
 public class Poison extends AbstractSpell implements SpellWhite {
   public Poison(int mana) {
     super(mana);
@@ -13,6 +18,6 @@ public class Poison extends AbstractSpell implements SpellWhite {
   @Override
   protected void magicPrima(FinalReality game, Mage actualCharacter, GameCharacter enemyCharacter) {
     System.out.println("you have poisoned " + enemyCharacter);
-    enemyCharacter.poisoned(actualCharacter.getEquippedWeapon().getMagicDamage()/3, 6);
+    enemyCharacter.poisoned(actualCharacter.getEquippedWeapon().getMagicDamage() / 3, 6);
   }
 }

@@ -4,19 +4,23 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
-
 import java.util.Scanner;
 
+/**
+ * A class that adds the cost in mana of the spell.
+ *
+ * @author Ignacio Alveal
+ */
 public abstract class AbstractSpell implements Spell {
-  protected int Mana;
+  protected int mana;
 
   protected AbstractSpell(int mana) {
-    this.Mana = mana;
+    this.mana = mana;
   }
 
   protected int listString(Object[] list) {
     System.out.println("0 to return.");
-    for(int i=1; i<list.length+1; i++) {
+    for (int i = 1; i < list.length + 1; i++) {
       System.out.println(i + " to " + list[i]);
     }
     Scanner scanner2 = new Scanner(System.in);
@@ -31,12 +35,12 @@ public abstract class AbstractSpell implements Spell {
       int number2 = listString(enemyTeam);
       if (number2 == 0) {
         actualCharacter.action(game);
-      } else if (number2 >= enemyTeam.length+1){
+      } else if (number2 >= enemyTeam.length + 1) {
         System.out.println("out of range, select again");
         this.magic(game, actualCharacter);
       } else {
-        NonPlayableCharacter enemyCharacter = enemyTeam[number2-1];
-        int mageMana = actualCharacter.getCurrentMp() - this.Mana;
+        NonPlayableCharacter enemyCharacter = enemyTeam[number2 - 1];
+        int mageMana = actualCharacter.getCurrentMp() - this.mana;
         if (mageMana < 0) {
           System.out.println("you don't have enough mana, select an action again");
           actualCharacter.action(game);
@@ -51,5 +55,9 @@ public abstract class AbstractSpell implements Spell {
     }
   }
 
-  protected abstract void magicPrima(FinalReality game, Mage actualCharacter, GameCharacter objectiveCharacter);
+  /**
+   * Causes each mage spell to have a different effect.
+   */
+  protected abstract void magicPrima(FinalReality game, Mage actualCharacter,
+                                     GameCharacter objectiveCharacter);
 }

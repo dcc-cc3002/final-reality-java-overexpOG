@@ -11,10 +11,10 @@ package cl.uchile.dcc.finalreality.model.character.player.mage;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
-import cl.uchile.dcc.finalreality.model.character.player.AbstractPlayerCharacter;
-import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
-import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.player.AbstractPlayerCharacter;
+import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
+import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
@@ -74,8 +74,8 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
     return spellFactory.create();
   }
 
-  public void setSpellFactory(SpellFactory aSpellfactory) {
-    spellFactory = aSpellfactory;
+  public void setSpellFactory(SpellFactory aspellfactory) {
+    spellFactory = aspellfactory;
   }
 
   @Override
@@ -85,11 +85,11 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
       int number2 = listString(listmagic);
       if (number2 == 0) {
         this.action(game);
-      } else if (number2 >= listmagic.length+1){
+      } else if (number2 >= listmagic.length + 1) {
         System.out.println("out of range, select again");
         this.changeSpell2(game, listmagic);
       } else {
-        this.setSpellFactory(listmagic[number2-1]);
+        this.setSpellFactory(listmagic[number2 - 1]);
       }
     } catch (NumberFormatException ex) {
       System.out.println("that is not a number, select again");

@@ -5,6 +5,11 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
 import cl.uchile.dcc.finalreality.model.spells.spell.AbstractSpell;
 
+/**
+ * The spell paralyze an enemy.
+ *
+ * @author Ignacio Alveal
+ */
 public class Palsy extends AbstractSpell implements SpellWhite {
   public Palsy(int mana) {
     super(mana);

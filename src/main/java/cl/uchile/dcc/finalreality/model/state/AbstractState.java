@@ -2,7 +2,7 @@ package cl.uchile.dcc.finalreality.model.state;
 
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 
-public abstract class AbstractState implements State{
+public abstract class AbstractState implements State {
   private AbstractCharacter abstractcharacter;
 
   @Override
@@ -32,22 +32,22 @@ public abstract class AbstractState implements State{
   public void unpoisoned() {}
 
   @Override
-  public boolean isNormal () {
+  public boolean isNormal() {
     return false;
   }
 
   @Override
-  public boolean isParalysis () {
+  public boolean isParalysis() {
     return false;
   }
 
   @Override
-  public boolean isBurned () {
+  public boolean isBurned() {
     return false;
   }
 
   @Override
-  public boolean isPoisoned () {
+  public boolean isPoisoned() {
     return false;
   }
 }

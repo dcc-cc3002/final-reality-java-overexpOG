@@ -10,12 +10,12 @@ package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.model.state.Normal;
+import cl.uchile.dcc.finalreality.model.state.State;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import cl.uchile.dcc.finalreality.model.state.Normal;
-import cl.uchile.dcc.finalreality.model.state.State;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -114,8 +114,8 @@ public abstract class AbstractCharacter implements GameCharacter {
   protected abstract int waitTurn2();
 
   @Override
-  public void setState(State aState) {
-    this.state = aState;
+  public void setState(State astate) {
+    this.state = astate;
     state.setAbstractCharacter(this);
   }
 

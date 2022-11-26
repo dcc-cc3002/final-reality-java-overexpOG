@@ -13,9 +13,8 @@ import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import java.util.concurrent.BlockingQueue;
-
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -71,14 +70,14 @@ public abstract class AbstractNonPlayableCharacter
   }
 
   @Override
-  public void action(FinalReality game){
+  public void action(FinalReality game) {
     PlayerCharacter[] enemyTeam = game.getCharacterOfPlayer();
     game.actionAtack(this, enemyTeam);
   }
 
   @Override
   public void actionAtack(FinalReality game, GameCharacter[] enemyTeam) {
-    int atackedCharacter = (int)(Math.random()*enemyTeam.length);
+    int atackedCharacter = (int) (Math.random() * enemyTeam.length);
     while (enemyTeam[atackedCharacter].getCurrentHp() == 0) {
       atackedCharacter++;
       if (atackedCharacter >= enemyTeam.length) {

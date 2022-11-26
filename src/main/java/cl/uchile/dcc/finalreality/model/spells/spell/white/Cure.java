@@ -6,6 +6,11 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
 import cl.uchile.dcc.finalreality.model.spells.spell.AbstractSpell;
 
+/**
+ * The spell cure an ally.
+ *
+ * @author Ignacio Alveal
+ */
 public class Cure extends AbstractSpell implements SpellWhite {
   public Cure(int mana) {
     super(mana);
@@ -19,12 +24,12 @@ public class Cure extends AbstractSpell implements SpellWhite {
       int number2 = listString(allyTeam);
       if (number2 == 0) {
         actualCharacter.action(game);
-      } else if (number2 >= allyTeam.length+1){
+      } else if (number2 >= allyTeam.length + 1) {
         System.out.println("out of range, select again");
         this.magic(game, actualCharacter);
       } else {
-        PlayerCharacter allyCharacter = allyTeam[number2-1];
-        int mageMana = actualCharacter.getCurrentMp() - this.Mana;
+        PlayerCharacter allyCharacter = allyTeam[number2 - 1];
+        int mageMana = actualCharacter.getCurrentMp() - this.mana;
         if (mageMana < 0) {
           System.out.println("you don't have enough mana, select an action again");
           actualCharacter.action(game);
@@ -42,7 +47,8 @@ public class Cure extends AbstractSpell implements SpellWhite {
   @Override
   protected void magicPrima(FinalReality game, Mage actualCharacter, GameCharacter allyCharacter) {
     System.out.println("you have healed " + allyCharacter);
-    allyCharacter.setCurrentHp(Math.min(allyCharacter.getCurrentHp() + (3*allyCharacter.getMaxHp())/10,
+    allyCharacter.setCurrentHp(Math.min(allyCharacter.getCurrentHp()
+                    + (3 * allyCharacter.getMaxHp()) / 10,
             allyCharacter.getMaxHp()));
   }
 }

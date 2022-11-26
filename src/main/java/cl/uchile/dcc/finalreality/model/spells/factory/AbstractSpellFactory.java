@@ -1,11 +1,16 @@
 package cl.uchile.dcc.finalreality.model.spells.factory;
 
-public abstract class AbstractSpellFactory implements SpellFactory{
+/**
+ * A class that adds the cost in mana of the spell factories.
+ *
+ * @author Ignacio Alveal
+ */
+public abstract class AbstractSpellFactory implements SpellFactory {
 
-  protected int Mana;
+  protected int mana;
 
   @Override
   public void setMana(int mana) {
-    this.Mana = mana;
+    this.mana = mana;
   }
 }

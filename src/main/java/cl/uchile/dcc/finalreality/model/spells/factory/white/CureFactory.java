@@ -4,9 +4,14 @@ import cl.uchile.dcc.finalreality.model.spells.factory.AbstractSpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import cl.uchile.dcc.finalreality.model.spells.spell.white.Cure;
 
-public class CureFactory extends AbstractSpellFactory implements SpellWhiteFactory{
+/**
+ * A factory that generates cure spells.
+ *
+ * @author Ignacio Alveal
+ */
+public class CureFactory extends AbstractSpellFactory implements SpellWhiteFactory {
   @Override
   public Spell create() {
-    return new Cure(Mana);
+    return new Cure(mana);
   }
 }

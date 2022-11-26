@@ -38,7 +38,7 @@ public interface Mage extends PlayerCharacter {
 
   Spell spelling();
 
-  void setSpellFactory(SpellFactory aSpellfactory);
+  void setSpellFactory(SpellFactory aspellfactory);
 
   void changeSpell2(FinalReality game, SpellFactory[] listmagic);
 }

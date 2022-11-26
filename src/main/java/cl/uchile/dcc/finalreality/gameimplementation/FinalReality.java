@@ -8,39 +8,41 @@ import cl.uchile.dcc.finalreality.model.spells.factory.black.SpellBlackFactory;
 import cl.uchile.dcc.finalreality.model.spells.factory.white.SpellWhiteFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.BlockingQueue;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Class to enforce rules of finalreality.
  */
 public class FinalReality {
   private int win = 0;
-  private PlayerCharacter[] CharacterOfPlayer;
-  private NonPlayableCharacter[] CharacterOfComputer;
+  private PlayerCharacter[] characterOfPlayer;
+  private NonPlayableCharacter[] characterOfComputer;
   private final BlockingQueue<GameCharacter> queue;
-  private Weapon[] WeaponOfPlayer;
+  private Weapon[] weaponOfPlayer;
 
-  private final SpellBlackFactory[] BlackMagic;
-  private final SpellWhiteFactory[] WhiteMagic;
+  private final SpellBlackFactory[] blackMagic;
+  private final SpellWhiteFactory[] whiteMagic;
 
   /**
-   * The game state is represented by a queue containing both player and computer characters, arranged
-   * in the order in which each character performs actions.
+   * The game state is represented by a queue containing both player and computer characters,
+   * arranged in the order in which each character performs actions.
    */
-  public FinalReality(@NotNull PlayerCharacter[] characterofplayer,@NotNull NonPlayableCharacter[] characterofcomputer,
-                      @NotNull final BlockingQueue<GameCharacter> turnsQueue, Weapon[] weaponofplayer,
+  public FinalReality(@NotNull PlayerCharacter[] characterofplayer,
+                      @NotNull NonPlayableCharacter[] characterofcomputer,
+                      @NotNull final BlockingQueue<GameCharacter> turnsQueue,
+                      Weapon[] weaponofplayer,
                       SpellBlackFactory[] blackmagic, SpellWhiteFactory[] whitemagic) {
-    this.CharacterOfPlayer = characterofplayer;
-    this.CharacterOfComputer = characterofcomputer;
+    this.characterOfPlayer = characterofplayer;
+    this.characterOfComputer = characterofcomputer;
     this.queue = turnsQueue;
-    this.WeaponOfPlayer = weaponofplayer;
-    this.BlackMagic = blackmagic;
-    this.WhiteMagic = whitemagic;
-    for (PlayerCharacter playerCharacter : CharacterOfPlayer) {
+    this.weaponOfPlayer = weaponofplayer;
+    this.blackMagic = blackmagic;
+    this.whiteMagic = whitemagic;
+    for (PlayerCharacter playerCharacter : characterOfPlayer) {
       playerCharacter.waitTurn();
     }
-    for (NonPlayableCharacter nonPlayableCharacter : CharacterOfComputer) {
+    for (NonPlayableCharacter nonPlayableCharacter : characterOfComputer) {
       nonPlayableCharacter.waitTurn();
     }
   }
@@ -79,13 +81,13 @@ public class FinalReality {
   private void checkWinner() {
     boolean playerOver = true;
     boolean computerOver = true;
-    for (PlayerCharacter playerCharacter : CharacterOfPlayer) {
-      if (playerCharacter.getCurrentHp()!=0) {
+    for (PlayerCharacter playerCharacter : characterOfPlayer) {
+      if (playerCharacter.getCurrentHp() != 0) {
         playerOver = false;
       }
     }
-    for (NonPlayableCharacter nonPlayableCharacter : CharacterOfComputer) {
-      if (nonPlayableCharacter.getCurrentHp()!=0) {
+    for (NonPlayableCharacter nonPlayableCharacter : characterOfComputer) {
+      if (nonPlayableCharacter.getCurrentHp() != 0) {
         computerOver = false;
       }
     }
@@ -103,16 +105,17 @@ public class FinalReality {
    * Ask the current character to make an action.
    */
   public void update() {
-    GameCharacter ActionCharacter = queue.poll();
-    assert ActionCharacter != null;
-    ActionCharacter.action(this);
-    ActionCharacter.waitTurn();
+    GameCharacter actionCharacter = queue.poll();
+    assert actionCharacter != null;
+    actionCharacter.action(this);
+    actionCharacter.waitTurn();
   }
 
   /**
    * the actualCharacter make the action of atack the enemyTeam.
    */
-  public void actionAtack(@NotNull GameCharacter actualCharacter, @NotNull GameCharacter[] enemyTeam) {
+  public void actionAtack(@NotNull GameCharacter actualCharacter,
+                          @NotNull GameCharacter[] enemyTeam) {
     actualCharacter.actionAtack(this, enemyTeam);
   }
 
@@ -120,8 +123,8 @@ public class FinalReality {
    * the actualCharacter make the action of atacking the enemyCharacter.
    */
   public void atack(@NotNull GameCharacter actualCharacter, @NotNull GameCharacter enemyCharacter) {
-    int Hp = Math.max(enemyCharacter.getCurrentHp() - actualCharacter.getDamage(), 0);
-    enemyCharacter.setCurrentHp(Hp);
+    int hp = Math.max(enemyCharacter.getCurrentHp() - actualCharacter.getDamage(), 0);
+    enemyCharacter.setCurrentHp(hp);
     this.checkWinner();
   }
 
@@ -129,20 +132,20 @@ public class FinalReality {
    * the actualCharacter make the action to equip a weapon.
    */
   public void actionEquip(@NotNull PlayerCharacter actualCharacter) {
-    actualCharacter.actionEquip(this, this.WeaponOfPlayer);
+    actualCharacter.actionEquip(this, this.weaponOfPlayer);
   }
 
   /**
    * the actualCharacter equip weaponToEquip (the int represents a weapon).
    */
-  public void equip(@NotNull PlayerCharacter actualCharacter, int weaponToEquip){
+  public void equip(@NotNull PlayerCharacter actualCharacter, int weaponToEquip) {
     Weapon weaponPrima = actualCharacter.getEquippedWeapon();
-    actualCharacter.equip(this.WeaponOfPlayer[weaponToEquip]);
-    this.WeaponOfPlayer[weaponToEquip] = weaponPrima;
+    actualCharacter.equip(this.weaponOfPlayer[weaponToEquip]);
+    this.weaponOfPlayer[weaponToEquip] = weaponPrima;
     actualCharacter.action(this);
   }
 
-  public void actionMagic(@NotNull PlayerCharacter actualCharacter){
+  public void actionMagic(@NotNull PlayerCharacter actualCharacter) {
     actualCharacter.actionMagic(this);
     this.checkWinner();
   }
@@ -152,24 +155,24 @@ public class FinalReality {
   }
 
   public void changeSpellBlackMagic(@NotNull Mage actualCharacter) {
-    actualCharacter.changeSpell2(this, BlackMagic);
+    actualCharacter.changeSpell2(this, blackMagic);
   }
 
   public void changeSpellWhiteMagic(@NotNull Mage actualCharacter) {
-    actualCharacter.changeSpell2(this, WhiteMagic);
+    actualCharacter.changeSpell2(this, whiteMagic);
   }
 
   /**
    * Returns the CharacterOfPlayer for this game.
    */
   public PlayerCharacter[] getCharacterOfPlayer() {
-    return CharacterOfPlayer;
+    return characterOfPlayer;
   }
 
   /**
    * Returns the CharacterOfComputer for this game.
    */
   public NonPlayableCharacter[] getCharacterOfComputer() {
-    return CharacterOfComputer;
+    return characterOfComputer;
   }
 }

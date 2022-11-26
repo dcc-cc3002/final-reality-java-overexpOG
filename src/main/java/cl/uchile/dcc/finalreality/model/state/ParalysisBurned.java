@@ -1,11 +1,11 @@
 package cl.uchile.dcc.finalreality.model.state;
 
-public class Burned extends AbstractState {
+public class ParalysisBurned extends AbstractState {
 
   private final int burnedDamage;
   private final int burnedTime;
 
-  public Burned(int burnedDamage, int burnedTime) {
+  public ParalysisBurned(int burnedDamage, int burnedTime) {
     this.burnedDamage = burnedDamage;
     this.burnedTime = burnedTime;
   }
@@ -16,18 +16,29 @@ public class Burned extends AbstractState {
   }
 
   @Override
-  public void burned(int burnedDamage, int burnedTime) {
+  public void unparalysis() {
     this.changeState(new Burned(burnedDamage, burnedTime));
   }
 
   @Override
+  public void burned(int burnedDamage, int burnedTime) {
+    this.changeState(new ParalysisBurned(burnedDamage, burnedTime));
+  }
+
+  @Override
   public void unburned() {
-    this.changeState(new Normal());
+    this.changeState(new Paralysis());
   }
 
   @Override
   public void poisoned(int poisonedDamage, int poisonedTime) {
-    this.changeState(new BurnedPoisoned(burnedDamage, burnedTime, poisonedDamage, poisonedTime));
+    this.changeState(new ParalysisBurnedPoisoned(burnedDamage, burnedTime,
+            poisonedDamage, poisonedTime));
+  }
+
+  @Override
+  public boolean isParalysis() {
+    return true;
   }
 
   @Override

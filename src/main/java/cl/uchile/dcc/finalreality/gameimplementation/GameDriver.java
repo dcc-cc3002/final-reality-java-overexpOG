@@ -4,7 +4,11 @@ package cl.uchile.dcc.finalreality.gameimplementation;
  * Driver for finalreality.
  */
 public class GameDriver {
-  public static void playGame(FinalReality game){
+
+  /**
+   * Method to start the game.
+   */
+  public static void playGame(FinalReality game) {
     do {
       System.out.print(game);
       game.update();

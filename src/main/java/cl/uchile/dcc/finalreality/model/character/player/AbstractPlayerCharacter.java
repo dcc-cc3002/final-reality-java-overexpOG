@@ -86,10 +86,11 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     try {
       if (number == 1) {
         NonPlayableCharacter[] enemyTeam = game.getCharacterOfComputer();
-        try{
+        try {
           game.actionAtack(this, enemyTeam);
         } catch (AssertionError err) {
-          System.err.println("Invalid atack! (" + this.getEquippedWeapon().getDamage() + ", " + Arrays.toString(enemyTeam) + ")");
+          System.err.println("Invalid atack! (" + this.getEquippedWeapon().getDamage() + ", "
+                  + Arrays.toString(enemyTeam) + ")");
           this.action(game);
         }
       } else if (number == 2) {
@@ -110,7 +111,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   protected int listString(Object[] list) {
     System.out.println("0 to return");
-    for(int i=1; i<list.length+1; i++) {
+    for (int i = 1; i < list.length + 1; i++) {
       System.out.println(i + " to " + list[i]);
     }
     Scanner scanner2 = new Scanner(System.in);
@@ -124,13 +125,13 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       int number2 = listString(enemyTeam);
       if (number2 == 0) {
         this.action(game);
-      } else if (number2 >= enemyTeam.length+1){
+      } else if (number2 >= enemyTeam.length + 1) {
         System.out.println("out of range, select again");
         this.actionAtack(game, enemyTeam);
       } else {
-        game.atack(this, enemyTeam[number2-1]);
+        game.atack(this, enemyTeam[number2 - 1]);
       }
-    } catch (NumberFormatException ex){
+    } catch (NumberFormatException ex) {
       System.out.println("that is not a number, select again");
       this.actionAtack(game, enemyTeam);
     }
@@ -144,13 +145,13 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       int number2 = listString(weapons);
       if (number2 == 0) {
         this.action(game);
-      } else if (number2 >= weapons.length+1){
+      } else if (number2 >= weapons.length + 1) {
         System.out.println("out of range, select again");
         this.actionEquip(game, weapons);
       } else {
-        game.equip(this, number2-1);
+        game.equip(this, number2 - 1);
       }
-    } catch (NumberFormatException ex){
+    } catch (NumberFormatException ex) {
       System.out.println("that is not a number, select again");
       this.actionEquip(game, weapons);
     }
