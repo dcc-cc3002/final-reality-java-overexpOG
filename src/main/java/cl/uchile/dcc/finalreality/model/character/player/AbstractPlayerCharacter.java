@@ -15,7 +15,7 @@ import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
@@ -85,12 +85,11 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     int number = scanner.nextInt();
     try {
       if (number == 1) {
-        NonPlayableCharacter[] enemyTeam = game.getCharacterOfComputer();
+        ArrayList<NonPlayableCharacter> enemyTeam = game.getCharacterOfComputer();
         try {
           game.actionAtack(this, enemyTeam);
         } catch (AssertionError err) {
-          System.err.println("Invalid atack! (" + this.getEquippedWeapon().getDamage() + ", "
-                  + Arrays.toString(enemyTeam) + ")");
+          System.err.println("Invalid atack!");
           this.action(game);
         }
       } else if (number == 2) {
@@ -109,27 +108,27 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     }
   }
 
-  protected int listString(Object[] list) {
+  protected int listString (ArrayList<? extends Object> list) {
     System.out.println("0 to return");
-    for (int i = 1; i < list.length + 1; i++) {
-      System.out.println(i + " to " + list[i]);
+    for (int i = 1; i < list.size() + 1; i++) {
+      System.out.println(i + " to " + list.get(i));
     }
     Scanner scanner2 = new Scanner(System.in);
     return scanner2.nextInt();
   }
 
   @Override
-  public void actionAtack(FinalReality game, GameCharacter[] enemyTeam) {
+  public void actionAtack(FinalReality game, ArrayList<? extends GameCharacter> enemyTeam) {
     try {
       System.out.println("select the enemy you want to atack:");
       int number2 = listString(enemyTeam);
       if (number2 == 0) {
         this.action(game);
-      } else if (number2 >= enemyTeam.length + 1) {
+      } else if (number2 >= enemyTeam.size() + 1) {
         System.out.println("out of range, select again");
         this.actionAtack(game, enemyTeam);
       } else {
-        game.atack(this, enemyTeam[number2 - 1]);
+        game.atack(this, enemyTeam.get(number2 - 1));
       }
     } catch (NumberFormatException ex) {
       System.out.println("that is not a number, select again");
@@ -138,14 +137,14 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   @Override
-  public void actionEquip(FinalReality game, Weapon[] weapons) {
+  public void actionEquip(FinalReality game, ArrayList<Weapon> weapons) {
     try {
       System.out.println("actual weapon " + this.getEquippedWeapon());
       System.out.println("select the weapon you want to equip:");
       int number2 = listString(weapons);
       if (number2 == 0) {
         this.action(game);
-      } else if (number2 >= weapons.length + 1) {
+      } else if (number2 >= weapons.size() + 1) {
         System.out.println("out of range, select again");
         this.actionEquip(game, weapons);
       } else {

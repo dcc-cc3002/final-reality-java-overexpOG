@@ -13,6 +13,8 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.ActionTurn;
 import cl.uchile.dcc.finalreality.model.state.State;
 
+import java.util.ArrayList;
+
 /**
  * This represents a character from the game.
  * A character can be controlled by the player or by the CPU (an enemy).
@@ -57,7 +59,7 @@ public interface GameCharacter extends ActionTurn {
    */
   int getDamage();
 
-  void actionAtack(FinalReality game, GameCharacter[] enemyTeam);
+  void actionAtack(FinalReality game, ArrayList<? extends GameCharacter> enemyTeam);
 
   /**
    * Set state with astate (and also set the asbtractcharacter of state).

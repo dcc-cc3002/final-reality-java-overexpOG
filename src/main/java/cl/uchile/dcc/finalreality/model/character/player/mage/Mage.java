@@ -14,6 +14,8 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 
+import java.util.ArrayList;
+
 /**
  * A {@link PlayerCharacter} with mana and who can use magic.
  *
@@ -40,5 +42,5 @@ public interface Mage extends PlayerCharacter {
 
   void setSpellFactory(SpellFactory aspellfactory);
 
-  void changeSpell2(FinalReality game, SpellFactory[] listmagic);
+  void changeSpell2(FinalReality game, ArrayList<? extends SpellFactory> listmagic);
 }

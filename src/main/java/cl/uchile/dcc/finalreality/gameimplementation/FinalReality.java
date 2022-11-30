@@ -8,7 +8,13 @@ import cl.uchile.dcc.finalreality.model.spells.factory.black.SpellBlackFactory;
 import cl.uchile.dcc.finalreality.model.spells.factory.white.SpellWhiteFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -16,29 +22,30 @@ import org.jetbrains.annotations.NotNull;
  */
 public class FinalReality {
   private int win = 0;
-  private PlayerCharacter[] characterOfPlayer;
-  private NonPlayableCharacter[] characterOfComputer;
-  private final BlockingQueue<GameCharacter> queue;
-  private Weapon[] weaponOfPlayer;
+  private final BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
+  private ArrayList<PlayerCharacter> characterOfPlayer;
+  private ArrayList<NonPlayableCharacter> characterOfComputer;
+  private ArrayList<Weapon> weaponOfPlayer;
+  private final ArrayList<SpellBlackFactory> blackMagic;
+  private final ArrayList<SpellWhiteFactory> whiteMagic;
 
-  private final SpellBlackFactory[] blackMagic;
-  private final SpellWhiteFactory[] whiteMagic;
+  private final BufferedReader in;
 
   /**
    * The game state is represented by a queue containing both player and computer characters,
-   * arranged in the order in which each character performs actions.
+   * arranged in the order in which each character performs actions (original).
    */
-  public FinalReality(@NotNull PlayerCharacter[] characterofplayer,
-                      @NotNull NonPlayableCharacter[] characterofcomputer,
-                      @NotNull final BlockingQueue<GameCharacter> turnsQueue,
-                      Weapon[] weaponofplayer,
-                      SpellBlackFactory[] blackmagic, SpellWhiteFactory[] whitemagic) {
+  public FinalReality(@NotNull ArrayList<PlayerCharacter> characterofplayer,
+                      @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
+                      ArrayList<Weapon> weaponofplayer,
+                      ArrayList<SpellBlackFactory> blackmagic,
+                      ArrayList<SpellWhiteFactory> whitemagic, BufferedReader initIn) {
     this.characterOfPlayer = characterofplayer;
     this.characterOfComputer = characterofcomputer;
-    this.queue = turnsQueue;
     this.weaponOfPlayer = weaponofplayer;
     this.blackMagic = blackmagic;
     this.whiteMagic = whitemagic;
+    this.in = initIn;
     for (PlayerCharacter playerCharacter : characterOfPlayer) {
       playerCharacter.waitTurn();
     }
@@ -48,31 +55,43 @@ public class FinalReality {
   }
 
   /**
+   * The game state is represented by a queue containing both player and computer characters,
+   * arranged in the order in which each character performs actions (normal constructor).
+   */
+  public FinalReality(@NotNull ArrayList<PlayerCharacter> characterofplayer,
+                      @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
+                      ArrayList<Weapon> weaponofplayer,
+                      ArrayList<SpellBlackFactory> blackmagic,
+                      ArrayList<SpellWhiteFactory> whitemagic) {
+    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic,
+            new BufferedReader(new InputStreamReader(System.in)));
+  }
+
+  /**
+   * The game state is represented by a queue containing both player and computer characters,
+   * arranged in the order in which each character performs actions (constructor for testing).
+   */
+  public FinalReality(@NotNull ArrayList<PlayerCharacter> characterofplayer,
+                      @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
+                      ArrayList<Weapon> weaponofplayer,
+                      ArrayList<SpellBlackFactory> blackmagic,
+                      ArrayList<SpellWhiteFactory> whitemagic, String moves) {
+    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic,
+            new BufferedReader(new StringReader(moves)));
+  }
+
+  /**
    * The game is not over until there is a winner.
    */
   public boolean notOver() {
-    return this.win != 1 && this.win != 2;
+    return this.win == 0;
   }
 
   /**
-   * Return true if the computer win.
+   * Return the value of win.
    */
-  public boolean isComputerWin() {
-    return this.win == 1;
-  }
-
-  /**
-   * Return true if the player win.
-   */
-  public boolean isPlayerWin() {
-    return this.win == 2;
-  }
-
-  /**
-   * Return true if the player and computer tie.
-   */
-  public boolean isTie() {
-    return this.win == 3;
+  public int getWin() {
+    return this.win;
   }
 
   /**
@@ -107,19 +126,18 @@ public class FinalReality {
   public void update() {
     GameCharacter actionCharacter = queue.poll();
     assert actionCharacter != null;
-    this.applystate(actionCharacter);
-    if (actionCharacter.isParalysis()){
-      actionCharacter.unparalysis();
-    } else {
-      actionCharacter.action(this);
+    if (actionCharacter.getCurrentHp() > 0) {
+      if (this.applystate(actionCharacter)) {
+        actionCharacter.action(this);
+      }
+      actionCharacter.waitTurn();
     }
-    actionCharacter.waitTurn();
   }
 
   /**
-   * apply state for the actualCharacter.
+   * apply state for the actualCharacter, return true if the character is not paralyzed.
    */
-  public void applystate(GameCharacter actionCharacter) {
+  private boolean applystate(GameCharacter actionCharacter) {
     if (actionCharacter.isBurned()) {
       actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getBurnedDamage(), 0));
       if (actionCharacter.getBurnedTime() - 1 > 0) {
@@ -136,13 +154,19 @@ public class FinalReality {
         actionCharacter.unpoisoned();
       }
     }
+    if (actionCharacter.isParalysis()){
+      actionCharacter.unparalysis();
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /**
    * the actualCharacter make the action of atack the enemyTeam.
    */
   public void actionAtack(@NotNull GameCharacter actualCharacter,
-                          @NotNull GameCharacter[] enemyTeam) {
+                          @NotNull ArrayList<? extends GameCharacter> enemyTeam) {
     actualCharacter.actionAtack(this, enemyTeam);
   }
 
@@ -168,8 +192,8 @@ public class FinalReality {
    */
   public void equip(@NotNull PlayerCharacter actualCharacter, int weaponToEquip) {
     Weapon weaponPrima = actualCharacter.getEquippedWeapon();
-    actualCharacter.equip(this.weaponOfPlayer[weaponToEquip]);
-    this.weaponOfPlayer[weaponToEquip] = weaponPrima;
+    actualCharacter.equip(this.weaponOfPlayer.get(weaponToEquip));
+    this.weaponOfPlayer.add(weaponToEquip, weaponPrima);
     actualCharacter.action(this);
   }
 
@@ -178,7 +202,7 @@ public class FinalReality {
     this.checkWinner();
   }
 
-  public void magic(Spell spelling, Mage actualCharacter) {
+  public void magic(@NotNull Spell spelling, Mage actualCharacter) {
     spelling.magic(this, actualCharacter);
   }
 
@@ -193,14 +217,14 @@ public class FinalReality {
   /**
    * Returns the CharacterOfPlayer for this game.
    */
-  public PlayerCharacter[] getCharacterOfPlayer() {
+  public ArrayList<PlayerCharacter> getCharacterOfPlayer() {
     return characterOfPlayer;
   }
 
   /**
    * Returns the CharacterOfComputer for this game.
    */
-  public NonPlayableCharacter[] getCharacterOfComputer() {
+  public ArrayList<NonPlayableCharacter> getCharacterOfComputer() {
     return characterOfComputer;
   }
 }

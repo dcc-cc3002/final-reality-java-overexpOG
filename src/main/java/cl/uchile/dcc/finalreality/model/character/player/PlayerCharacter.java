@@ -12,6 +12,8 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
+import java.util.ArrayList;
+
 /**
  * A {@link GameCharacter} that can equip a weapon.
  *
@@ -35,7 +37,7 @@ public interface PlayerCharacter extends GameCharacter {
   boolean isEquippable(Weapon weapon);
 
 
-  void actionEquip(FinalReality game, Weapon[] weapons);
+  void actionEquip(FinalReality game, ArrayList<Weapon> weapons);
 
   void actionMagic(FinalReality game);
 

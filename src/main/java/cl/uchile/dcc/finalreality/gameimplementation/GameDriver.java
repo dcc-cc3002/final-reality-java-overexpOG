@@ -13,11 +13,12 @@ public class GameDriver {
       System.out.print(game);
       game.update();
     } while (game.notOver());
-    if (game.isTie()) {
+    int win = game.getWin();
+    if (win == 3) {
       System.out.println("tie");
-    } else if (game.isPlayerWin()) {
+    } else if (win == 2) {
       System.out.println("player win");
-    } else if (game.isComputerWin()) {
+    } else if (win == 1) {
       System.out.println("computer win");
     }
     System.out.println("game over");
