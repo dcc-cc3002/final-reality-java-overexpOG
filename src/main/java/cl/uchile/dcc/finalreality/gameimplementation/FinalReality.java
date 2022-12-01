@@ -8,13 +8,11 @@ import cl.uchile.dcc.finalreality.model.spells.factory.black.SpellBlackFactory;
 import cl.uchile.dcc.finalreality.model.spells.factory.white.SpellWhiteFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -22,14 +20,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public class FinalReality {
   private int win = 0;
-  private final BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
+  private final BlockingQueue<GameCharacter> queue;
   private ArrayList<PlayerCharacter> characterOfPlayer;
   private ArrayList<NonPlayableCharacter> characterOfComputer;
   private ArrayList<Weapon> weaponOfPlayer;
   private final ArrayList<SpellBlackFactory> blackMagic;
   private final ArrayList<SpellWhiteFactory> whiteMagic;
 
-  private final BufferedReader in;
+  public final BufferedReader in;
 
   /**
    * The game state is represented by a queue containing both player and computer characters,
@@ -39,7 +37,9 @@ public class FinalReality {
                       @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
                       ArrayList<Weapon> weaponofplayer,
                       ArrayList<SpellBlackFactory> blackmagic,
-                      ArrayList<SpellWhiteFactory> whitemagic, BufferedReader initIn) {
+                      ArrayList<SpellWhiteFactory> whitemagic, BlockingQueue<GameCharacter> queue,
+                      BufferedReader initIn) throws InterruptedException {
+    this.queue = queue;
     this.characterOfPlayer = characterofplayer;
     this.characterOfComputer = characterofcomputer;
     this.weaponOfPlayer = weaponofplayer;
@@ -52,6 +52,7 @@ public class FinalReality {
     for (NonPlayableCharacter nonPlayableCharacter : characterOfComputer) {
       nonPlayableCharacter.waitTurn();
     }
+    Thread.sleep(6000);
   }
 
   /**
@@ -62,8 +63,9 @@ public class FinalReality {
                       @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
                       ArrayList<Weapon> weaponofplayer,
                       ArrayList<SpellBlackFactory> blackmagic,
-                      ArrayList<SpellWhiteFactory> whitemagic) {
-    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic,
+                      ArrayList<SpellWhiteFactory> whitemagic, BlockingQueue<GameCharacter> queue)
+          throws InterruptedException {
+    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic, queue,
             new BufferedReader(new InputStreamReader(System.in)));
   }
 
@@ -75,8 +77,9 @@ public class FinalReality {
                       @NotNull ArrayList<NonPlayableCharacter> characterofcomputer,
                       ArrayList<Weapon> weaponofplayer,
                       ArrayList<SpellBlackFactory> blackmagic,
-                      ArrayList<SpellWhiteFactory> whitemagic, String moves) {
-    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic,
+                      ArrayList<SpellWhiteFactory> whitemagic, BlockingQueue<GameCharacter> queue,
+                      String moves) throws InterruptedException {
+    this(characterofplayer, characterofcomputer, weaponofplayer, blackmagic, whitemagic, queue,
             new BufferedReader(new StringReader(moves)));
   }
 
@@ -123,21 +126,24 @@ public class FinalReality {
   /**
    * Ask the current character to make an action.
    */
-  public void update() {
+  public void update() throws InterruptedException {
     GameCharacter actionCharacter = queue.poll();
     assert actionCharacter != null;
     if (actionCharacter.getCurrentHp() > 0) {
       if (this.applystate(actionCharacter)) {
+        System.out.println();
+        System.out.println("personaje actual: " + actionCharacter);
         actionCharacter.action(this);
       }
       actionCharacter.waitTurn();
+      Thread.sleep(1000);
     }
   }
 
   /**
    * apply state for the actualCharacter, return true if the character is not paralyzed.
    */
-  private boolean applystate(GameCharacter actionCharacter) {
+  private boolean applystate(@NotNull GameCharacter actionCharacter) {
     if (actionCharacter.isBurned()) {
       actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getBurnedDamage(), 0));
       if (actionCharacter.getBurnedTime() - 1 > 0) {

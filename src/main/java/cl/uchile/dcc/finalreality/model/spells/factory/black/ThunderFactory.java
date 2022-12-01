@@ -9,7 +9,6 @@ import cl.uchile.dcc.finalreality.model.spells.spell.black.Thunder;
  * @author Ignacio Alveal
  */
 public class ThunderFactory extends AbstractSpellBlackFactory {
-
   @Override
   public Spell create() {
     return new Thunder(mana, odds);

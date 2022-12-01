@@ -16,6 +16,7 @@ import cl.uchile.dcc.finalreality.model.character.player.AbstractPlayerCharacter
 import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
@@ -84,7 +85,11 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
   public void changeSpell2(FinalReality game, ArrayList<? extends SpellFactory> listmagic) {
     try {
       System.out.println("select the spell you want to use:");
-      int number2 = listString(listmagic);
+      System.out.println("0 to return");
+      for (int i = 1; i < listmagic.size() + 1; i++) {
+        System.out.println(i + " to " + listmagic.get(i));
+      }
+      int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {
         this.action(game);
       } else if (number2 >= listmagic.size() + 1) {
@@ -93,7 +98,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
       } else {
         this.setSpellFactory(listmagic.get(number2 - 1));
       }
-    } catch (NumberFormatException ex) {
+    } catch (NumberFormatException | IOException ex) {
       System.out.println("that is not a number, select again");
       this.changeSpell2(game, listmagic);
     }

@@ -8,7 +8,7 @@ public class GameDriver {
   /**
    * Method to start the game.
    */
-  public static void playGame(FinalReality game) {
+  public static void playGame(FinalReality game) throws InterruptedException {
     do {
       System.out.print(game);
       game.update();
