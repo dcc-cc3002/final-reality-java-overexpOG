@@ -87,7 +87,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
       System.out.println("select the spell you want to use:");
       System.out.println("0 to return");
       for (int i = 1; i < listmagic.size() + 1; i++) {
-        System.out.println(i + " to " + listmagic.get(i));
+        System.out.println(i + " to " + listmagic.get(i-1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {

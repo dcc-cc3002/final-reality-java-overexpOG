@@ -24,19 +24,19 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class prueba {
-  public static void main(String args[]) throws InterruptedException {
+  public static void main(String[] args) throws InterruptedException {
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     PlayerCharacter character1 = new Thief("Haruhiro", 80, 12, queue);
     PlayerCharacter character2 = new BlackMage("Shihoru", 60, 12, 50, queue);
     PlayerCharacter character3 = new WhiteMage("Merry", 50, 12, 50, queue);
-    NonPlayableCharacter character4 = new Enemy("Jumbo", 9, 50, 5, queue, 20);
-    NonPlayableCharacter character5 = new Enemy("Arnold", 11, 50, 5, queue, 20);
-    Weapon dsword = new Sword("diamond sword", 100, 1);
-    Weapon wsword = new Sword("wooden sword", 1, 3);
-    Weapon knife = new Knife("wooden knife", 2, 2);
-    Weapon dstaff = new Staff("diamond staff", 1, 1, 100);
-    Weapon wstaff = new Staff("wooden staff", 1, 5, 1);
-    Weapon healerStaff = new Staff("healer staff", 1, 7, 100);
+    NonPlayableCharacter character4 = new Enemy("Jumbo", 90, 50, 5, queue, 20);
+    NonPlayableCharacter character5 = new Enemy("Arnold", 110, 50, 5, queue, 20);
+    Weapon dsword = new Sword("diamond sword", 100, 10);
+    Weapon wsword = new Sword("wooden sword", 1, 30);
+    Weapon knife = new Knife("wooden knife", 2, 20);
+    Weapon dstaff = new Staff("diamond staff", 1, 10, 100);
+    Weapon wstaff = new Staff("wooden staff", 1, 50, 1);
+    Weapon healerStaff = new Staff("healer staff", 1, 70, 100);
     character1.equip(wsword);
     character2.equip(wstaff);
     character3.equip(healerStaff);

@@ -4,9 +4,8 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.nonplayable.NonPlayableCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
-
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A class that adds the cost in mana of the spell.
@@ -25,12 +24,11 @@ public abstract class AbstractSpell implements Spell {
     try {
       ArrayList<NonPlayableCharacter> enemyTeam = game.getCharacterOfComputer();
       System.out.println("select the enemy you want to atack with the spell:");
-      System.out.println("0 to return.");
+      System.out.println("0 to return");
       for (int i = 1; i < enemyTeam.size() + 1; i++) {
-        System.out.println(i + " to " + enemyTeam.get(i));
+        System.out.println(i + " to " + enemyTeam.get(i-1));
       }
-      Scanner scanner2 = new Scanner(System.in);
-      int number2 = scanner2.nextInt();
+      int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {
         actualCharacter.action(game);
       } else if (number2 >= enemyTeam.size() + 1) {
@@ -47,7 +45,7 @@ public abstract class AbstractSpell implements Spell {
           magicPrima(game, actualCharacter, enemyCharacter);
         }
       }
-    } catch (NumberFormatException e) {
+    } catch (NumberFormatException | IOException e) {
       System.out.println("that is not a number, select again");
       this.magic(game, actualCharacter);
     }
