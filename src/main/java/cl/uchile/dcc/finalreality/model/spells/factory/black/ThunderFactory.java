@@ -13,4 +13,10 @@ public class ThunderFactory extends AbstractSpellBlackFactory {
   public Spell create() {
     return new Thunder(mana, odds);
   }
+
+  @Override
+  public String toString() {
+    return "ThunderSpell{mana='%d', odds=%d}"
+            .formatted(mana, odds);
+  }
 }

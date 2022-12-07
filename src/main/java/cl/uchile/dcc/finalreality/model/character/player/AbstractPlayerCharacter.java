@@ -80,7 +80,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   @Override
   public void action(FinalReality game) {
-    System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell");
+    System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell, 4 to change the spell");
     try {
       int number = Integer.parseInt(game.in.readLine());
       if (number == 1) {

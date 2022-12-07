@@ -14,4 +14,10 @@ public class PoisonFactory extends AbstractSpellFactory implements SpellWhiteFac
   public Spell create() {
     return new Poison(mana);
   }
+
+  @Override
+  public String toString() {
+    return "CureSpell{mana='%d'}"
+            .formatted(mana);
+  }
 }

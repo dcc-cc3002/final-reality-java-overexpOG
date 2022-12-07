@@ -14,4 +14,10 @@ public class PalsyFactory extends AbstractSpellFactory implements SpellWhiteFact
   public Spell create() {
     return new Palsy(mana);
   }
+
+  @Override
+  public String toString() {
+    return "CureSpell{mana='%d'}"
+            .formatted(mana);
+  }
 }

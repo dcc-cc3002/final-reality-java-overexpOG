@@ -13,4 +13,10 @@ public class FireFactory extends AbstractSpellBlackFactory {
   public Spell create() {
     return new Fire(mana, odds);
   }
+
+  @Override
+  public String toString() {
+    return "FireSpell{mana='%d', odds=%d}"
+            .formatted(mana, odds);
+  }
 }

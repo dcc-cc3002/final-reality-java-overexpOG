@@ -14,4 +14,10 @@ public class CureFactory extends AbstractSpellFactory implements SpellWhiteFacto
   public Spell create() {
     return new Cure(mana);
   }
+
+  @Override
+  public String toString() {
+    return "CureSpell{mana='%d'}"
+            .formatted(mana);
+  }
 }

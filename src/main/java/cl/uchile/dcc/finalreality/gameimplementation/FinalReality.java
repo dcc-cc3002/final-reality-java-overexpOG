@@ -21,9 +21,9 @@ import org.jetbrains.annotations.NotNull;
 public class FinalReality {
   private int win = 0;
   private final BlockingQueue<GameCharacter> queue;
-  private ArrayList<PlayerCharacter> characterOfPlayer;
-  private ArrayList<NonPlayableCharacter> characterOfComputer;
-  private ArrayList<Weapon> weaponOfPlayer;
+  private final ArrayList<PlayerCharacter> characterOfPlayer;
+  private final ArrayList<NonPlayableCharacter> characterOfComputer;
+  private final ArrayList<Weapon> weaponOfPlayer;
   private final ArrayList<SpellBlackFactory> blackMagic;
   private final ArrayList<SpellWhiteFactory> whiteMagic;
 
@@ -131,7 +131,7 @@ public class FinalReality {
     assert actionCharacter != null;
     if (actionCharacter.getCurrentHp() > 0) {
       if (this.applystate(actionCharacter)) {
-        System.out.println();
+        System.out.println(this);
         System.out.println("personaje actual: " + actionCharacter);
         actionCharacter.action(this);
       }
@@ -197,9 +197,15 @@ public class FinalReality {
    * the actualCharacter equip weaponToEquip (the int represents a weapon).
    */
   public void equip(@NotNull PlayerCharacter actualCharacter, int weaponToEquip) {
-    Weapon weaponPrima = actualCharacter.getEquippedWeapon();
-    actualCharacter.equip(this.weaponOfPlayer.get(weaponToEquip));
-    this.weaponOfPlayer.add(weaponToEquip, weaponPrima);
+    if (actualCharacter.isEquippable(this.weaponOfPlayer.get(weaponToEquip))) {
+      Weapon weaponPrima = actualCharacter.getEquippedWeapon();
+      actualCharacter.equip(this.weaponOfPlayer.get(weaponToEquip));
+      this.weaponOfPlayer.add(weaponToEquip, weaponPrima);
+      this.weaponOfPlayer.remove(weaponToEquip + 1);
+      System.out.println("actual weapon: " + actualCharacter.getEquippedWeapon());
+    } else {
+      System.out.println("this weapon is not equipable by " + actualCharacter);
+    }
     actualCharacter.action(this);
   }
 
@@ -232,5 +238,18 @@ public class FinalReality {
    */
   public ArrayList<NonPlayableCharacter> getCharacterOfComputer() {
     return characterOfComputer;
+  }
+
+  @Override
+  public String toString() {
+    System.out.println("allied characters:");
+    for (PlayerCharacter playerCharacter : this.characterOfPlayer) {
+      System.out.println(playerCharacter);
+    }
+    System.out.println("enemy characters:");
+    for (NonPlayableCharacter nonPlayableCharacter : this.characterOfComputer) {
+      System.out.println(nonPlayableCharacter);
+    }
+    return "";
   }
 }

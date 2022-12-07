@@ -40,13 +40,13 @@ public class Enemy extends AbstractNonPlayableCharacter {
 
   @Override
   public String toString() {
-    return "Enemy{name='%s', weight=%d, maxHp=%d, defense=%d}"
-            .formatted(name, weight, maxHp, defense);
+    return "Enemy{name='%s', weight=%d, maxHp=%d, currentHp=%d, defense=%d}"
+            .formatted(name, weight, maxHp, currentHp, defense);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Enemy.class, name, maxHp, defense, weight);
+    return Objects.hash(Enemy.class, name, maxHp, currentHp, defense, weight);
   }
 
   @Override
@@ -60,6 +60,7 @@ public class Enemy extends AbstractNonPlayableCharacter {
     return hashCode() == enemy.hashCode()
             && name.equals(enemy.name)
             && maxHp == enemy.maxHp
+            && currentHp == enemy.currentHp
             && defense == enemy.defense
             && weight == enemy.weight;
   }

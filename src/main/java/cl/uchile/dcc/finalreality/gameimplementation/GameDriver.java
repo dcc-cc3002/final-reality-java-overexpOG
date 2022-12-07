@@ -10,7 +10,6 @@ public class GameDriver {
    */
   public static void playGame(FinalReality game) throws InterruptedException {
     do {
-      System.out.print(game);
       game.update();
     } while (game.notOver());
     int win = game.getWin();
