@@ -247,4 +247,56 @@ class StateTest {
     assert(!character1.isBurned() || !character1.isPoisoned());
     assert(character1.isParalysis() || character1.isBurned() || character1.isPoisoned());
   }
+
+  @Test
+  void getBurnedDamage() {
+    assert(0 == character1.getBurnedDamage());
+    character1.burned(10, 5);
+    assert(10 == character1.getBurnedDamage());
+    character1.poisoned(8, 4);
+    assert(10 == character1.getBurnedDamage());
+    character1.paralysis();
+    assert(10 == character1.getBurnedDamage());
+    character1.unpoisoned();
+    assert(10 == character1.getBurnedDamage());
+  }
+
+  @Test
+  void getBurnedTime() {
+    assert(0 == character1.getBurnedTime());
+    character1.burned(10, 5);
+    assert(5 == character1.getBurnedTime());
+    character1.poisoned(8, 4);
+    assert(5 == character1.getBurnedTime());
+    character1.paralysis();
+    assert(5 == character1.getBurnedTime());
+    character1.unpoisoned();
+    assert(5 == character1.getBurnedTime());
+  }
+
+  @Test
+  void getPoisonedDamage() {
+    assert(0 == character1.getPoisonedDamage());
+    character1.poisoned(10, 5);
+    assert(10 == character1.getPoisonedDamage());
+    character1.burned(8, 4);
+    assert(10 == character1.getPoisonedDamage());
+    character1.paralysis();
+    assert(10 == character1.getPoisonedDamage());
+    character1.unburned();
+    assert(10 == character1.getPoisonedDamage());
+  }
+
+  @Test
+  void getPoisonedTime() {
+    assert(0 == character1.getPoisonedTime());
+    character1.poisoned(10, 5);
+    assert(5 == character1.getPoisonedTime());
+    character1.burned(8, 4);
+    assert(5 == character1.getPoisonedTime());
+    character1.paralysis();
+    assert(5 == character1.getPoisonedTime());
+    character1.unburned();
+    assert(5 == character1.getPoisonedTime());
+  }
 }

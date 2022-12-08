@@ -12,7 +12,6 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.ActionTurn;
 import cl.uchile.dcc.finalreality.model.state.State;
-
 import java.util.ArrayList;
 
 /**

@@ -15,7 +15,6 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.AbstractPlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
@@ -88,7 +87,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
       System.out.println("select the spell you want to use:");
       System.out.println("0 to return");
       for (int i = 1; i < listmagic.size() + 1; i++) {
-        System.out.println(i + " to " + listmagic.get(i-1));
+        System.out.println(i + " to " + listmagic.get(i - 1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {

@@ -80,7 +80,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   @Override
   public void action(FinalReality game) {
-    System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell, 4 to change the spell");
+    System.out.println("select 1 to attack, 2 to change weapon, 3 to cast a spell,"
+            + "4 to change the spell");
     try {
       int number = Integer.parseInt(game.in.readLine());
       if (number == 1) {
@@ -113,7 +114,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       System.out.println("select the enemy you want to atack:");
       System.out.println("0 to return");
       for (int i = 1; i < enemyTeam.size() + 1; i++) {
-        System.out.println(i + " to " + enemyTeam.get(i-1));
+        System.out.println(i + " to " + enemyTeam.get(i - 1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {
@@ -137,7 +138,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       System.out.println("select the weapon you want to equip:");
       System.out.println("0 to return");
       for (int i = 1; i < weapons.size() + 1; i++) {
-        System.out.println(i + " to " + weapons.get(i-1));
+        System.out.println(i + " to " + weapons.get(i - 1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {

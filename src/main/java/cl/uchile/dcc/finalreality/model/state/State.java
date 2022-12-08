@@ -47,22 +47,22 @@ public interface State {
   /**
    * Returns true if the state is normal, false otherwise.
    */
-  boolean isNormal ();
+  boolean isNormal();
 
   /**
    * Returns true if the state is paralysis, false otherwise.
    */
-  boolean isParalysis ();
+  boolean isParalysis();
 
   /**
    * Returns true if the state is burned, false otherwise.
    */
-  boolean isBurned ();
+  boolean isBurned();
 
   /**
    * Returns true if the state is poisoned, false otherwise.
    */
-  boolean isPoisoned ();
+  boolean isPoisoned();
 
   /**
    * Returns the damage for burned.

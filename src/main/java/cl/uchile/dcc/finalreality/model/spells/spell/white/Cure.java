@@ -25,7 +25,7 @@ public class Cure extends AbstractSpell implements SpellWhite {
       System.out.println("select the ally you want to heal with the spell:");
       System.out.println("0 to return.");
       for (int i = 1; i < allyTeam.size() + 1; i++) {
-        System.out.println(i + " to " + allyTeam.get(i-1));
+        System.out.println(i + " to " + allyTeam.get(i - 1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {

@@ -13,7 +13,6 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spells.factory.SpellFactory;
 import cl.uchile.dcc.finalreality.model.spells.spell.Spell;
-
 import java.util.ArrayList;
 
 /**

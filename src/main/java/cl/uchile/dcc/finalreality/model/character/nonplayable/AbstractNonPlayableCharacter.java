@@ -14,7 +14,6 @@ import cl.uchile.dcc.finalreality.gameimplementation.FinalReality;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;

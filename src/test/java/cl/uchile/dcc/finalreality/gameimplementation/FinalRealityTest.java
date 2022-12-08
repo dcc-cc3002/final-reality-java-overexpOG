@@ -33,6 +33,7 @@ class FinalRealityTest {
   private NonPlayableCharacter character4;
   private NonPlayableCharacter character5;
   private NonPlayableCharacter character6;
+  private PlayerCharacter character7;
   private Weapon dsword;
   private Weapon wsword;
   private Weapon knife;
@@ -60,6 +61,7 @@ class FinalRealityTest {
     character4 = new Enemy("Jumbo", 30, 50, 5, queue, 20);
     character5 = new Enemy("Arnold", 35, 50, 5, queue, 20);
     character6 = new Enemy("boss", 8, 1000, 40, queue, 200);
+    character7 = new WhiteMage("one mana", 100, 20, 1, queue);
     dsword = new Sword("diamond sword", 100, 10);
     wsword = new Sword("wooden sword", 1, 16);
     knife = new Knife("wooden knife", 2, 1000);
@@ -155,8 +157,7 @@ class FinalRealityTest {
   }
 
   @Test
-  void useMagic() throws InterruptedException {
-    //not mage
+  void useMagicNotMage() throws InterruptedException {
     character1.equip(dsword);
     characterOfPlayer.add(character1);
     characterOfComputer.add(character4);
@@ -167,25 +168,75 @@ class FinalRealityTest {
     whiteMagic.add(palsyfactory);
     whiteMagic.add(poisonfactory);
     checkGame("3\n1\n1\n1\n2");
-    //black mage
-    characterOfPlayer.remove(0);
+  }
+
+  @Test
+  void useMagicNotEnoughMana() throws InterruptedException {
+    character7.equip(mstaff);
+    characterOfPlayer.add(character7);
+    characterOfComputer.add(character4);
+    characterOfComputer.add(character5);
+    blackMagic.add(firefactory);
+    blackMagic.add(thunderfactory);
+    whiteMagic.add(curefactory);
+    whiteMagic.add(palsyfactory);
+    whiteMagic.add(poisonfactory);
+    checkGame("3\n1\n3\n1\n4\n2\n3\n1\n1\n1\n1\n2");
+  }
+
+  @Test
+  void useMagicBlackMage() throws InterruptedException {
     character2.equip(mstaff);
     characterOfPlayer.add(character2);
+    characterOfComputer.add(character4);
+    characterOfComputer.add(character5);
+    firefactory.setOdds(100);
+    thunderfactory.setOdds(100);
     blackMagic.add(firefactory);
     blackMagic.add(thunderfactory);
     whiteMagic.add(curefactory);
     whiteMagic.add(palsyfactory);
     whiteMagic.add(poisonfactory);
     checkGame("3\n1\n3\n0\n3\n3\na\n1\n4\n2\n3\n1\n1\n1\n1\n2");
-    // white mage
-    characterOfPlayer.remove(0);
+  }
+
+  @Test
+  void useMagicWhiteMage() throws InterruptedException {
     character3.equip(mstaff);
     characterOfPlayer.add(character3);
+    characterOfComputer.add(character4);
+    characterOfComputer.add(character5);
+    blackMagic.add(firefactory);
+    blackMagic.add(thunderfactory);
+    whiteMagic.add(curefactory);
+    whiteMagic.add(palsyfactory);
+    whiteMagic.add(poisonfactory);
     checkGame("3\n1\n3\n0\n3\n3\na\n1\n4\n2\n3\n1\n4\n3\n3\n1\n1\n1\n1\n2");
   }
 
   @Test
   void computerWin() throws InterruptedException {
+    character1.equip(wsword);
+    character2.equip(wstaff);
+    character3.equip(wstaff);
+    character7.equip(wstaff);
+    characterOfPlayer.add(character1);
+    characterOfPlayer.add(character2);
+    characterOfPlayer.add(character3);
+    characterOfPlayer.add(character7);
+    characterOfComputer.add(character4);
+    characterOfComputer.add(character5);
+    characterOfComputer.add(character6);
+    blackMagic.add(firefactory);
+    blackMagic.add(thunderfactory);
+    whiteMagic.add(curefactory);
+    whiteMagic.add(palsyfactory);
+    whiteMagic.add(poisonfactory);
+    checkGame("1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1");
+  }
+
+  @Test
+  void testConstructor() throws InterruptedException {
     character1.equip(wsword);
     characterOfPlayer.add(character1);
     characterOfComputer.add(character4);
@@ -197,11 +248,18 @@ class FinalRealityTest {
     whiteMagic.add(palsyfactory);
     whiteMagic.add(poisonfactory);
     checkGame();
-    character2.equip(wstaff);
-    character3.equip(wstaff);
+  }
+
+  @Test
+  void invalidAction() throws InterruptedException {
+    character1.equip(dsword);
     characterOfPlayer.add(character1);
-    characterOfPlayer.add(character2);
-    characterOfPlayer.add(character3);
-    checkGame("1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1");
+    characterOfComputer.add(character4);
+    blackMagic.add(firefactory);
+    blackMagic.add(thunderfactory);
+    whiteMagic.add(curefactory);
+    whiteMagic.add(palsyfactory);
+    whiteMagic.add(poisonfactory);
+    checkGame("a\n5\n1\n1");
   }
 }

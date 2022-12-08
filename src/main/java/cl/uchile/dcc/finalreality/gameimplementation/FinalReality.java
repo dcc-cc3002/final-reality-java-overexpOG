@@ -52,7 +52,7 @@ public class FinalReality {
     for (NonPlayableCharacter nonPlayableCharacter : characterOfComputer) {
       nonPlayableCharacter.waitTurn();
     }
-    Thread.sleep(6000);
+    Thread.sleep(2000);
   }
 
   /**
@@ -125,16 +125,20 @@ public class FinalReality {
    */
   public void update() throws InterruptedException {
     GameCharacter actionCharacter = queue.poll();
-    assert actionCharacter != null;
-    if (actionCharacter.getCurrentHp() > 0) {
-      if (this.applystate(actionCharacter)) {
-        System.out.println(this);
-        System.out.println("personaje actual: " + actionCharacter);
-        actionCharacter.action(this);
+    if (actionCharacter == null) {
+      Thread.sleep(2000);
+      this.update();
+    } else {
+      if (actionCharacter.getCurrentHp() > 0) {
+        if (this.applystate(actionCharacter)) {
+          System.out.println(this);
+          System.out.println("personaje actual: " + actionCharacter);
+          actionCharacter.action(this);
+        }
       }
+      actionCharacter.waitTurn();
+      Thread.sleep(2000);
     }
-    actionCharacter.waitTurn();
-    Thread.sleep(2000);
   }
 
   /**
@@ -142,22 +146,26 @@ public class FinalReality {
    */
   private boolean applystate(@NotNull GameCharacter actionCharacter) {
     if (actionCharacter.isBurned()) {
-      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getBurnedDamage(), 0));
+      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp()
+              - actionCharacter.getBurnedDamage(), 0));
       if (actionCharacter.getBurnedTime() - 1 > 0) {
-        actionCharacter.burned(actionCharacter.getBurnedDamage(), actionCharacter.getBurnedTime() - 1);
-      }else {
+        actionCharacter.burned(actionCharacter.getBurnedDamage(),
+                actionCharacter.getBurnedTime() - 1);
+      } else {
         actionCharacter.unburned();
       }
     }
     if (actionCharacter.isPoisoned()) {
-      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp() - actionCharacter.getPoisonedDamage(), 0));
+      actionCharacter.setCurrentHp(Math.max(actionCharacter.getCurrentHp()
+              - actionCharacter.getPoisonedDamage(), 0));
       if (actionCharacter.getPoisonedTime() - 1 > 0) {
-        actionCharacter.burned(actionCharacter.getPoisonedDamage(), actionCharacter.getPoisonedTime() - 1);
-      }else {
+        actionCharacter.burned(actionCharacter.getPoisonedDamage(),
+                actionCharacter.getPoisonedTime() - 1);
+      } else {
         actionCharacter.unpoisoned();
       }
     }
-    if (actionCharacter.isParalysis()){
+    if (actionCharacter.isParalysis()) {
       actionCharacter.unparalysis();
       return false;
     } else {

@@ -26,7 +26,7 @@ public abstract class AbstractSpell implements Spell {
       System.out.println("select the enemy you want to atack with the spell:");
       System.out.println("0 to return");
       for (int i = 1; i < enemyTeam.size() + 1; i++) {
-        System.out.println(i + " to " + enemyTeam.get(i-1));
+        System.out.println(i + " to " + enemyTeam.get(i - 1));
       }
       int number2 = Integer.parseInt(game.in.readLine());
       if (number2 == 0) {
