@@ -115,9 +115,6 @@ public class FinalReality {
     }
     if (playerOver) {
       this.win = 1;
-      if (computerOver) {
-        this.win = 3;
-      }
     } else if (computerOver) {
       this.win = 2;
     }
@@ -135,9 +132,9 @@ public class FinalReality {
         System.out.println("personaje actual: " + actionCharacter);
         actionCharacter.action(this);
       }
-      actionCharacter.waitTurn();
-      Thread.sleep(1000);
     }
+    actionCharacter.waitTurn();
+    Thread.sleep(2000);
   }
 
   /**

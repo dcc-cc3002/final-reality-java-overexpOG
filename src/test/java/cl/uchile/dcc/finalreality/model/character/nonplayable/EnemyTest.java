@@ -35,7 +35,7 @@ class EnemyTest {
 
   @Test
   void testToString() {
-    assertEquals("Enemy{name='Jumbo', weight=7, maxHp=50, defense=20}", character1.toString());
+    assertEquals("Enemy{name='Jumbo', weight=7, maxHp=50, currentHp=50, defense=20}", character1.toString());
   }
 
   @Test

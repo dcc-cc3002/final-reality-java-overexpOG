@@ -84,6 +84,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
   @Override
   public void changeSpell2(FinalReality game, ArrayList<? extends SpellFactory> listmagic) {
     try {
+      System.out.println("actual spell " + this.spellFactory);
       System.out.println("select the spell you want to use:");
       System.out.println("0 to return");
       for (int i = 1; i < listmagic.size() + 1; i++) {
@@ -97,6 +98,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
         this.changeSpell2(game, listmagic);
       } else {
         this.setSpellFactory(listmagic.get(number2 - 1));
+        this.action(game);
       }
     } catch (NumberFormatException | IOException ex) {
       System.out.println("that is not a number, select again");
@@ -108,7 +110,8 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
   public void actionMagic(FinalReality game) {
     if (spellFactory == null) {
       this.changeSpell(game);
+    } else {
+      game.magic(this.spelling(), this);
     }
-    game.magic(this.spelling(), this);
   }
 }

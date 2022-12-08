@@ -13,9 +13,7 @@ public class GameDriver {
       game.update();
     } while (game.notOver());
     int win = game.getWin();
-    if (win == 3) {
-      System.out.println("tie");
-    } else if (win == 2) {
+    if (win == 2) {
       System.out.println("player win");
     } else if (win == 1) {
       System.out.println("computer win");

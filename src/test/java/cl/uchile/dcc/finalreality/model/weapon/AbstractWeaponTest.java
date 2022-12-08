@@ -32,6 +32,11 @@ class AbstractWeaponTest {
   }
 
   @Test
+  void getMagicDamage() {
+    assertEquals(0, knife.getMagicDamage());
+  }
+
+  @Test
   void getWeight() {
     assertEquals(1, knife.getWeight());
   }

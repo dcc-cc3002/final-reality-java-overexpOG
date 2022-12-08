@@ -17,7 +17,7 @@ public class PoisonFactory extends AbstractSpellFactory implements SpellWhiteFac
 
   @Override
   public String toString() {
-    return "CureSpell{mana='%d'}"
+    return "PoisonSpell{mana='%d'}"
             .formatted(mana);
   }
 }
