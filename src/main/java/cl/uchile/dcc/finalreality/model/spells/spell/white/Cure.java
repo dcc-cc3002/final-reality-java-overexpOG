@@ -14,6 +14,13 @@ import java.util.ArrayList;
  * @author Ignacio Alveal
  */
 public class Cure extends AbstractSpell implements SpellWhite {
+
+  /**
+   * Creates a new Cure spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   */
   public Cure(int mana) {
     super(mana);
   }

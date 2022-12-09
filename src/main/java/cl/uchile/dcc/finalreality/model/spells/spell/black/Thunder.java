@@ -10,6 +10,15 @@ import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
  * @author Ignacio Alveal
  */
 public class Thunder extends AbstractSpellBlack {
+
+  /**
+   * Creates a new Thunder spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   * @param odds
+   *     the chances of paralyzing the enemy
+   */
   public Thunder(int mana, int odds) {
     super(mana, odds);
   }

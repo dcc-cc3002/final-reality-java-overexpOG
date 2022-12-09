@@ -10,6 +10,15 @@ import cl.uchile.dcc.finalreality.model.character.player.mage.Mage;
  * @author Ignacio Alveal
  */
 public class Fire extends AbstractSpellBlack {
+
+  /**
+   * Creates a new Fire spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   * @param odds
+   *     the chances of burning the enemy
+   */
   public Fire(int mana, int odds) {
     super(mana, odds);
   }

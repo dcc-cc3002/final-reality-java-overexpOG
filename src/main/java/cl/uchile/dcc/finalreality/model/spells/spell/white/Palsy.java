@@ -11,6 +11,13 @@ import cl.uchile.dcc.finalreality.model.spells.spell.AbstractSpell;
  * @author Ignacio Alveal
  */
 public class Palsy extends AbstractSpell implements SpellWhite {
+
+  /**
+   * Creates a new Palsy spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   */
   public Palsy(int mana) {
     super(mana);
   }

@@ -13,8 +13,15 @@ import java.util.ArrayList;
  * @author Ignacio Alveal
  */
 public abstract class AbstractSpell implements Spell {
+
   protected int mana;
 
+  /**
+   * Creates a new spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   */
   protected AbstractSpell(int mana) {
     this.mana = mana;
   }

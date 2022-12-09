@@ -13,6 +13,14 @@ import cl.uchile.dcc.finalreality.model.spells.spell.AbstractSpell;
 public abstract class AbstractSpellBlack extends AbstractSpell implements SpellBlack {
   protected int odds;
 
+  /**
+   * Creates a new black spell.
+   *
+   * @param mana
+   *     the mana that the spell costs
+   * @param odds
+   *     the chances of adding a status to the enemy
+   */
   protected AbstractSpellBlack(int mana, int odds) {
     super(mana);
     this.odds = odds;
