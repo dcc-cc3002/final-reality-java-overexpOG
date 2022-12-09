@@ -1,5 +1,10 @@
 package cl.uchile.dcc.finalreality.model.state;
 
+/**
+ * A {@link State} that paralyzes for one turn.
+ *
+ * @author Ignacio Alveal
+ */
 public class Paralysis extends AbstractState {
 
   @Override

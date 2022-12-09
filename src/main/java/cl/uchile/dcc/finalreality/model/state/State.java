@@ -2,10 +2,16 @@ package cl.uchile.dcc.finalreality.model.state;
 
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 
+/**
+ * This represents a state from the game.
+ * A state represents the particular condition of a character.
+ *
+ * @author Ignacio Alveal
+ */
 public interface State {
 
   /**
-   * Set this.abstractcharacter with abstractcharacter.
+   * Set this abstractcharacter with abstractcharacter.
    */
   void setAbstractCharacter(AbstractCharacter abstractcharacter);
 

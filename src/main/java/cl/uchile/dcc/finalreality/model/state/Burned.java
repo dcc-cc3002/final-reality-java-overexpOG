@@ -1,10 +1,22 @@
 package cl.uchile.dcc.finalreality.model.state;
 
+/**
+ * A {@link State} that deals burning damage over a time interval.
+ *
+ * @author Ignacio Alveal
+ */
 public class Burned extends AbstractState {
-
   private final int burnedDamage;
   private final int burnedTime;
 
+  /**
+   * Creates a new Burned state.
+   *
+   * @param burnedDamage
+   *     the damage caused by the state
+   * @param burnedTime
+   *     the state time interval
+   */
   public Burned(int burnedDamage, int burnedTime) {
     this.burnedDamage = burnedDamage;
     this.burnedTime = burnedTime;

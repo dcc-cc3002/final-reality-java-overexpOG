@@ -2,6 +2,11 @@ package cl.uchile.dcc.finalreality.model.state;
 
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 
+/**
+ * An abstract class that holds the common behaviour of all the states in the game.
+ *
+ * @author Ignacio Alveal
+ */
 public abstract class AbstractState implements State {
   private AbstractCharacter abstractcharacter;
 

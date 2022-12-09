@@ -1,10 +1,23 @@
 package cl.uchile.dcc.finalreality.model.state;
 
+/**
+ * A {@link State} that deals poison damage over a time interval.
+ *
+ * @author Ignacio Alveal
+ */
 public class Poisoned extends AbstractState {
 
   private final int poisonedDamage;
   private final int poisonedTime;
 
+  /**
+   * Creates a new Poisoned state.
+   *
+   * @param poisonedDamage
+   *     the damage caused by the poisoned state
+   * @param poisonedTime
+   *     the time interval of the poisoned state
+   */
   public Poisoned(int poisonedDamage, int poisonedTime) {
     this.poisonedDamage = poisonedDamage;
     this.poisonedTime = poisonedTime;

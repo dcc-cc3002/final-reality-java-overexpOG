@@ -1,5 +1,10 @@
 package cl.uchile.dcc.finalreality.model.state;
 
+/**
+ * A {@link State} that deals burning damage and poison damage over a given period of time for each.
+ *
+ * @author Ignacio Alveal
+ */
 public class BurnedPoisoned extends AbstractState {
 
   private final int burnedDamage;
@@ -7,6 +12,18 @@ public class BurnedPoisoned extends AbstractState {
   private final int poisonedDamage;
   private final int poisonedTime;
 
+  /**
+   * Creates a new BurnedPoisoned state.
+   *
+   * @param burnedDamage
+   *     the damage caused by the burned state
+   * @param burnedTime
+   *     the time interval of the burned state
+   * @param poisonedDamage
+   *     the damage caused by the poisoned state
+   * @param poisonedTime
+   *     the time interval of the poisoned state
+   */
   public BurnedPoisoned(int burnedDamage, int burnedTime, int poisonedDamage, int poisonedTime) {
     this.burnedDamage = burnedDamage;
     this.burnedTime = burnedTime;

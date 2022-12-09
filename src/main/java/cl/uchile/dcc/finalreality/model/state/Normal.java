@@ -1,5 +1,10 @@
 package cl.uchile.dcc.finalreality.model.state;
 
+/**
+ * A {@link State} that does nothing (normal).
+ *
+ * @author Ignacio Alveal
+ */
 public class Normal extends AbstractState {
 
   @Override
