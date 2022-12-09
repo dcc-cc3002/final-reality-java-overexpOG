@@ -18,9 +18,11 @@ enemies controlled by the computer.
 
 ## instrucciones de uso
 
-El programa todabia no tiene una version que se pueda correr, por lo que para probar que los distintos metodos
-funcionen correctamente se pueden probar los distintos test que se hicieron para cada metodo (que estan en la 
-carpeta test).
+El programa se puede correr desde la clase Main, viniendo ya rellenado con personajes aliados, personajes enemigos, 
+los hechizos y las armas, todo esto se puede cambiar pero desde el codigo.
+
+Tambien se prueba que los metodos del programa funcionen correctamente, por ello se pueden probar los distintos test que
+se hicieron para cada metodo (que estan en la carpeta test).
 
 ## desarrollo
 
@@ -74,3 +76,7 @@ van a estar ordenados secuencialmente en el tiempo.
   isEquippableThief).
 - se elimina el codigo que sirve de ejemplo y se crea una carpeta test, con varios test que prueban el buen 
   funcionamientos de los distintos metodos.
+- se crea un main, que es un ejemplo de funcionamiento del programa (este no se testea).
+- se crean los estados de personajes.
+- se crean los hechizos que pueden usar los magos.
+- se crea un gamedriver que maneja los turnos y las acciones que pueden realizar los personajes.
