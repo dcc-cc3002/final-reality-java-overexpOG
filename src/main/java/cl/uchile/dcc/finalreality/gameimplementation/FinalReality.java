@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * Class to enforce rules of finalreality.
  */
 public class FinalReality {
+
   private int win = 0;
   private final BlockingQueue<GameCharacter> queue;
   private final ArrayList<PlayerCharacter> characterOfPlayer;
@@ -26,7 +27,6 @@ public class FinalReality {
   private final ArrayList<Weapon> weaponOfPlayer;
   private final ArrayList<SpellBlackFactory> blackMagic;
   private final ArrayList<SpellWhiteFactory> whiteMagic;
-
   public final BufferedReader in;
 
   /**
@@ -214,19 +214,31 @@ public class FinalReality {
     actualCharacter.action(this);
   }
 
+  /**
+   * the actualCharacter try to make magic.
+   */
   public void actionMagic(@NotNull PlayerCharacter actualCharacter) {
     actualCharacter.actionMagic(this);
+  }
+
+  /**
+   * the actualCharacter tries to cast the spell.
+   */
+  public void magic(@NotNull Spell spell, Mage actualCharacter) {
+    spell.magic(this, actualCharacter);
     this.checkWinner();
   }
 
-  public void magic(@NotNull Spell spelling, Mage actualCharacter) {
-    spelling.magic(this, actualCharacter);
-  }
-
+  /**
+   * the actual character (is a black mage) changes spells.
+   */
   public void changeSpellBlackMagic(@NotNull Mage actualCharacter) {
     actualCharacter.changeSpell2(this, blackMagic);
   }
 
+  /**
+   * the actual character (is a white mage) changes spells.
+   */
   public void changeSpellWhiteMagic(@NotNull Mage actualCharacter) {
     actualCharacter.changeSpell2(this, whiteMagic);
   }
