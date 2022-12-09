@@ -2,6 +2,8 @@ package cl.uchile.dcc.finalreality.gameimplementation;
 
 /**
  * Driver for finalreality.
+ *
+ * @author Ignacio Alveal
  */
 public class GameDriver {
 

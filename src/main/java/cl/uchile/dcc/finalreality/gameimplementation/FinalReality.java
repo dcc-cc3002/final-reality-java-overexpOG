@@ -17,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Class to enforce rules of finalreality.
+ *
+ * @author Ignacio Alveal
  */
 public class FinalReality {
 
@@ -52,7 +54,7 @@ public class FinalReality {
     for (NonPlayableCharacter nonPlayableCharacter : characterOfComputer) {
       nonPlayableCharacter.waitTurn();
     }
-    Thread.sleep(2000);
+    Thread.sleep(1000);
   }
 
   /**
@@ -126,7 +128,7 @@ public class FinalReality {
   public void update() throws InterruptedException {
     GameCharacter actionCharacter = queue.poll();
     if (actionCharacter == null) {
-      Thread.sleep(2000);
+      Thread.sleep(1000);
       this.update();
     } else {
       if (actionCharacter.getCurrentHp() > 0) {
@@ -137,7 +139,7 @@ public class FinalReality {
         }
       }
       actionCharacter.waitTurn();
-      Thread.sleep(2000);
+      Thread.sleep(1000);
     }
   }
 
